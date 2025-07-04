@@ -4,7 +4,6 @@ import 'package:mechpro/core/extenstions/extentions.dart';
 
 import 'package:mechpro/core/utils/app_assets.dart';
 
-
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/text_style.dart';
@@ -39,7 +38,7 @@ class ForgetPasswordView extends StatelessWidget {
           TextButton(
             onPressed: () {
               context.pushReplacementNamed(Routes.registrationView);
-            //  context.pushReplacement(RegistrationView());
+              //  context.pushReplacement(RegistrationView());
             },
             child: Text(
               'Login',

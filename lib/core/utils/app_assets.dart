@@ -16,12 +16,12 @@ sealed class AppAssets {
   static const String sellingIcon = 'assets/images/sellingIcon.png';
   static const String service3 = 'assets/images/ser3.png';
   static const String digitalemargcy = 'assets/images/Digitalemargcy.png';
-static const String schedual = 'assets/images/sc.PNG';
-static const String schedualeMaintenance = 'assets/images/scheduale maintenance.png';
-static const String locateWorkshop = 'assets/images/locate workshop.png';
-static const String manageSer = 'assets/images/manage ser.png';
-static const String trackOrder = 'assets/images/track.png';
-static const String appointment = 'assets/images/sc.PNG';
-static const String offer = 'assets/images/offer.PNG';
-
+  static const String schedual = 'assets/images/sc.PNG';
+  static const String schedualeMaintenance =
+      'assets/images/scheduale maintenance.png';
+  static const String locateWorkshop = 'assets/images/locate workshop.png';
+  static const String manageSer = 'assets/images/manage ser.png';
+  static const String trackOrder = 'assets/images/track.png';
+  static const String appointment = 'assets/images/sc.PNG';
+  static const String offer = 'assets/images/offer.PNG';
 }

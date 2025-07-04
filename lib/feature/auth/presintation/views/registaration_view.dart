@@ -11,7 +11,6 @@ import 'package:mechpro/core/utils/MangeSpacing.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/text_style.dart';
 
-
 class RegistrationView extends StatefulWidget {
   const RegistrationView({super.key});
 
@@ -247,8 +246,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                 GestureDetector(
                   onTap: () {
                     context.pushReplacementNamed(Routes.forgetPasswordView);
-                 //   context.pushReplacement(ForgetPasswordView());
-                   
+                    //   context.pushReplacement(ForgetPasswordView());
                   },
                   child: Text(
                     LocaleKeys.forgotPassword.tr(),
@@ -267,16 +265,14 @@ class _RegistrationViewState extends State<RegistrationView> {
                 String email = _emailController.text;
                 String password = _passwordController.text;
                 if (_isLogin) {
-
                   context.pushAndRemoveUntil(
-              Routes.layoutView,
-              routeBuilder: AppRouter.buildRoute, // تمرير الدالة كـ callback
-              predicate: (route) => false,
-             
-            );
-                
-                 // context.pushAndRemoveUntil(LayoutView());
-                 
+                    Routes.layoutView,
+                    routeBuilder:
+                        AppRouter.buildRoute, // تمرير الدالة كـ callback
+                    predicate: (route) => false,
+                  );
+
+                  // context.pushAndRemoveUntil(LayoutView());
                 } else {
                   String name = _nameController.text;
                   print(

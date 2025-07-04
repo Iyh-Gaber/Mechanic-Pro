@@ -1,22 +1,23 @@
-import 'package:easy_localization/easy_localization.dart';
+
+
+
+
+/*import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mechpro/core/extenstions/extentions.dart';
-import 'package:mechpro/core/utils/app_assets.dart';
+
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/feature/home/presentation/widgets/app_bar_home.dart';
+import 'package:mechpro/feature/home/presentation/widgets/core_services_part.dart';
 import 'package:mechpro/feature/home/presentation/widgets/emergency_button.dart';
 
-import 'package:mechpro/feature/home/presentation/widgets/new_services.dart';
-import 'package:mechpro/feature/home/presentation/widgets/offer_banner.dart';
-import 'package:mechpro/feature/home/presentation/widgets/service_list_item.dart';
+import 'package:mechpro/feature/home/presentation/widgets/future_work_services.dart';
 
-import '../../../../core/routing/routes.dart';
+import 'package:mechpro/feature/home/presentation/widgets/offer_banner.dart';
+
 import '../../../../core/translate/locale_keys.g.dart';
 import '../../../../core/utils/text_style.dart';
-
-
-
+import '../cubit/main_services_cubit.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -28,11 +29,14 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+   
     return SafeArea(
-      child: Scaffold(
-        appBar:
 
-            AppBarHome(),
+      
+      child: Scaffold(
+        appBar: AppBarHome(),
+
+
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -50,40 +54,11 @@ class _HomeViewState extends State<HomeView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OfferBanner(),
-
                 7.verticalSpace,
                 EmergencyButton(),
                 7.verticalSpace,
-                SizedBox(
-                  height: 77,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      NewServicesItem(
-                        name: 'Order Tracking',
-                        image: AppAssets.trackOrder,
-                      ),
-                      NewServicesItem(
-                        name: 'Digital Emergency Fund',
-                        image: AppAssets.digitalemargcy,
-                      ),
-                      NewServicesItem(
-                        name: 'Schedule Maintenance Appointment',
-                        image: AppAssets.schedualeMaintenance,
-                      ),
-                      NewServicesItem(
-                        name: '  locate Nearby Workshop',
-                        image: AppAssets.locateWorkshop,
-                      ),
-                      NewServicesItem(
-                        name: 'Manage Services History',
-                        image: AppAssets.manageSer,
-                      ),
-                    ],
-                  ),
-                ),
+                FutureWorkServices(),
                 7.verticalSpace,
-              
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
@@ -92,43 +67,170 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 16.verticalSpace,
-             
-             
-                Expanded(
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    children: [
-                      ServiceListItem(
-                        icon: Icons.car_repair,
-                        title: 'Regular Maintenance',
-                        onTap: () {
-                          context.pushNamed((Routes.profileView));
-                        },
-                      ),
-                      SizedBox(height: 12),
-                      ServiceListItem(
-                        icon: Icons.settings,
-                        title: 'Mechanical Fault Repairs',
-                      ),
-                      12.verticalSpace,
-                      ServiceListItem(
-                        icon: Icons.electrical_services,
-                        title: 'Electrical Fault Repairs',
-                      ),
-                      12.verticalSpace,
-                      ServiceListItem(
-                        icon: Icons.car_crash,
-                        title: 'Auto Body Repair',
-                      ),
-                      12.verticalSpace,
-                      ServiceListItem(
-                        icon: Icons.local_car_wash,
-                        title: 'Other Services',
-                      ),
-                      12.verticalSpace,
-                    ],
+                CoreServicesPart(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+*/
+
+/*
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // <--- تم إضافة هذا الاستيراد
+
+import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/feature/home/data/repo/main_services_repo.dart';
+import 'package:mechpro/feature/home/presentation/widgets/app_bar_home.dart';
+import 'package:mechpro/feature/home/presentation/widgets/core_services_part.dart';
+import 'package:mechpro/feature/home/presentation/widgets/emergency_button.dart';
+
+import 'package:mechpro/feature/home/presentation/widgets/future_work_services.dart';
+
+import 'package:mechpro/feature/home/presentation/widgets/offer_banner.dart';
+
+import '../../../../core/translate/locale_keys.g.dart';
+import '../../../../core/utils/text_style.dart';
+import '../cubit/main_services_cubit.dart'; // تأكد من أن هذا المسار صحيح لـ MainServicesCubit
+
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(),
+        // هنا نضيف BlocProvider لجعل MainServicesCubit متاحًا لجميع الأبناء
+        body: BlocProvider<MainServicesCubit>( // <--- تم إضافة BlocProvider هنا
+          create: (context) => MainServicesCubit(MainServicesRepo()), // هنا يتم إنشاء مثيل من MainServicesCubit
+          child: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  AppColors.whColor,
+                  AppColors.primaryColor,
+                ],
+                stops: [0.61, 0.3],
+              ),
+            ),
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OfferBanner(),
+                  7.verticalSpace,
+                  EmergencyButton(),
+                  7.verticalSpace,
+                  FutureWorkServices(),
+                  7.verticalSpace,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      LocaleKeys.CoreServices.tr(),
+                      style: getSmallStyle(color: AppColors.blackColor),
+                    ),
+                  ),
+                  16.verticalSpace,
+                  CoreServicesPart(), // هذا الـ Widget الآن يمكنه الوصول إلى MainServicesCubit
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+*/
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // لا يزال مطلوبًا للاستخدام في initState
+
+import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/feature/home/presentation/widgets/app_bar_home.dart';
+import 'package:mechpro/feature/home/presentation/widgets/core_services_part.dart';
+import 'package:mechpro/feature/home/presentation/widgets/emergency_button.dart';
+
+import 'package:mechpro/feature/home/presentation/widgets/future_work_services.dart';
+
+import 'package:mechpro/feature/home/presentation/widgets/offer_banner.dart';
+
+import '../../../../core/translate/locale_keys.g.dart';
+import '../../../../core/utils/text_style.dart';
+import '../cubit/main_services_cubit.dart';
+import '../cubit/main_services_states.dart';
+
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    super.initState();
+    print('HomeView initState called.');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // الآن، context.read<MainServicesCubit>() يجب أن يجد الـ Cubit
+      // لأنه تم توفيره في مستوى أعلى (في main.dart)
+      print('Calling fetchMainServices from HomeView...');
+      context.read<MainServicesCubit>().fetchMainServices();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(),
+        
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.whColor,
+                AppColors.primaryColor,
+              ],
+              stops: [0.53, 0.3],
+            ),
+          ),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OfferBanner(),
+                7.verticalSpace,
+                EmergencyButton(),
+                7.verticalSpace,
+                FutureWorkServices(),
+                7.verticalSpace,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    LocaleKeys.CoreServices.tr(),
+                    style: getSmallStyle(color: AppColors.blackColor),
                   ),
                 ),
+                16.verticalSpace,
+                CoreServicesPart(),
               ],
             ),
           ),

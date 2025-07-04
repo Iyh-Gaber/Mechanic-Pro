@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const signup = 'signup';
   static const PleaseSignUpToGetStarted = 'PleaseSignUpToGetStarted';
   static const name = 'name';
@@ -36,12 +36,16 @@ abstract class  LocaleKeys {
   static const Pleaseentervalidemail = 'Pleaseentervalidemail';
   static const Pleaseenterpassword = 'Pleaseenterpassword';
   static const Passwordmustleast8characters = 'Passwordmustleast8characters';
-  static const Passwordmustcontainatleastoneuppercaseletter = 'Passwordmustcontainatleastoneuppercaseletter';
-  static const Passwordmustcontainatleastonelowercaseletter = 'Passwordmustcontainatleastonelowercaseletter';
-  static const Passwordmustcontainatleastonedigit = 'Passwordmustcontainatleastonedigit';
+  static const Passwordmustcontainatleastoneuppercaseletter =
+      'Passwordmustcontainatleastoneuppercaseletter';
+  static const Passwordmustcontainatleastonelowercaseletter =
+      'Passwordmustcontainatleastonelowercaseletter';
+  static const Passwordmustcontainatleastonedigit =
+      'Passwordmustcontainatleastonedigit';
   static const Pleaseconfirmyourpassword = 'Pleaseconfirmyourpassword';
   static const Passwordsdonotmatch = 'Passwordsdonotmatch';
-  static const PasswordmustcontainatleastoneSpecialcharacter = 'PasswordmustcontainatleastoneSpecialcharacter';
+  static const PasswordmustcontainatleastoneSpecialcharacter =
+      'PasswordmustcontainatleastoneSpecialcharacter';
   static const lreadyhaveaccount = 'lreadyhaveaccount?';
   static const carInformation = 'carInformation';
   static const CarName = 'CarName';
@@ -51,10 +55,10 @@ abstract class  LocaleKeys {
   static const YearofManufacture = 'Year of Manufacture';
   static const MeterReading = 'MeterReading(km)';
   static const RegisterCar = 'Register Car';
-  static const TherearenoregisteredcarsyetIfyouwanttoregister = 'Therearenoregisteredcarsyet.Ifyouwanttoregister,';
+  static const TherearenoregisteredcarsyetIfyouwanttoregister =
+      'Therearenoregisteredcarsyet.Ifyouwanttoregister,';
   static const clickhere = 'clickhere';
   static const MaintenanceRepairServices = 'Maintenance&RepairServices';
   static const CommercialAdditionalServices = 'Commercial&AdditionalServices';
   static const EmergencySituations = 'EmergencySituations';
-
 }

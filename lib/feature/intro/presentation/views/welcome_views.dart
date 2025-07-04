@@ -6,16 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
 
-
-
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/translate/locale_keys.g.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/text_style.dart';
 import '../../../../core/widgets/custom_button.dart';
-
-
 
 class WelcomeViews extends StatelessWidget {
   const WelcomeViews({super.key});
@@ -82,13 +78,14 @@ class WelcomeViews extends StatelessWidget {
             CustomButton(
               text: LocaleKeys.welcomeButtom.tr(),
               onpressed: () {
-               // context.pushAndRemoveUntil(OnboardingView());
+                // context.pushAndRemoveUntil(OnboardingView());
                 context.pushAndRemoveUntil(
-              Routes.onboardingView,
-              routeBuilder: AppRouter.buildRoute, // تمرير الدالة كـ callback
-              predicate: (route) => false,
-             
-            );
+                 // Routes.onboardingView,
+                  Routes.homeView,
+                  routeBuilder:
+                      AppRouter.buildRoute, // تمرير الدالة كـ callback
+                  predicate: (route) => false,
+                );
               },
             ),
             Gap(27),

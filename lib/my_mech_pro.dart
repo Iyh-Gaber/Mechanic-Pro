@@ -6,13 +6,10 @@ import 'package:mechpro/core/routing/routes.dart';
 import 'package:mechpro/core/theme/dark_theme.dart';
 import 'package:mechpro/core/theme/light_theme.dart';
 
-
-
-
 class MyMechPro extends StatelessWidget {
   const MyMechPro({super.key, required this.appRouter});
-   final AppRouter appRouter;
- factory MyMechPro.create() => MyMechPro(appRouter: AppRouter());
+  final AppRouter appRouter;
+  factory MyMechPro.create() => MyMechPro(appRouter: AppRouter());
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -31,9 +28,10 @@ class MyMechPro extends StatelessWidget {
           theme: lightTheme,
           darkTheme: darkTheme,
           themeMode: ThemeMode.light,
-         onGenerateRoute: appRouter.generateRoute, // <--- هذا يجب أن يشير إلى الـ AppRouter الصحيح
+          onGenerateRoute: appRouter
+              .generateRoute, // <--- هذا يجب أن يشير إلى الـ AppRouter الصحيح
           initialRoute: Routes.splashView,
-           // home: SplashView(),
+          // home: SplashView(),
         );
       },
     );

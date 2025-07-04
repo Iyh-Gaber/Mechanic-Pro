@@ -30,8 +30,7 @@ class EmergencyButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.directions_car_filled,
-                      color: AppColors.whColor),
+                  Icon(Icons.directions_car_filled, color: AppColors.whColor),
                   8.horizontalSpace,
                   Text(
                     LocaleKeys.EmergencySituations.tr(),

@@ -51,9 +51,8 @@ TextStyle getDecorationStyle({
   return TextStyle(
     height: height ?? 0,
     decoration: TextDecoration.underline,
-    decorationColor:
-        decorationColor ?? AppColors.blackColor, 
-    decorationThickness: decorationThickness ?? 2, 
+    decorationColor: decorationColor ?? AppColors.blackColor,
+    decorationThickness: decorationThickness ?? 2,
     fontSize: fontSize ?? 20,
     fontFamily: AppConstants.fontFamily,
     fontWeight: fontWeight ?? FontWeight.normal,

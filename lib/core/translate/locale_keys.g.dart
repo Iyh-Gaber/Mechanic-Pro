@@ -61,7 +61,6 @@ abstract class LocaleKeys {
   static const MaintenanceRepairServices = 'Maintenance & Repair Services';
   static const CommercialAdditionalServices =
       'Commercial & Additional Services';
-    static const EmergencySituations = 'Emergency Situations';
-    static const CoreServices = 'Core Services';
-  
+  static const EmergencySituations = 'Emergency Situations';
+  static const CoreServices = 'Core Services';
 }

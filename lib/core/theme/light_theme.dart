@@ -13,6 +13,38 @@ ThemeData lightTheme = ThemeData(
   ),
   */
 
+
+elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF336f67), // Elevated button background color.
+            foregroundColor: Colors.white, // Elevated button text color.
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: const Color(0xFF336f67), // Text button text color.
+          ),
+        ),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return const Color(0xFF336f67); // Color when radio button is selected.
+            }
+            return Colors.grey; // Default color.
+          }),
+        ),
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return const Color(0xFF336f67); // Color when checkbox is selected.
+            }
+            return Colors.grey; // Default color.
+          }),
+        ),
+
+
+
+
   ///todo TextTheme
 
   textTheme: const TextTheme(

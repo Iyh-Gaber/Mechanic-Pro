@@ -10,5 +10,15 @@ class Routes {
   static const String forgetPasswordView = '/forgetPasswordView';
   static const String layoutView = '/layoutView';
   static const String splashView = '/splashView';
+  static const String regularMaintenanceView = '/regularMaintenanceView';
+  static const String repairingMechanicalFaultsView =
+      '/repairingMechanicalFaultsView';
+  static const String repairingElectricalFaultsView = '/electricalServicesView';
+  static const String repairingAutoBodyView = '/repairingAutoBody';
+  static const String otherServicesView = '/otherServicesView';
+  static const String sellingOriginalPartsView = '/sellingOriginalPartsView';
+  static const String carRentalView = '/carRentalView';
+  static const String toolRentalView = '/toolRentalView';
+
   // static const String someOtherRoute =
 }

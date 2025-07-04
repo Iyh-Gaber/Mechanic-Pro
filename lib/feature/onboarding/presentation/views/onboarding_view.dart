@@ -15,8 +15,6 @@ import '../../../../core/routing/app_router.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/text_style.dart';
 
-
-
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
 
@@ -104,14 +102,13 @@ class _OnboardingViewState extends State<OnboardingView> {
               controller.nextPage(
                   duration: Duration(milliseconds: 500), curve: Curves.ease);
             } else {
-             // context.pushAndRemoveUntil(RegistrationView, routeBuilder: (String , Object? ) {  });
+              // context.pushAndRemoveUntil(RegistrationView, routeBuilder: (String , Object? ) {  });
               context.pushAndRemoveUntil(
                 Routes.registrationView,
                 routeBuilder: AppRouter.buildRoute, // تمرير الدالة كـ callback
                 predicate: (route) => false,
                 // context.pushAndRemoveUntil(RegistrationView());
               );
-
             }
           },
           child: Icon(Icons.arrow_forward, color: AppColors.whColor),

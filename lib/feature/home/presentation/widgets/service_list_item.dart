@@ -7,8 +7,8 @@ class ServiceListItem extends StatelessWidget {
   const ServiceListItem({
     super.key,
     required this.icon,
-    required this.title, this.onTap,
-
+    required this.title,
+    this.onTap,
   });
 
   @override
@@ -58,9 +58,8 @@ class ServiceListItem extends StatelessWidget {
     );
   }
 }
-      
-      
-      /* Scaffold(
+
+/* Scaffold(
       backgroundColor: lightGreyBackground, // تعيين لون خلفية الشاشة
       appBar: AppBar(
         backgroundColor: darkBlueGrey, // تعيين لون شريط التطبيق
@@ -225,40 +224,6 @@ class ServiceListItem extends StatelessWidget {
   }
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

@@ -4,8 +4,6 @@ import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/routing/routes.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 
-
-
 import '../../../../core/utils/text_style.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../widgets/textFormField_widget.dart';
@@ -53,7 +51,7 @@ class AddNewCarsView extends StatelessWidget {
                   text: LocaleKeys.RegisterCar.tr(),
                   onpressed: () {
                     context.pushNamed(Routes.carsRegister);
-                  //  context.pushTo(CarsRegister());
+                    //  context.pushTo(CarsRegister());
                   }),
             ],
           ),

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class OffersView extends StatelessWidget {
-  const OffersView({super.key});
+class RepairingMechanicalFaultsView extends StatefulWidget {
+  const RepairingMechanicalFaultsView({super.key});
 
+  @override
+  State<RepairingMechanicalFaultsView> createState() => _RepairingMechanicalFaultsViewState();
+}
+
+class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFaultsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold();

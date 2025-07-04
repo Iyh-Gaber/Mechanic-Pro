@@ -31,8 +31,8 @@ class ShowCarsView extends StatelessWidget {
                   style: getSmallStyle(color: AppColors.primaryColor),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      context.pushNamed( Routes.addNewCarView);
-                     // context.pushTo(AddNewCarsView());
+                      context.pushNamed(Routes.addNewCarView);
+                      // context.pushTo(AddNewCarsView());
                     },
                 ),
               ],
