@@ -22,7 +22,8 @@ class MainServicesLoadingState extends MainServicesStates {}
 
 class MainServicesSuccessState extends MainServicesStates {
   final MainServicesResponse mainServicesResponse; // <--- تم إضافة هذا السطر
-  MainServicesSuccessState(this.mainServicesResponse); // <--- وتم تعديل الـ constructor هنا
+  MainServicesSuccessState(
+      this.mainServicesResponse); // <--- وتم تعديل الـ constructor هنا
 }
 
 class MainServicesErrorState extends MainServicesStates {

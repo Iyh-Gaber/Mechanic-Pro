@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "186928034819",
+    "project_id": "mechanic-pro-7",
+    "storage_bucket": "mechanic-pro-7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186928034819:android:08475293890682adee8a36",
+        "android_client_info": {
+          "package_name": "com.ElJabir.MechanicProApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHS5P3SwUn6ihbeM7-ioeUalUxwaFt-Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186928034819:android:5ea2344679ef606bee8a36",
+        "android_client_info": {
+          "package_name": "com.El_Jabir7.MechanicPro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHS5P3SwUn6ihbeM7-ioeUalUxwaFt-Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,6 +19,6 @@ class Routes {
   static const String sellingOriginalPartsView = '/sellingOriginalPartsView';
   static const String carRentalView = '/carRentalView';
   static const String toolRentalView = '/toolRentalView';
-
+  static const String connectUsView = '/connectUsView';
   // static const String someOtherRoute =
 }

@@ -58,28 +58,31 @@ import '../../data/models/response/main_services_response/main_services_response
 import '../../data/repo/main_services_repo.dart';
 
 class MainServicesCubit extends Cubit<MainServicesStates> {
-  MainServicesCubit(MainServicesRepo mainServicesRepo) : super(MainServicesInitialState());
+  MainServicesCubit(MainServicesRepo mainServicesRepo)
+      : super(MainServicesInitialState());
 
   MainServicesResponse? mainServicesResponse;
 
   Future<void> fetchMainServices() async {
-    print('fetchMainServices started. Emitting MainServicesLoadingState...');
+   
     emit(MainServicesLoadingState()); // إصدار حالة التحميل
 
     try {
       final value = await MainServicesRepo.getMainServices();
-      print('MainServicesRepo.getMainServices completed. Value: $value');
+  
 
       if (value != null) {
         mainServicesResponse = value;
-        print('Data fetched successfully. Emitting MainServicesSuccessState.');
-        emit(MainServicesSuccessState(value)); // تمرير الاستجابة (value) مع حالة النجاح
+       
+        emit(MainServicesSuccessState(
+            value)); // تمرير الاستجابة (value) مع حالة النجاح
       } else {
-        print('MainServicesRepo.getMainServices returned null. Emitting MainServicesErrorState.');
-        emit(MainServicesErrorState('something went wrong: Null response from repo'));
+        
+        emit(MainServicesErrorState(
+            'something went wrong: Null response from repo'));
       }
     } catch (e) {
-      print('Error in fetchMainServices: $e. Emitting MainServicesErrorState.');
+     
       emit(MainServicesErrorState(e.toString()));
     }
   }

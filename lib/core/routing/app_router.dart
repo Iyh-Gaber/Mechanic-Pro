@@ -40,6 +40,7 @@ class AppRouter {
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/feature/auth/presintation/views/registaration_view.dart';
 import 'package:mechpro/feature/home/presentation/views/home_view.dart';
 import 'package:mechpro/feature/notifications/presentation/views/notification_view.dart';
@@ -56,9 +57,12 @@ import '../../feature/auto_body_repair/presentation/views/auto_body_repair.dart'
 import '../../feature/car_rental/presentation/views/car_rental.dart';
 import '../../feature/cars_registration/presentation/views/add_new_car.dart';
 import '../../feature/cars_registration/presentation/views/cars_registration.dart';
+import '../../feature/connect_us/presentation/views/connect_us.dart';
 import '../../feature/intro/presentation/views/splash_view.dart';
 import '../../feature/layout/layout_view.dart';
-import '../../feature/regular_maintenance/presentation/views/regular_maintenance.dart';
+import '../../feature/regular_maintenance/data/repo/regular_repo.dart';
+import '../../feature/regular_maintenance/presentation/cubit/regular_services_cubit.dart';
+import '../../feature/regular_maintenance/presentation/views/regular_maintenance_view.dart';
 import '../../feature/repairing_electrical_faults/presentation/views/repairing_electrical_faults.dart';
 import '../../feature/repairing_mechanical_faults/presentation/views/repairing_mechanical_faults.dart';
 import '../../feature/tool_rental/presentation/views/tool_rental .dart';
@@ -90,21 +94,27 @@ class AppRouter {
         return const ForgetPasswordView();
       case Routes.layoutView:
         return const LayoutView();
-        case Routes.regularMaintenanceView:
-        return  RegularMaintenanceView();
-        case Routes.repairingMechanicalFaultsView:
+      case Routes.connectUsView:
+        return const ConnectUsView();
+       case Routes.regularMaintenanceView:
+        return BlocProvider(
+          
+          create: (context) => RegularServicesCubit(RegularMaintenanceRepo()),
+          child: const RegularMaintenanceView(),
+        );
+      case Routes.repairingMechanicalFaultsView:
         return const RepairingMechanicalFaultsView();
-        case Routes.repairingElectricalFaultsView:
+      case Routes.repairingElectricalFaultsView:
         return const RepairingElectricalFaults();
-        case Routes.repairingAutoBodyView:
+      case Routes.repairingAutoBodyView:
         return const RepairingAutoBodyView();
-        case Routes.otherServicesView:
+      case Routes.otherServicesView:
         return const OtherServicesView();
-        case Routes.sellingOriginalPartsView:
+      case Routes.sellingOriginalPartsView:
         return const SellingOriginalPartsView();
-        case Routes.carRentalView:
+      case Routes.carRentalView:
         return const CarRentalView();
-        case Routes.toolRentalView:
+      case Routes.toolRentalView:
         return const ToolRentalView();
       case Routes.splashView:
         return const SplashView();

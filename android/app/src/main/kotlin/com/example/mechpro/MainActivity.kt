@@ -1,4 +1,4 @@
-package com.example.mechpro
+package com.ElJabir.MechanicProApp
 
 import io.flutter.embedding.android.FlutterActivity
 

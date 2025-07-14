@@ -1,7 +1,3 @@
-
-
-
-
 /*import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -185,11 +181,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    print('HomeView initState called.');
+    
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // الآن، context.read<MainServicesCubit>() يجب أن يجد الـ Cubit
-      // لأنه تم توفيره في مستوى أعلى (في main.dart)
-      print('Calling fetchMainServices from HomeView...');
+   
       context.read<MainServicesCubit>().fetchMainServices();
     });
   }
@@ -199,7 +193,6 @@ class _HomeViewState extends State<HomeView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBarHome(),
-        
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -209,7 +202,7 @@ class _HomeViewState extends State<HomeView> {
                 AppColors.whColor,
                 AppColors.primaryColor,
               ],
-              stops: [0.53, 0.3],
+              stops: [0.6, 0.3],
             ),
           ),
           child: SafeArea(

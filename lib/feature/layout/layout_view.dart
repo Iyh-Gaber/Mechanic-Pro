@@ -24,8 +24,11 @@ class LayoutView extends StatefulWidget {
 class _LayoutViewState extends State<LayoutView> {
   List<Widget> views = [
     ShowCarsView(),
-    BlocProvider(create: (BuildContext context) { return MainServicesCubit(MainServicesRepo());},
-    child: HomeView()),
+    BlocProvider(
+        create: (BuildContext context) {
+          return MainServicesCubit(MainServicesRepo());
+        },
+        child: HomeView()),
     OffersView(),
     ConnectUsView()
   ];

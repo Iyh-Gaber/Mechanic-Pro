@@ -8,12 +8,13 @@ import 'package:mechpro/core/services/dio_provider.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
 import 'package:mechpro/feature/home/data/repo/main_services_repo.dart';
 import 'package:mechpro/feature/home/presentation/cubit/main_services_cubit.dart';
+import 'package:mechpro/firebase_options.dart';
 import 'package:mechpro/my_mech_pro.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    DioProvider.init(); 
+  DioProvider.init();
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   DioProvider.init;
@@ -22,16 +23,20 @@ void main() async {
   // ignore: await_only_futures+
   await AppLocaleStorage();
 
+    await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(
-      BlocProvider<MainServicesCubit>(
+    BlocProvider<MainServicesCubit>(
       create: (context) => MainServicesCubit(MainServicesRepo()),
-   child: EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
-        path: AppAssets.translation,
-        fallbackLocale: Locale('en'),
-        child: MyMechPro(
-          appRouter: AppRouter(),
-        )),
-  ),);
+      child: EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('ar')],
+          path: AppAssets.translation,
+          fallbackLocale: Locale('en'),
+          child: MyMechPro(
+            appRouter: AppRouter(),
+          )),
+    ),
+  );
 }
 //flutter pub run easy_localization:generate -S assets/translations -O lib/core/translate -o app_translate.g.dart -f keys

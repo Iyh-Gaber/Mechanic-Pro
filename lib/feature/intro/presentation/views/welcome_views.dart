@@ -80,10 +80,10 @@ class WelcomeViews extends StatelessWidget {
               onpressed: () {
                 // context.pushAndRemoveUntil(OnboardingView());
                 context.pushAndRemoveUntil(
-                 // Routes.onboardingView,
-                  Routes.homeView,
+                  Routes.onboardingView,
+               //  Routes.homeView,
                   routeBuilder:
-                      AppRouter.buildRoute, // تمرير الدالة كـ callback
+                      AppRouter.buildRoute,
                   predicate: (route) => false,
                 );
               },
