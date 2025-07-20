@@ -5,12 +5,14 @@ class NewServicesItem extends StatelessWidget {
     super.key,
     required this.name,
     required this.image,
-    this.onTap,
+    this.onTap,  
+    this.textStyle,
   });
 
   final String name;
   final String image;
   final VoidCallback? onTap;
+  final TextStyle? textStyle;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,3 +31,5 @@ class NewServicesItem extends StatelessWidget {
     );
   }
 }
+
+// في ملف: lib/feature/home/presentation/widgets/new_services.dart

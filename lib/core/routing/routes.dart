@@ -20,5 +20,7 @@ class Routes {
   static const String carRentalView = '/carRentalView';
   static const String toolRentalView = '/toolRentalView';
   static const String connectUsView = '/connectUsView';
+  static const String ordersView = '/ordersView';
+  static const String emergencyView = '/emergencyView';
   // static const String someOtherRoute =
 }

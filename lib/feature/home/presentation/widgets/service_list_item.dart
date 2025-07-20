@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mechpro/core/utils/app_color.dart';
 
 class ServiceListItem extends StatelessWidget {
   final IconData icon;
@@ -19,8 +20,8 @@ class ServiceListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
+            color: AppColors.primaryColor,
+            spreadRadius: 2,
             blurRadius: 5,
             offset: const Offset(0, 3), // ظل خفيف
           ),
@@ -49,7 +50,7 @@ class ServiceListItem extends StatelessWidget {
                   ),
                 ),
                 const Icon(Icons.arrow_forward_ios,
-                    color: Colors.grey, size: 16),
+                    color: AppColors.blackColor, size: 16),
               ],
             ),
           ),

@@ -13,6 +13,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      
       leading: IconButton(
         onPressed: () {
           context.pushNamed(Routes.profileView);

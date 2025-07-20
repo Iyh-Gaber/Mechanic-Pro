@@ -5,6 +5,7 @@ class DioProvider {
   static init() {
     _dio = Dio(
       BaseOptions(baseUrl: 'http://www.MechPro.somee.com/'),
+      
     );
   }
 

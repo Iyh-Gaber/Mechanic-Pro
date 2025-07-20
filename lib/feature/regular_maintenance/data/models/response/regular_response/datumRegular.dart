@@ -1,4 +1,4 @@
-class Datum {
+class DatumRegular {
   int? subServiceId;
   int? serviceId;
   String? subServiceName;
@@ -6,7 +6,7 @@ class Datum {
   dynamic service;
   List<dynamic>? offerSubServices;
 
-  Datum({
+  DatumRegular({
     this.subServiceId,
     this.serviceId,
     this.subServiceName,
@@ -15,7 +15,7 @@ class Datum {
     this.offerSubServices,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory DatumRegular.fromJson(Map<String, dynamic> json) => DatumRegular(
         subServiceId: json['subServiceId'] as int?,
         serviceId: json['serviceId'] as int?,
         subServiceName: json['subServiceName'] as String?,

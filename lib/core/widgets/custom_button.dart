@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
             onPressed: onpressed,
             child: Text(
               text,
-              style: getSmallStyle(color: fgColor ?? Colors.white),
+              style: getSmallStyle(color: fgColor ?? Colors.white,fontSize: 19),
             )));
   }
 }

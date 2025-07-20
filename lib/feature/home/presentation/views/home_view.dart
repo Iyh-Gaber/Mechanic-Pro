@@ -200,7 +200,7 @@ class _HomeViewState extends State<HomeView> {
               end: Alignment.bottomCenter,
               colors: [
                 AppColors.whColor,
-                AppColors.primaryColor,
+                AppColors.whColor,
               ],
               stops: [0.6, 0.3],
             ),
@@ -210,11 +210,11 @@ class _HomeViewState extends State<HomeView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OfferBanner(),
-                7.verticalSpace,
-                EmergencyButton(),
-                7.verticalSpace,
+               
+              //  EmergencyButton(),
+               
                 FutureWorkServices(),
-                7.verticalSpace,
+               
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
@@ -222,7 +222,8 @@ class _HomeViewState extends State<HomeView> {
                     style: getSmallStyle(color: AppColors.blackColor),
                   ),
                 ),
-                16.verticalSpace,
+                7.verticalSpace,
+               // 16.verticalSpace,
                 CoreServicesPart(),
               ],
             ),

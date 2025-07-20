@@ -21,7 +21,19 @@ class WelcomeViews extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: AppColors.whColor,
           elevation: 0,
+          leading: GestureDetector(
+            onTap: () {
+              context.pushNamed(Routes.emergencyView);
+            },
+            child: Image.asset(
+              AppAssets.iconEmrg,
+            //  fit: BoxFit.cover,
+              height: 7.h,
+              width: 7.w,
+            ),
+          ),
           actions: [
             GestureDetector(
               onTap: () {
@@ -37,23 +49,24 @@ class WelcomeViews extends StatelessWidget {
                   AppColors.primaryColor,
                   BlendMode.srcIn,
                 ),
-                width: 27.h,
-                height: 27.w,
+                width: 25.h,
+                height: 25.w,
               ),
             )
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(22.0),
+          padding: const EdgeInsets.all(7.0),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Gap(177),
+         
+            Gap(155),
             Image.asset(
               AppAssets.logoIcon,
               fit: BoxFit.cover,
               height: 77.h,
               width: 77.w,
             ),
-            Gap(20),
+            Gap(37),
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
@@ -61,9 +74,10 @@ class WelcomeViews extends StatelessWidget {
                     text: LocaleKeys.Welcometothe.tr(),
                     style: getSmallStyle(),
                   ),
+                 
                   TextSpan(
                     text: LocaleKeys.MechanicPro.tr(),
-                    style: getBodyStyle(color: AppColors.primaryColor),
+                    style: getBodyStyle(color: AppColors.primaryColor,fontSize: 19.sp),
                   ),
                   TextSpan(
                     text: LocaleKeys.platform.tr(),
@@ -72,18 +86,19 @@ class WelcomeViews extends StatelessWidget {
                 ],
               ),
             ),
+
             Text(LocaleKeys.symbol.tr(),
-                textAlign: TextAlign.center, style: getSmallStyle()),
+                textAlign: TextAlign.center,
+                style: getSmallStyle()),
             Spacer(),
             CustomButton(
               text: LocaleKeys.welcomeButtom.tr(),
               onpressed: () {
-                // context.pushAndRemoveUntil(OnboardingView());
+               
                 context.pushAndRemoveUntil(
                   Routes.onboardingView,
-               //  Routes.homeView,
-                  routeBuilder:
-                      AppRouter.buildRoute,
+               
+                  routeBuilder: AppRouter.buildRoute,
                   predicate: (route) => false,
                 );
               },

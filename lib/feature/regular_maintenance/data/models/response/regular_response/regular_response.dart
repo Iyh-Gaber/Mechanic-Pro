@@ -1,7 +1,7 @@
-import 'datum.dart';
+import 'datumRegular.dart';
 
 class RegularResponse {
-  List<Datum>? data;
+  List<DatumRegular>? data;
   dynamic successMessage;
   int? statusCode;
   List<dynamic>? errorList;
@@ -22,7 +22,7 @@ class RegularResponse {
   factory RegularResponse.fromJson(Map<String, dynamic> json) {
     return RegularResponse(
       data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DatumRegular.fromJson(e as Map<String, dynamic>))
           .toList(),
       successMessage: json['successMessage'] as dynamic,
       statusCode: json['statusCode'] as int?,

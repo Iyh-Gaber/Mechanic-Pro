@@ -53,6 +53,39 @@
  "MaintenanceRepairServices":" Maintenance & Repair Services ",
  "CommercialAdditionalServices":" Commercial & Additional Services ",
  "EmergencySituations":"Emergency Situations",
- "CoreServices":" Core Services"
+ "CoreServices":" Core Services",
+ "Show More":"Show More",
+ "Navigating to Contact Us screen...":"Navigating to Contact Us screen...",
+ "Enter Your Detailed Address (Optional)":"Enter Your Detailed Address (Optional)",
+ "e.g., Elnezlawy St, Building 10, Apt 5":"e.g., King Fahd St, Building 10, Apt 5",
+  "MyOrders": "My Orders",
+    "NoOrdersYet": "You haven't placed any orders yet.",
+    "MakeNewOrder": "Make a New Order",
+    "OrderId": "Order ID",
+    "Status": "Status",
+    "Services": "Services",
+    "Date": "Date",
+    "Time": "Time",
+    "Location": "Location",
+    "MyLocation": "My Location",
+    "OurBranches": "Our Branches",
+    "Details": "Details",
+    "RequestedAt": "Requested At",
+    "Please choose the type of assistance required":"Please choose the type of assistance required",
+    "Call Now":"Call Now",
+    "Transport crane":"Transport crane",
+    "Report Accident":"Report Accident",
+    "Emergency Situation":"Emergency Situation",
+    "Manage Services History":"Manage Services History",
+    "locate Nearby Workshop":"locate Nearby Workshop",
+    "Schedule Maintenance Appointment":"Schedule Maintenance Appointment",
+    "Digital Emergency Fund":"Digital Emergency Fund",
+    "Order Tracking":"Order Tracking"
+    
+    
+    
+    
+
+ 
 
 }

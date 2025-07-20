@@ -14,7 +14,7 @@ abstract class LocaleKeys {
   static const skip = 'skip';
   static const Wellcome = 'Wellcome';
   static const Welcometothe = 'Welcome to the';
-  static const MechanicPro = 'Mechanic Pro';
+  static const MechanicPro = ' Mechanic Pro ';
   static const platform = 'platform';
   static const symbol = 'symbol';
   static const welcomeButtom = 'welcomeButtom';
@@ -63,4 +63,36 @@ abstract class LocaleKeys {
       'Commercial & Additional Services';
   static const EmergencySituations = 'Emergency Situations';
   static const CoreServices = 'Core Services';
+  static const ShowMore = "Show More";
+  static const NavigatingtoContactUsscreen = "Navigating to Contact Us screen...";
+  static const EnterYourDetailedAddressOptional="Enter Your Detailed Address (Optional)";
+  static const ElnezlawyStBuilding10Apt5="e.g., King Fahd St, Building 10, Apt 5";
+  
+  static const MyOrders = "My Orders";
+  static const NoOrdersYet = "You haven't placed any orders yet.";
+  static const MakeNewOrder = "Make a New Order";
+  static const OrderId = "Order ID";
+  static const Status = "Status";
+  static const Services = "Services";
+  static const Date = "Date";
+  static const Time = "Time";
+  static const Location = "Location";
+  static const MyLocation = "My Location";
+  static const PaymentMethod = "Payment Method";
+  static const Total = "Total";
+  static const OrderDetails = "Order Details";
+
+  static const RequestedAt="Requested At";
+
+  static const Details="Details";
+
+  static const OurBranches="Our Branches";
+static const CallNow = "Call Now";
+  static const emergency="Emergency Situations";
+
+  static const pleaseChooseTheTypeOfAssistanceRequired="Please choose the type of assistance required";
+  static const Transportcrane = "Transport crane";
+  static const ReportAccident = "Report Accident";
+  static const EmergencySituation = "Emergency Situation";
+  
 }

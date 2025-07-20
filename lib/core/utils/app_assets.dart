@@ -24,4 +24,8 @@ sealed class AppAssets {
   static const String trackOrder = 'assets/images/track.png';
   static const String appointment = 'assets/images/sc.PNG';
   static const String offer = 'assets/images/offer.PNG';
+  static const String iconEmergency = 'assets/images/emerIcon.png';
+  static const String iconSos = 'assets/images/iconSos.png';
+  static const String iconEmrg = 'assets/images/emrg.png';
+   
 }

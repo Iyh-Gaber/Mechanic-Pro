@@ -1,5 +1,6 @@
 class AppConstants {
   static const String fontFamily = 'DMDisplay';
+ 
 
   static const String tokenKey = 'token';
 }
