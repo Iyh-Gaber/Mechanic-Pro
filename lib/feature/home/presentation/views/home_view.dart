@@ -181,9 +181,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-   
       context.read<MainServicesCubit>().fetchMainServices();
     });
   }
@@ -210,11 +209,11 @@ class _HomeViewState extends State<HomeView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OfferBanner(),
-               
-              //  EmergencyButton(),
-               
+
+                //  EmergencyButton(),
+
                 FutureWorkServices(),
-               
+
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
@@ -223,7 +222,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 7.verticalSpace,
-               // 16.verticalSpace,
+                // 16.verticalSpace,
                 CoreServicesPart(),
               ],
             ),

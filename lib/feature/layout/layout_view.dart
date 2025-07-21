@@ -88,6 +88,7 @@ import '../home/presentation/cubit/main_services_cubit.dart';
 import '../home/presentation/views/home_view.dart';
 
 import '../offers/presentation/views/offers.dart';
+import '../orders/data/repo/order_repo.dart';
 
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});
@@ -104,14 +105,11 @@ class _LayoutViewState extends State<LayoutView> {
           return MainServicesCubit(MainServicesRepo());
         },
         child: HomeView()),
-
-   BlocProvider(
+    BlocProvider(
         create: (BuildContext context) {
-          return OrdersCubit();
+          return OrdersCubit(OrdersRepo());
         },
         child: OrdersView()),
-
-   
     ConnectUsView()
   ];
   int currentPage = 1;
@@ -132,7 +130,8 @@ class _LayoutViewState extends State<LayoutView> {
           },
           items: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Center items vertically
+              mainAxisAlignment:
+                  MainAxisAlignment.center, // Center items vertically
               children: [
                 SvgPicture.asset(
                   AppAssets.carSvg,
@@ -140,10 +139,10 @@ class _LayoutViewState extends State<LayoutView> {
                   width: 30,
                   height: 30,
                 ),
-                 2.verticalSpace, // Add some space between icon and text
+                2.verticalSpace, // Add some space between icon and text
                 Text(
                   'Cars', // Label for Cars
-                 style: getSmallStyle(color: AppColors.whColor),
+                  style: getSmallStyle(color: AppColors.whColor),
                 ),
               ],
             ),
@@ -155,10 +154,10 @@ class _LayoutViewState extends State<LayoutView> {
                   color: AppColors.whColor,
                   size: 30,
                 ),
-                 2.verticalSpace,
+                2.verticalSpace,
                 Text(
                   'Home', // Label for Home
-                 style: getSmallStyle(color: AppColors.whColor),
+                  style: getSmallStyle(color: AppColors.whColor),
                 ),
               ],
             ),
@@ -170,8 +169,8 @@ class _LayoutViewState extends State<LayoutView> {
                 2.verticalSpace,
                 Text(
                   'Orders', // Label for Offers
-               style: getSmallStyle(color: AppColors.whColor),
-                 // style: TextStyle(color: AppColors.whColor, fontSize: 17),
+                  style: getSmallStyle(color: AppColors.whColor),
+                  // style: TextStyle(color: AppColors.whColor, fontSize: 17),
                 ),
               ],
             ),
@@ -180,10 +179,10 @@ class _LayoutViewState extends State<LayoutView> {
               children: [
                 SvgPicture.asset(AppAssets.connectSvg,
                     width: 30, height: 30, color: AppColors.whColor),
-                 2.verticalSpace,
+                2.verticalSpace,
                 Text(
                   'Contact Us', // Label for Connect Us
-                style: getSmallStyle(color: AppColors.whColor),
+                  style: getSmallStyle(color: AppColors.whColor),
                 ),
               ],
             ),

@@ -13,13 +13,10 @@ class EmergencyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
-      backgroundColor: AppColors.whColor,
+        backgroundColor: AppColors.whColor,
         elevation: 0,
-      
-        
-        title:  Text(
+        title: Text(
           LocaleKeys.EmergencySituations.tr(),
           style: getBodyStyle(),
         ),
@@ -31,29 +28,36 @@ class EmergencyView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-             Text(
+            Text(
               LocaleKeys.pleaseChooseTheTypeOfAssistanceRequired.tr(),
               textAlign: TextAlign.center,
               style: getSmallStyle(),
             ),
-            
 
-         
-            EmergencyButtonsCustom(context: context, text: LocaleKeys.CallNow.tr(), icon: Icons.phone, color: const Color(0xFFEB5757), onPressed: () {}),
-           
+            EmergencyButtonsCustom(
+                context: context,
+                text: LocaleKeys.CallNow.tr(),
+                icon: Icons.phone,
+                color: const Color(0xFFEB5757),
+                onPressed: () {}),
 
-         
-            EmergencyButtonsCustom(context: context, text: LocaleKeys.Transportcrane.tr(), icon: Icons.car_repair, color: AppColors.primaryColor, onPressed: () {}),
-            
+            EmergencyButtonsCustom(
+                context: context,
+                text: LocaleKeys.Transportcrane.tr(),
+                icon: Icons.car_repair,
+                color: AppColors.primaryColor,
+                onPressed: () {}),
 
-          
-            EmergencyButtonsCustom(context: context, text: LocaleKeys.ReportAccident.tr(), icon: Icons.warning_amber_rounded, color: AppColors.primaryColor, onPressed: () {}),
-           
+            EmergencyButtonsCustom(
+                context: context,
+                text: LocaleKeys.ReportAccident.tr(),
+                icon: Icons.warning_amber_rounded,
+                color: AppColors.primaryColor,
+                onPressed: () {}),
 
             // Current Location Section
-         
-         
-         /*   Row(
+
+            /*   Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -79,15 +83,11 @@ class EmergencyView extends StatelessWidget {
               ],
             ),
             */
-            
-22.verticalSpace,
 
+            22.verticalSpace,
           ],
-
         ),
       ),
     );
   }
-
- 
 }

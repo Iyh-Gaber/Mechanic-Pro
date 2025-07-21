@@ -22,10 +22,7 @@ class PasswordVisibleState extends AuthStates {
 }
 */
 
-
 // lib/feature/auth/presintation/cubit/auth_states.dart
-
-
 
 // Abstract base class for all authentication states
 import 'package:equatable/equatable.dart';

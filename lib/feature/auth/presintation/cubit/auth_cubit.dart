@@ -138,9 +138,8 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._firebaseAuth) : super(const AuthInitial(isLoginMode: true));
 
   void toggleAuthMode() {
-    final currentMode = (state is AuthInitial)
-        ? (state as AuthInitial).isLoginMode
-        : true;
+    final currentMode =
+        (state is AuthInitial) ? (state as AuthInitial).isLoginMode : true;
     emit(AuthInitial(isLoginMode: !currentMode));
   }
 
@@ -175,7 +174,8 @@ class AuthCubit extends Cubit<AuthState> {
       }
       emit(AuthError(errorMessage, isLoginMode: false));
     } catch (e) {
-      emit(AuthError('An unexpected error occurred: ${e.toString()}', isLoginMode: false));
+      emit(AuthError('An unexpected error occurred: ${e.toString()}',
+          isLoginMode: false));
     }
   }
 
@@ -208,7 +208,8 @@ class AuthCubit extends Cubit<AuthState> {
       }
       emit(AuthError(errorMessage, isLoginMode: true));
     } catch (e) {
-      emit(AuthError('An unexpected error occurred: ${e.toString()}', isLoginMode: true));
+      emit(AuthError('An unexpected error occurred: ${e.toString()}',
+          isLoginMode: true));
     }
   }
 

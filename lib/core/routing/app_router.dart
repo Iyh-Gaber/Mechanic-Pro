@@ -39,13 +39,6 @@ class AppRouter {
 }
 */
 
-
-
-
-
-
-
-
 /*
 
 import 'package:flutter/material.dart';
@@ -153,10 +146,6 @@ class AppRouter {
 }
 */
 
-
-
-
-
 // lib/core/routing/app_router.dart
 
 import 'package:flutter/material.dart';
@@ -194,7 +183,6 @@ import '../../feature/tool_rental/presentation/views/tool_rental .dart';
 // استيراد AuthCubit
 import '../../feature/auth/presintation/cubit/auth_cubit.dart';
 
-
 class AppRouter {
   // دالة ثابتة لبناء الـ Widget بناءً على اسم المسار
   static Widget buildRoute(String routeName, Object? arguments) {
@@ -211,7 +199,8 @@ class AppRouter {
         // هنا يجب أن يتم توفير AuthCubit لشاشة RegistrationView
         // تأكد أنك بتوفر AuthCubit هنا عشان الشاشة تقدر تستخدمه
         return BlocProvider(
-          create: (context) => AuthCubit(FirebaseAuth.instance), // مرر FirebaseAuth.instance
+          create: (context) =>
+              AuthCubit(FirebaseAuth.instance), // مرر FirebaseAuth.instance
           child: const RegistrationView(),
         );
       case Routes.onboardingView:
@@ -241,9 +230,9 @@ class AppRouter {
         return const OtherServicesView();
       case Routes.sellingOriginalPartsView:
         return const SellingOriginalPartsView();
-        case Routes.emergencyView:
+      case Routes.emergencyView:
         return const EmergencyView();
-        case Routes.ordersView:
+      case Routes.ordersView:
         return const OrdersView();
       case Routes.carRentalView:
         return const CarRentalView();
@@ -270,9 +259,10 @@ class AppRouter {
 
     // شاشات المصادقة (لا تتطلب تسجيل دخول)
     final bool isAuthScreen = routeName == Routes.registrationView ||
-                              routeName == Routes.forgetPasswordView ||
-                              routeName == Routes.onboardingView ||
-                              routeName == Routes.splashView; // أضف SplashView هنا
+        routeName == Routes.forgetPasswordView ||
+        routeName == Routes.onboardingView ||
+        routeName == Routes.splashView||
+        routeName == Routes.emergencyView; // أضف SplashView هنا
 
     // المنطق الأساسي للتوجيه:
     // إذا كان المستخدم غير مسجل دخول (notLoggedIn) ويحاول الوصول لشاشة تتطلب تسجيل دخول (ليست شاشة مصادقة)

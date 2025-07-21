@@ -64,10 +64,13 @@ abstract class LocaleKeys {
   static const EmergencySituations = 'Emergency Situations';
   static const CoreServices = 'Core Services';
   static const ShowMore = "Show More";
-  static const NavigatingtoContactUsscreen = "Navigating to Contact Us screen...";
-  static const EnterYourDetailedAddressOptional="Enter Your Detailed Address (Optional)";
-  static const ElnezlawyStBuilding10Apt5="e.g., King Fahd St, Building 10, Apt 5";
-  
+  static const NavigatingtoContactUsscreen =
+      "Navigating to Contact Us screen...";
+  static const EnterYourDetailedAddressOptional =
+      "Enter Your Detailed Address (Optional)";
+  static const ElnezlawyStBuilding10Apt5 =
+      "e.g., King Fahd St, Building 10, Apt 5";
+
   static const MyOrders = "My Orders";
   static const NoOrdersYet = "You haven't placed any orders yet.";
   static const MakeNewOrder = "Make a New Order";
@@ -82,17 +85,26 @@ abstract class LocaleKeys {
   static const Total = "Total";
   static const OrderDetails = "Order Details";
 
-  static const RequestedAt="Requested At";
+  static const RequestedAt = "Requested At";
 
-  static const Details="Details";
+  static const Details = "Details";
 
-  static const OurBranches="Our Branches";
-static const CallNow = "Call Now";
-  static const emergency="Emergency Situations";
+  static const OurBranches = "Our Branches";
+  static const CallNow = "Call Now";
+  static const emergency = "Emergency Situations";
 
-  static const pleaseChooseTheTypeOfAssistanceRequired="Please choose the type of assistance required";
+  static const pleaseChooseTheTypeOfAssistanceRequired =
+      "Please choose the type of assistance required";
   static const Transportcrane = "Transport crane";
   static const ReportAccident = "Report Accident";
   static const EmergencySituation = "Emergency Situation";
-  
+  static const Nodescriptionavailable = "No description available";
+   static const ConfirmService = "Confirm Service";
+    static const SelectBranch = "Select Branch";
+    static const ourBranch = "our_branches";
+  static const AtOneofOurBranches = "At One of Our Branches";
+  static const mylocation = "my_location";
+  static const Contactustospecifytheaddress = "Contact us to specify the address";
+  static const WhereDoWeProvidetheService = "3.Where Do We Provide the Service";
+  static const AtMyLocationanywhere="At My Location (anywhere)";
 }

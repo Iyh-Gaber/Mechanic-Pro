@@ -5,7 +5,7 @@ class NewServicesItem extends StatelessWidget {
     super.key,
     required this.name,
     required this.image,
-    this.onTap,  
+    this.onTap,
     this.textStyle,
   });
 

@@ -301,13 +301,11 @@ class CoreServicesPart extends StatelessWidget {
               ),
             );
           } else if (state is MainServicesErrorState) {
-          
             return Center(
               child: Text('Error: ${state.message}'),
             );
           } else if (state is MainServicesSuccessState) {
             final List<Datum>? services = state.mainServicesResponse.data;
-           
 
             if (services == null || services.isEmpty) {
               return Center(

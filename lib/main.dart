@@ -60,10 +60,10 @@ import 'package:firebase_auth/firebase_auth.dart'; // تأكد من استيرا
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DioProvider.init();
+  await DioProvider();
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
-  // DioProvider.init; // هذا السطر مكرر وغير ضروري هنا
+  DioProvider.initialize(); // هذا السطر مكرر وغير ضروري هنا
   await AppLocaleStorage.init();
   await SharedPreferences.getInstance();
   // ignore: await_only_futures
@@ -73,18 +73,17 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // قم بإنشاء AppRouter مرة واحدة هنا
   final AppRouter appRouter = AppRouter();
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ar')], // استخدم const
+      supportedLocales: const [Locale('en'), Locale('ar')],
       path: AppAssets.translation,
-      fallbackLocale: const Locale('en'), // استخدم const
-      child: BlocProvider<MainServicesCubit>( // BlocProvider يحيط بـ MyMechPro
+      fallbackLocale: const Locale('en'),
+      child: BlocProvider<MainServicesCubit>(
         create: (context) => MainServicesCubit(MainServicesRepo()),
         child: MyMechPro(
-          appRouter: appRouter, // تمرير الـ AppRouter الذي تم إنشاؤه
+          appRouter: appRouter,
         ),
       ),
     ),

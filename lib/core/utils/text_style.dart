@@ -1,4 +1,4 @@
- /* import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:mechpro/core/constants/app_constants.dart';
 import 'package:mechpro/core/utils/app_color.dart';
 
@@ -148,15 +148,15 @@ TextStyle getDecorationStyle({
   );
 }
 
-TextStyle getSmallStyle(
-    {Color? color,
-    FontWeight? fontWeight,
-    double? fontSize,
-    String? fontFamily,
-    double? letterSpacing,
-    double? height,
-    // FontStyle? fontStyle, // تم حذف هذا السطر
-    }) {
+TextStyle getSmallStyle({
+  Color? color,
+  FontWeight? fontWeight,
+  double? fontSize,
+  String? fontFamily,
+  double? letterSpacing,
+  double? height,
+  // FontStyle? fontStyle, // تم حذف هذا السطر
+}) {
   return TextStyle(
     fontFamily: fontFamily ?? AppConstants.fontFamily, // هذا سيستخدم DMDisplay
     height: height ?? 0,

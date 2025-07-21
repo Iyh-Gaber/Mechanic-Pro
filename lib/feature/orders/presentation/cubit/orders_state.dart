@@ -1,25 +1,42 @@
+// lib/feature/orders/presentation/cubit/orders_state.dart
 
-import 'package:mechpro/feature/orders/data/models/order_model.dart';
+import 'package:mechpro/feature/orders/data/models/response/order_response/data.dart';
+import 'package:mechpro/feature/orders/data/models/response/order_response/order_response.dart';
 
-abstract class OrdersState {}
+abstract class OrdersState {
+  const OrdersState();
+}
 
-class OrdersInitial extends OrdersState {}
+class OrdersInitial extends OrdersState {
+  const OrdersInitial();
+}
 
-class OrdersLoading extends OrdersState {}
+// حالات جلب الطلبات
+class LoadingOrders extends OrdersState {
+  const LoadingOrders();
+}
 
-class OrdersSuccess extends OrdersState {
-  final List<OrderModel> orders; 
-  OrdersSuccess(this.orders);
+class OrdersLoaded extends OrdersState {
+  final List<DataOrder> orders;
+  const OrdersLoaded(this.orders);
 }
 
 class OrdersError extends OrdersState {
   final String message;
-  OrdersError(this.message);
+  const OrdersError(this.message);
 }
 
-class OrderSavedSuccess extends OrdersState {}
+// حالات إنشاء الطلبات
+class CreateOrderLoading extends OrdersState {
+  const CreateOrderLoading();
+}
 
-class OrderSavedError extends OrdersState {
+class CreateOrderSuccess extends OrdersState {
   final String message;
-  OrderSavedError(this.message);
+  const CreateOrderSuccess({required this.message});
+}
+
+class CreateOrderError extends OrdersState {
+  final String message;
+  const CreateOrderError({required this.message});
 }

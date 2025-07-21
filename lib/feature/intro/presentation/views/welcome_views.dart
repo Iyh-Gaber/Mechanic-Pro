@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
-
+import 'package:mechpro/core/routing/routes.dart';
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/translate/locale_keys.g.dart';
@@ -29,7 +29,7 @@ class WelcomeViews extends StatelessWidget {
             },
             child: Image.asset(
               AppAssets.iconEmrg,
-            //  fit: BoxFit.cover,
+              //  fit: BoxFit.cover,
               height: 7.h,
               width: 7.w,
             ),
@@ -58,7 +58,6 @@ class WelcomeViews extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(7.0),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-         
             Gap(155),
             Image.asset(
               AppAssets.logoIcon,
@@ -74,10 +73,10 @@ class WelcomeViews extends StatelessWidget {
                     text: LocaleKeys.Welcometothe.tr(),
                     style: getSmallStyle(),
                   ),
-                 
                   TextSpan(
                     text: LocaleKeys.MechanicPro.tr(),
-                    style: getBodyStyle(color: AppColors.primaryColor,fontSize: 19.sp),
+                    style: getBodyStyle(
+                        color: AppColors.primaryColor, fontSize: 19.sp),
                   ),
                   TextSpan(
                     text: LocaleKeys.platform.tr(),
@@ -86,18 +85,14 @@ class WelcomeViews extends StatelessWidget {
                 ],
               ),
             ),
-
             Text(LocaleKeys.symbol.tr(),
-                textAlign: TextAlign.center,
-                style: getSmallStyle()),
+                textAlign: TextAlign.center, style: getSmallStyle()),
             Spacer(),
             CustomButton(
               text: LocaleKeys.welcomeButtom.tr(),
               onpressed: () {
-               
                 context.pushAndRemoveUntil(
                   Routes.onboardingView,
-               
                   routeBuilder: AppRouter.buildRoute,
                   predicate: (route) => false,
                 );

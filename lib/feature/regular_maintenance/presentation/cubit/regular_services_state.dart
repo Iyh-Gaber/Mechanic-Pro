@@ -15,7 +15,6 @@ class RegularServicesSuccessState extends RegularServicesState {
 }
 */
 
-
 import 'package:mechpro/feature/regular_maintenance/data/models/response/regular_response/regular_response.dart';
 
 sealed class RegularServicesState {}

@@ -454,7 +454,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                         ),
                         SizedBox(height: 15.0),
 
-                        _buildAuthFormContainer(context, isLoginMode, isLoading),
+                        _buildAuthFormContainer(
+                            context, isLoginMode, isLoading),
 
                         15.verticalSpace,
 
@@ -495,7 +496,8 @@ class _RegistrationViewState extends State<RegistrationView> {
   }
 
   // Extracted method for the main form container
-  Widget _buildAuthFormContainer(BuildContext context, bool isLoginMode, bool isLoading) {
+  Widget _buildAuthFormContainer(
+      BuildContext context, bool isLoginMode, bool isLoading) {
     final authCubit = context.read<AuthCubit>(); // Get Cubit instance
 
     return Container(
@@ -505,7 +507,8 @@ class _RegistrationViewState extends State<RegistrationView> {
         borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryColor.withOpacity(0.2), // Slightly less intense shadow
+            color: AppColors.primaryColor
+                .withOpacity(0.2), // Slightly less intense shadow
             spreadRadius: 3,
             blurRadius: 7,
             offset: const Offset(0, 3),
@@ -573,16 +576,19 @@ class _RegistrationViewState extends State<RegistrationView> {
                 return LocaleKeys.Passwordmustleast8characters.tr();
               }
               if (!value.contains(RegExp(r'[A-Z]'))) {
-                return LocaleKeys.Passwordmustcontainatleastoneuppercaseletter.tr();
+                return LocaleKeys.Passwordmustcontainatleastoneuppercaseletter
+                    .tr();
               }
               if (!value.contains(RegExp(r'[a-z]'))) {
-                return LocaleKeys.Passwordmustcontainatleastonelowercaseletter.tr();
+                return LocaleKeys.Passwordmustcontainatleastonelowercaseletter
+                    .tr();
               }
               if (!value.contains(RegExp(r'[0-9]'))) {
                 return LocaleKeys.Passwordmustcontainatleastonedigit.tr();
               }
               if (!value.contains(RegExp(r'[!@#\$%^&*(),.?":{}|<>]'))) {
-                return LocaleKeys.PasswordmustcontainatleastoneSpecialcharacter.tr();
+                return LocaleKeys.PasswordmustcontainatleastoneSpecialcharacter
+                    .tr();
               }
               return null;
             },
@@ -632,7 +638,8 @@ class _RegistrationViewState extends State<RegistrationView> {
             ),
           20.verticalSpace,
           isLoading
-              ? CircularProgressIndicator(color: AppColors.primaryColor) // Show loading indicator
+              ? CircularProgressIndicator(
+                  color: AppColors.primaryColor) // Show loading indicator
               : ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -656,7 +663,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                   ),
                   child: Text(
-                    isLoginMode ? LocaleKeys.LogIn.tr() : LocaleKeys.signup.tr(),
+                    isLoginMode
+                        ? LocaleKeys.LogIn.tr()
+                        : LocaleKeys.signup.tr(),
                     style:
                         getSmallStyle(color: AppColors.whColor, fontSize: 14.0),
                   ),

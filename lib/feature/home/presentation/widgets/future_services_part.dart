@@ -84,19 +84,14 @@ class FutureServicesPart extends StatelessWidget {
           onTap: () {
             context.pushNamed(Routes.emergencyView);
           },
-          
-         
         ),
         NewServicesItem(
           name: LocaleKeys.OrderTracking.tr(),
           image: AppAssets.trackOrder,
-          
-         
         ),
         NewServicesItem(
           name: LocaleKeys.DigitalEmergencyFund.tr(),
-          image: AppAssets.digitalemargcy, 
-   
+          image: AppAssets.digitalemargcy,
         ),
         NewServicesItem(
           name: LocaleKeys.ScheduleMaintenanceAppointment.tr(),
@@ -107,7 +102,8 @@ class FutureServicesPart extends StatelessWidget {
           image: AppAssets.locateWorkshop,
         ),
         NewServicesItem(
-          name: LocaleKeys.ManageServicesHistory.tr(),onTap: () {
+          name: LocaleKeys.ManageServicesHistory.tr(),
+          onTap: () {
             // context.pushNamed(Routes.historyView);
           },
           image: AppAssets.manageSer,

@@ -20,8 +20,8 @@ class EmergencyButtonsCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity, 
-      height: 70, 
+      width: double.infinity,
+      height: 70,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(15),
@@ -30,7 +30,7 @@ class EmergencyButtonsCustom extends StatelessWidget {
             color: color.withOpacity(0.3),
             spreadRadius: 2,
             blurRadius: 7,
-            offset: const Offset(0, 3), 
+            offset: const Offset(0, 3),
           ),
         ],
       ),

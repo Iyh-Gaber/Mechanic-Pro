@@ -26,17 +26,9 @@ class _OfferBannerState extends State<OfferBanner> {
         context.pushNamed(Routes.offersView);
         // context.pushTo(OffersView());
       },
-      child:
-
-
-
-
-
-   
-       Column(
-        
-         children: [
-           Container(
+      child: Column(
+        children: [
+          Container(
             padding: EdgeInsets.all(10.0),
             margin: EdgeInsets.all(10.0),
             height: 100,
@@ -46,23 +38,26 @@ class _OfferBannerState extends State<OfferBanner> {
               image: DecorationImage(
                   image: AssetImage(AppAssets.offer), fit: BoxFit.cover),
             ),
-                 ),
-                 InkWell(
-                  onTap: () {
-                    context.pushNamed(Routes.offersView);
-                  },
-                   child: Row(
-                    mainAxisAlignment:MainAxisAlignment.center ,
-                    children: [
-                    Text(LocaleKeys.ShowMore.tr(),style: getSmallStyle( ),),
-                    Icon(Icons.arrow_right,),
-                   ],),
-                 ),
-         ],
-        
-       ),
-
-     
+          ),
+          InkWell(
+            onTap: () {
+              context.pushNamed(Routes.offersView);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  LocaleKeys.ShowMore.tr(),
+                  style: getSmallStyle(),
+                ),
+                Icon(
+                  Icons.arrow_right,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

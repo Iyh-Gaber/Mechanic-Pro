@@ -79,6 +79,16 @@
     "locate Nearby Workshop":"الوصول لمحطة الصيانة المحلية",
     "Schedule Maintenance Appointment":"جدولة موعد الصيانة",
     "Digital Emergency Fund":"صندوق الطارقة الرقمي",
-    "Order Tracking":"تتبع الطلب"
+    "Order Tracking":"تتبع الطلب",
+    "No description available":"لا يوجد وصف متاح",
+     "Confirm Service":"Confirm Service",
+     "Select Branch":"Select Branch",
+     "our_branches":"our_branches",
+    
+    "At One of Our Branches":"At One of Our Branches",
+    "At My Location (anywhere)":"At My Location (anywhere)",
+    "my_location":"my_location",
+    "Contact us to specify the address":"Contact us to specify the address",
+    "3. Where Do We Provide the Service?":"3. Where Do We Provide the Service?"
     
   }

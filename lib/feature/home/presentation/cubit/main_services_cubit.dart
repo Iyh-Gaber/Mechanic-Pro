@@ -51,8 +51,6 @@ class MainServicesCubit extends Cubit<MainServicesStates> {
 }
 */
 
-
-
 /*
 
 import 'package:bloc/bloc.dart';
@@ -104,11 +102,10 @@ class MainServicesCubit extends Cubit<MainServicesStates> {
   final MainServicesRepo _mainServicesRepo;
 
   // استقبل MainServicesRepo في المُنشئ وقم بتخزينه
-  MainServicesCubit(this._mainServicesRepo)
-      : super(MainServicesInitialState());
+  MainServicesCubit(this._mainServicesRepo) : super(MainServicesInitialState());
 
   // يمكن الاستغناء عن هذا المتغير إذا كنت تمرر البيانات مباشرة في SuccessState
-  // MainServicesResponse? mainServicesResponse; 
+  // MainServicesResponse? mainServicesResponse;
 
   Future<void> fetchMainServices() async {
     emit(MainServicesLoadingState()); // إصدار حالة التحميل
@@ -119,16 +116,19 @@ class MainServicesCubit extends Cubit<MainServicesStates> {
 
       if (value != null) {
         // إذا كنت ما زلت تحتاج لتخزينها في الكيوبيت (عادةً لا يلزم إذا كانت في الـ state)
-        // mainServicesResponse = value; 
-        
-        emit(MainServicesSuccessState(value)); // تمرير الاستجابة (value) مع حالة النجاح
+        // mainServicesResponse = value;
+
+        emit(MainServicesSuccessState(
+            value)); // تمرير الاستجابة (value) مع حالة النجاح
       } else {
         emit(MainServicesErrorState(
             'something went wrong: Null response from repository. Please try again.')); // رسالة أوضح
       }
     } catch (e) {
-      print('Error in MainServicesCubit.fetchMainServices: $e'); // طباعة الخطأ الكامل
-      emit(MainServicesErrorState('An unexpected error occurred: ${e.toString()}')); // رسالة عامة للواجهة
+      print(
+          'Error in MainServicesCubit.fetchMainServices: $e'); // طباعة الخطأ الكامل
+      emit(MainServicesErrorState(
+          'An unexpected error occurred: ${e.toString()}')); // رسالة عامة للواجهة
     }
   }
 }

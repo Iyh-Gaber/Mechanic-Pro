@@ -1398,10 +1398,6 @@ class ServiceCard extends StatelessWidget {
 }
 */
 
-
-
-
-
 /*
 
 import 'package:easy_localization/easy_localization.dart';
@@ -2054,10 +2050,6 @@ class ServiceCard extends StatelessWidget {
 
 */
 
-
-
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // import bloc
@@ -2065,25 +2057,24 @@ import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart'; // تأكد من أن هذا الملف موجود ويحتوي على verticalSpace
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/feature/regular_maintenance/presentation/widgets/date_time_picker_part.dart';
+import 'package:mechpro/feature/regular_maintenance/presentation/widgets/location_part.dart';
+import 'package:mechpro/feature/regular_maintenance/presentation/widgets/section_title_part.dart';
+import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/routing/app_router.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/text_style.dart';
 
 import '../../data/models/response/regular_response/datumRegular.dart'; // Import the Datum model
-import '../cubit/regular_services_cubit.dart'; 
-import '../cubit/regular_services_state.dart'; 
+import '../cubit/regular_services_cubit.dart';
+import '../cubit/regular_services_state.dart';
 
 import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart'; // استيراد الـ Cubit الجديد
 import 'package:mechpro/feature/orders/data/models/order_model.dart'; // استيراد نموذج الطلب
 
 import 'package:mechpro/feature/regular_maintenance/data/models/response/regular_response/datumRegular.dart';
-
-
-
-
-
-
 
 class RegularMaintenanceView extends StatefulWidget {
   const RegularMaintenanceView({super.key});
@@ -2105,12 +2096,15 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
   };
 
   // State variables to manage user selections.
-  final Set<DatumRegular> _selectedServices = {}; // Stores selected services (now Datum objects).
+  final Set<DatumRegular> _selectedServices =
+      {}; // Stores selected services (now Datum objects).
   DateTime? _selectedDate; // Stores the chosen date.
   TimeOfDay? _selectedTime; // Stores the chosen time.
-  String? _selectedLocationType; // 'my_location' or 'our_branches' to track location choice.
+  String?
+      _selectedLocationType; // 'my_location' or 'our_branches' to track location choice.
   String? _selectedBranch; // Stores the name of the selected branch.
-  bool _hasContactedForLocation = false; // New state variable to track if "Contact Us" button was pressed.
+  bool _hasContactedForLocation =
+      false; // New state variable to track if "Contact Us" button was pressed.
 
   // Dummy list of branches for demonstration purposes.
   final List<String> _branches = [
@@ -2146,16 +2140,22 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _selectedDate ?? DateTime.now(), // Initial date is current date or previously selected.
+      initialDate: _selectedDate ??
+          DateTime
+              .now(), // Initial date is current date or previously selected.
       firstDate: DateTime.now(), // User cannot select a past date.
-      lastDate: DateTime.now().add(const Duration(days: 365)), // User can select up to one year in advance.
+      lastDate: DateTime.now().add(const Duration(
+          days: 365)), // User can select up to one year in advance.
       builder: (BuildContext context, Widget? child) {
         return Theme(
           // Customizes the theme of the date picker.
           data: ThemeData.light().copyWith(
-            primaryColor: const Color(0xFF336f67), // Header background color of the date picker.
-            colorScheme: const ColorScheme.light(primary: Color(0xFF336f67)), // Color for selected day.
-            buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+            primaryColor: const Color(
+                0xFF336f67), // Header background color of the date picker.
+            colorScheme: const ColorScheme.light(
+                primary: Color(0xFF336f67)), // Color for selected day.
+            buttonTheme:
+                const ButtonThemeData(textTheme: ButtonTextTheme.primary),
           ),
           child: child!,
         );
@@ -2173,29 +2173,31 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
   // Getter to determine if the confirmation button should be enabled.
   // It checks if all necessary fields are filled.
   bool get _isConfirmButtonEnabled {
-    return _selectedServices.isNotEmpty && // At least one service must be selected.
+    return _selectedServices
+            .isNotEmpty && // At least one service must be selected.
         _selectedDate != null && // A date must be selected.
         _selectedTime != null && // A time must be selected.
-        (_selectedLocationType == 'our_branches' && _selectedBranch != null || // If branch, a branch must be chosen.
+        (_selectedLocationType == 'our_branches' &&
+                _selectedBranch !=
+                    null || // If branch, a branch must be chosen.
             _selectedLocationType == 'my_location' &&
-                (_addressController.text.isNotEmpty || _hasContactedForLocation)); // If my location, either address or contact button must be used.
+                (_addressController.text.isNotEmpty ||
+                    _hasContactedForLocation)); // If my location, either address or contact button must be used.
   }
 
   // Function to handle the service confirmation logic.
-  
-  
-  
-  
-  
-  
-  
- 
 
   void _confirmService() {
     // Collects all selected data for confirmation.
-    String servicesList = _selectedServices.map((s) => s.subServiceName ?? 'Unknown Service').join(', '); // Joins selected service names.
-    String date = _selectedDate != null ? DateFormat('yyyy-MM-dd').format(_selectedDate!) : 'N/A'; // Formats date.
-    String time = _selectedTime != null ? _selectedTime!.format(context) : 'N/A'; // Formats time.
+    String servicesList = _selectedServices
+        .map((s) => s.subServiceName ?? 'Unknown Service')
+        .join(', '); // Joins selected service names.
+    String date = _selectedDate != null
+        ? DateFormat('yyyy-MM-dd').format(_selectedDate!)
+        : 'N/A'; // Formats date.
+    String time = _selectedTime != null
+        ? _selectedTime!.format(context)
+        : 'N/A'; // Formats time.
     String location;
 
     // Determines the location string based on user's choice.
@@ -2214,7 +2216,9 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)), // Rounded corners for the dialog.
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(7)), // Rounded corners for the dialog.
           title: const Text(
             'Confirm Service Request', // Dialog title.
             textAlign: TextAlign.left, // Align title to the left for LTR.
@@ -2254,7 +2258,9 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                 Navigator.of(context).pop(); // Closes the dialog.
                 ScaffoldMessenger.of(context).showSnackBar(
                   // Shows a success message.
-                  const SnackBar(content: Text('Your request has been confirmed successfully!')),
+                  const SnackBar(
+                      content: Text(
+                          'Your request has been confirmed successfully!')),
                 );
               },
               child: const Text('Confirm'), // Confirm button.
@@ -2264,9 +2270,6 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
       },
     );
   }
-
-
-
 
 /*
 // داخل كلاس _RegularMaintenanceViewState
@@ -2359,13 +2362,6 @@ void _confirmService() {
 
 */
 
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -2386,7 +2382,8 @@ void _confirmService() {
       ),
       body: BlocBuilder<RegularServicesCubit, RegularServicesState>(
         builder: (context, state) {
-          if (state is RegularServicesLoadingState || state is RegularServicesInitial) {
+          if (state is RegularServicesLoadingState ||
+              state is RegularServicesInitial) {
             return Center(
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             );
@@ -2399,10 +2396,12 @@ void _confirmService() {
               ),
             );
           } else if (state is RegularServicesSuccessState) {
-            final List<DatumRegular>? servicesFromApi = (state as RegularServicesSuccessState).response.data;
+            final List<DatumRegular>? servicesFromApi =
+                (state as RegularServicesSuccessState).response.data;
 
             if (servicesFromApi == null || servicesFromApi.isEmpty) {
-              return const Center(child: Text('No regular maintenance services found.'));
+              return const Center(
+                  child: Text('No regular maintenance services found.'));
             }
 
             return Padding(
@@ -2412,22 +2411,28 @@ void _confirmService() {
                 // Makes the content scrollable.
                 children: [
                   // Section 1: Choose Your Services
-                  _buildSectionTitle('1. Choose Your Services'), // Helper for section title.
+                  SectionTitlePart(title: '1. Choose Your Services'), // Helper for section title.
                   GridView.builder(
                     // Displays services in a grid.
-                    shrinkWrap: true, // Takes only as much space as its children.
-                    physics: const NeverScrollableScrollPhysics(), // Disables GridView's own scrolling.
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    shrinkWrap:
+                        true, // Takes only as much space as its children.
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Disables GridView's own scrolling.
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Two columns in the grid.
                       crossAxisSpacing: 16.0, // Horizontal spacing.
                       mainAxisSpacing: 16.0, // Vertical spacing.
                       childAspectRatio: 0.7, // Aspect ratio for each card.
                     ),
-                    itemCount: servicesFromApi.length, // Number of service cards from API.
+                    itemCount: servicesFromApi
+                        .length, // Number of service cards from API.
                     itemBuilder: (context, index) {
                       final service = servicesFromApi[index];
                       // احصل على الأيقونة من الخريطة، أو استخدم أيقونة افتراضية
-                      final IconData icon = _serviceIcons[service.subServiceName ?? ''] ?? Icons.miscellaneous_services;
+                      final IconData icon =
+                          _serviceIcons[service.subServiceName ?? ''] ??
+                              Icons.miscellaneous_services;
                       final isSelected = _selectedServices.contains(service);
                       return GestureDetector(
                         // Makes the card tappable.
@@ -2454,18 +2459,14 @@ void _confirmService() {
                   const SizedBox(height: 24.0), // Spacer.
 
                   // Section 2: Select Date and Time
-                  _buildSectionTitle('2. When Do You Need the Service?'),
-                  _buildDateTimePicker(
-                    // Helper for date input field.
-                    context,
-                    label: 'Date',
-                    value: _selectedDate != null ? DateFormat('yyyy-MM-dd').format(_selectedDate!) : 'Select Date',
-                    icon: Icons.calendar_today,
-                    onTap: () => _selectDate(context),
-                  ),
+                  SectionTitlePart(title: '2. When Do You Need the Service?'),
+                  DateTimePickerPart(context: context, label: 'Date', value: _selectedDate != null
+                        ? DateFormat('yyyy-MM-dd').format(_selectedDate!)
+                        : 'Select Date', icon: Icons.calendar_today, onTap: () => _selectDate(context)),
                   const SizedBox(height: 16.0), // Spacer.
                   // Time selection using a horizontal list of chips
-                  if (_selectedDate != null) // Only show time options if a date is selected.
+                  if (_selectedDate !=
+                      null) // Only show time options if a date is selected.
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -2482,16 +2483,22 @@ void _confirmService() {
                         ),
                         Wrap(
                           spacing: 8.0, // Horizontal space between chips.
-                          runSpacing: 8.0, // Vertical space between rows of chips.
+                          runSpacing:
+                              8.0, // Vertical space between rows of chips.
                           children: _availableTimes.map((time) {
                             final isSelected = _selectedTime == time;
                             return ChoiceChip(
                               label: Text(time.format(context)),
                               selected: isSelected,
-                              selectedColor: const Color(0xFF336f67).withOpacity(0.7), // Selected chip color.
+                              selectedColor: const Color(0xFF336f67)
+                                  .withOpacity(0.7), // Selected chip color.
                               labelStyle: TextStyle(
-                                color: isSelected ? Colors.white : Colors.black87, // Text color.
-                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                color: isSelected
+                                    ? Colors.white
+                                    : Colors.black87, // Text color.
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
                               ),
                               onSelected: (selected) {
                                 setState(() {
@@ -2501,7 +2508,9 @@ void _confirmService() {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                                 side: BorderSide(
-                                  color: isSelected ? const Color(0xFF336f67) : Colors.grey.shade400,
+                                  color: isSelected
+                                      ? const Color(0xFF336f67)
+                                      : Colors.grey.shade400,
                                   width: 1.5,
                                 ),
                               ),
@@ -2511,322 +2520,193 @@ void _confirmService() {
                         ),
                       ],
                     ),
-                  // تم تقليل المسافة هنا
-                  const SizedBox(height: 24.0), // Spacer.
-
-                  // Section 3: Select Location
-                  _buildSectionTitle('3. Where Do We Provide the Service?'),
-                  Column( // هذا هو الـ Column المشار إليه في الخطأ
-                    // Arranges location options vertically.
-                    children: [
-                      _buildLocationOption(
-                        // Helper for location radio button.
-                        title: 'At My Location (anywhere)',
-                        value: 'my_location',
-                        groupValue: _selectedLocationType,
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedLocationType = value;
-                            _selectedBranch = null; // Clears branch if 'my_location' is chosen.
-                            _hasContactedForLocation = false; // Reset contact status when location type changes.
-                          });
-                        },
-                      ),
-                      17.verticalSpace,
-                    
-                      if (_selectedLocationType ==
-                          'my_location') 
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 16.0),
-                              child: TextField(
-                                // Text field for detailed address.
-                                controller: _addressController,
-                                textAlign: TextAlign.left, // Align text to left for LTR.
-                                decoration: InputDecoration(
-                                  labelText: LocaleKeys.EnterYourDetailedAddressOptional.tr(),labelStyle: getSmallStyle(color: AppColors.primaryColor), // Made optional.
-                                  hintText: LocaleKeys.ElnezlawyStBuilding10Apt5,hintStyle: getSmallStyle(color: AppColors.primaryColor),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  prefixIcon: const Icon(Icons.location_on),
-                                  contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-                                ),
-                                onChanged: (value) {
-                                  setState(() {
-                                    if (value.isNotEmpty) {
-                                      _hasContactedForLocation = false;
-                                    }
-                                  });
-                                },
-                              ),
-                            ),
-                            7.verticalSpace,
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  _hasContactedForLocation = true;
-                                  _addressController.clear();
-                                });
-
-                                context.pushNamed(Routes.connectUsView);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                   SnackBar(content: Text(LocaleKeys.NavigatingtoContactUsscreen,style: getSmallStyle(color: AppColors.primaryColor) ,)),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primaryColor,
-                                foregroundColor: AppColors.whColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                padding: const EdgeInsets.symmetric(vertical: 17.0,horizontal: 17),
-                                elevation: 5,
-                              ),
-                              child:  Text(
-                                'Contact us to specify the address',
-                                style: getSmallStyle(color: AppColors.whColor),
-                              ),
-                            ),
-                          ],
-                        ),
-                      7.verticalSpace,
-                      _buildLocationOption(
-                        title: 'At One of Our Branches',
-                        value: 'our_branches',
-                        groupValue: _selectedLocationType,
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedLocationType = value;
-                            _addressController.clear();
-                            _hasContactedForLocation = false;
-                          });
-                        },
-                      ),
-                      if (_selectedLocationType == 'our_branches')
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: DropdownButtonFormField<String>(
-                            value: _selectedBranch,
-                            hint: const Text('Select Branch', textAlign: TextAlign.left),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              prefixIcon: const Icon(Icons.store),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-                            ),
-                            isExpanded: true,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                _selectedBranch = newValue;
-                              });
-                            },
-                            items: _branches.map<DropdownMenuItem<String>>((String branch) {
-                              return DropdownMenuItem<String>(
-                                value: branch,
-                                child: Text(branch, textAlign: TextAlign.left),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                    ],
-                  ),
-                  // تم تقليل المسافة هنا
-                  30.verticalSpace, // تم تغيير 40.verticalSpace إلى 30.verticalSpace
-                  // Confirmation Button
-                  ElevatedButton(
-                    
-                    onPressed: _isConfirmButtonEnabled ? _confirmService : null,
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      elevation: 5,
-                      backgroundColor: AppColors.primaryColor,
-                      foregroundColor: AppColors.whColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'Confirm Service',
-                     // style: getSmalleStyle(color: Colors.white),
-                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                ],
+                  
+                 
+24.verticalSpace,
+                 
+                  SectionTitlePart(title: LocaleKeys.WhereDoWeProvidetheService.tr()),
+                
+                
+                  SectionSelectLocation(context),
+                 
+                  30.verticalSpace, 
+                 
+                  ConfirmationButton(),
+                 
+                  20.verticalSpace,
+               ],
               ),
             );
           }
-          return const SizedBox.shrink(); // Fallback for unhandled states
+          return const SizedBox.shrink(); 
         },
       ),
     );
   }
 
-  Widget _buildSectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 22.0,
-          fontWeight: FontWeight.bold,
-          color: Color(0xFF336f67),
-        ),
-        textAlign: TextAlign.left,
-      ),
-    );
+
+
+
+
+
+
+  Column SectionSelectLocation(BuildContext context) {
+    return Column(
+                  
+                  children: [
+                    LocationPart(title: LocaleKeys.AtMyLocationanywhere.tr(), value: LocaleKeys.mylocation.tr(), groupValue: _selectedLocationType, onChanged: (value) {
+                        setState(() {
+                          _selectedLocationType = value;
+                          _selectedBranch =
+                              null; // Clears branch if 'my_location' is chosen.
+                          _hasContactedForLocation =
+                              false; // Reset contact status when location type changes.
+                        });
+                      }),
+                    17.verticalSpace,
+                    if (_selectedLocationType == LocaleKeys.mylocation.tr())
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: TextField(
+                              // Text field for detailed address.
+                              controller: _addressController,
+                              textAlign: TextAlign
+                                  .left, // Align text to left for LTR.
+                              decoration: InputDecoration(
+                                labelText: LocaleKeys
+                                    .EnterYourDetailedAddressOptional.tr(),
+                                labelStyle: getSmallStyle(
+                                    color: AppColors
+                                        .primaryColor), // Made optional.
+                                hintText:
+                                    LocaleKeys.ElnezlawyStBuilding10Apt5,
+                                hintStyle: getSmallStyle(
+                                    color: AppColors.primaryColor),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                prefixIcon: const Icon(Icons.location_on),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 16.0, horizontal: 12.0),
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  if (value.isNotEmpty) {
+                                    _hasContactedForLocation = false;
+                                  }
+                                });
+                              },
+                            ),
+                          ),
+                          7.verticalSpace,
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasContactedForLocation = true;
+                                _addressController.clear();
+                              });
+
+                              context.pushNamed(Routes.connectUsView);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text(
+                                  LocaleKeys.NavigatingtoContactUsscreen,
+                                  style: getSmallStyle(
+                                      color: AppColors.primaryColor),
+                                )),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor,
+                              foregroundColor: AppColors.whColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 17.0, horizontal: 17),
+                              elevation: 5,
+                            ),
+                            child: Text(
+                              LocaleKeys.Contactustospecifytheaddress.tr(),
+                              style: getSmallStyle(color: AppColors.whColor),
+                            ),
+                          ),
+                        ],
+                      ),
+                    7.verticalSpace,
+
+
+                    LocationPart(title: LocaleKeys.AtOneofOurBranches.tr(), value:LocaleKeys.ourBranch.tr(), groupValue: _selectedLocationType, onChanged: (value) {
+                        setState(() {
+                          _selectedLocationType = value;
+                          _addressController.clear();
+                          _hasContactedForLocation = false;
+                        });
+                      }),
+                    if (_selectedLocationType == LocaleKeys.ourBranch.tr())
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _selectedBranch,
+                          hint:  Text(LocaleKeys.SelectBranch.tr(),style: getSmallStyle() ,
+                              textAlign: TextAlign.left),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            prefixIcon: const Icon(Icons.store),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 12.0),
+                          ),
+                          isExpanded: true,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedBranch = newValue;
+                            });
+                          },
+                          items: _branches
+                              .map<DropdownMenuItem<String>>((String branch) {
+                            return DropdownMenuItem<String>(
+                              value: branch,
+                              child: Text(branch, textAlign: TextAlign.left),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                  ],
+                );
   }
 
-  // Helper widget to build consistent date/time picker input fields.
-  Widget _buildDateTimePicker(
-    BuildContext context, {
-    required String label,
-    required String value,
-    required IconData icon,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: InputDecorator(
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: const TextStyle(color: Color(0xFF336f67)),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          prefixIcon: Icon(icon, color: const Color(0xFF336f67)),
-          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-        ),
-        child: Text(
-          value,
-          style: const TextStyle(fontSize: 16.0, color: Colors.black87),
-          textAlign: TextAlign.left,
-        ),
-      ),
-    );
+
+  ElevatedButton ConfirmationButton() {
+    return ElevatedButton(
+                  onPressed: _isConfirmButtonEnabled ? _confirmService : null,
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    elevation: 5,
+                    backgroundColor: AppColors.primaryColor,
+                    foregroundColor: AppColors.whColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                  child:  Text(
+                    LocaleKeys.ConfirmService.tr(),
+                  
+                    style: getSmallStyle(color: AppColors.whColor,fontSize: 18.0),
+                   
+                ),);
   }
 
-  // Helper widget to build consistent location radio button options.
-  Widget _buildLocationOption({
-    required String title,
-    required String value,
-    required String? groupValue,
-    required ValueChanged<String?> onChanged,
-  }) {
-    return Card(
-      margin: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        side: BorderSide(
-          color: groupValue == value ? const Color(0xFF336f67) : Colors.grey.shade300,
-          width: groupValue == value ? 2.0 : 1.0,
-        ),
-      ),
-      elevation: groupValue == value ? 4 : 1,
-      child: RadioListTile<String>(
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: groupValue == value ? const Color(0xFF336f67) : Colors.black87,
-          ),
-          textAlign: TextAlign.left,
-        ),
-        value: value,
-        groupValue: groupValue,
-        onChanged: onChanged,
-        activeColor: const Color(0xFF336f67),
-        controlAffinity: ListTileControlAffinity.trailing,
-      ),
-    );
-  }
+ 
+
+ 
 
   @override
   void dispose() {
     _addressController.dispose();
     super.dispose();
-  }
-}
-
-// Widget for a single service card.
-// This is a StatelessWidget as its properties are immutable once created.
-class ServiceCard extends StatelessWidget {
-  final DatumRegular service; // Changed type to Datum
-  final bool isSelected;
-  final IconData icon; // Added icon to constructor
-
-  const ServiceCard({
-    super.key,
-    required this.service,
-    required this.isSelected,
-    required this.icon, // Required icon
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      // The card container for each service.
-      elevation: isSelected ? 8 : 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-        side: BorderSide(
-          color: isSelected ? const Color(0xFF336f67) : Colors.grey.shade300,
-          width: isSelected ? 3.0 : 1.0,
-        ),
-      ),
-      color: isSelected ? const Color(0xFF336f67).withOpacity(0.1) : Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Align(
-              // Aligns the selection icon to the top right.
-              alignment: Alignment.topRight,
-              child: Icon(
-                isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
-                color: isSelected ? const Color(0xFF336f67) : Colors.grey.shade400,
-                size: 24,
-              ),
-            ),
-            Icon(
-              // Service icon.
-              icon, // Use the passed icon
-              size: 50,
-              color: isSelected ? const Color(0xFF336f67) : Colors.blueGrey,
-            ),
-            7.verticalSpace,
-            Text(
-              // Service name.
-              service.subServiceName ?? 'N/A', // Use subServiceName from Datum
-             // textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: isSelected ? const Color(0xFF336f67).withOpacity(0.9) : Colors.black87,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            4.verticalSpace,
-            Text(
-              // Service description.
-              service.description ?? 'No description available', // Use description from Datum
-             // textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12.0,
-                color: isSelected ? const Color(0xFF336f67).withOpacity(0.7) : Colors.grey.shade600,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

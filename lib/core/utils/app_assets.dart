@@ -27,5 +27,4 @@ sealed class AppAssets {
   static const String iconEmergency = 'assets/images/emerIcon.png';
   static const String iconSos = 'assets/images/iconSos.png';
   static const String iconEmrg = 'assets/images/emrg.png';
-   
 }

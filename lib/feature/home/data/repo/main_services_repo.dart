@@ -19,9 +19,6 @@ class MainServicesRepo {
 }
 */
 
-
-
-
 /*
 import 'dart:convert'; // لا تنسَ استيراد هذا المكتبة للتعامل مع JSON
 
@@ -78,7 +75,6 @@ class MainServicesRepo {
 }
 */
 
-
 import 'dart:convert'; // لا تنسَ استيراد هذا المكتبة للتعامل مع JSON
 
 import 'package:mechpro/core/constants/api_constants.dart';
@@ -93,14 +89,17 @@ class MainServicesRepo {
     try {
       // 1. استرجاع رمز المصادقة (Firebase ID Token)
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? firebaseToken = prefs.getString('firebase_user_id_token'); // 👈 المفتاح الذي استخدمته لحفظ الرمز
+      final String? firebaseToken = prefs.getString(
+          'firebase_user_id_token'); // 👈 المفتاح الذي استخدمته لحفظ الرمز
 
       // 🚨 للتحقق: اطبع الرمز لترى ما إذا تم استرجاعه
-      print('DEBUG: Firebase Token from SharedPreferences in MainServicesRepo: $firebaseToken');
+      print(
+          'DEBUG: Firebase Token from SharedPreferences in MainServicesRepo: $firebaseToken');
 
       // إذا لم يكن هناك رمز، فهذا يعني أن المستخدم غير مسجل دخول
       if (firebaseToken == null) {
-        print('ERROR: Firebase token is NULL. User is not authenticated for backend API calls.');
+        print(
+            'ERROR: Firebase token is NULL. User is not authenticated for backend API calls.');
         // يمكنك إظهار رسالة للمستخدم أو إعادة توجيهه لصفحة تسجيل الدخول
         return null;
       }
@@ -133,21 +132,26 @@ class MainServicesRepo {
             if (decodedData is Map<String, dynamic>) {
               return MainServicesResponse.fromJson(decodedData);
             } else {
-              print('Error: Decoded data is not a Map<String, dynamic>. Type: ${decodedData.runtimeType}. Raw data: ${response.data}');
+              print(
+                  'Error: Decoded data is not a Map<String, dynamic>. Type: ${decodedData.runtimeType}. Raw data: ${response.data}');
               return null;
             }
           } catch (e) {
-            print('Error decoding JSON string (data was not valid JSON): $e. Raw data: ${response.data}');
+            print(
+                'Error decoding JSON string (data was not valid JSON): $e. Raw data: ${response.data}');
             return null;
           }
         } else if (response.data is Map<String, dynamic>) {
-          return MainServicesResponse.fromJson(response.data as Map<String, dynamic>);
+          return MainServicesResponse.fromJson(
+              response.data as Map<String, dynamic>);
         } else {
-          print('Error: Unexpected response data type: ${response.data.runtimeType}. Raw data: ${response.data}');
+          print(
+              'Error: Unexpected response data type: ${response.data.runtimeType}. Raw data: ${response.data}');
           return null;
         }
       } else {
-        print('API Error: Status Code ${response.statusCode}. Response: ${response.data}');
+        print(
+            'API Error: Status Code ${response.statusCode}. Response: ${response.data}');
         return null;
       }
     } on Exception catch (e) {
