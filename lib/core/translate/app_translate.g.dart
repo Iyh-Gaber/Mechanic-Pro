@@ -87,8 +87,31 @@ abstract class LocaleKeys {
   static const ourBranch = "our_branches";
   static const AtOneofOurBranches = "At One of Our Branches";
   static const mylocation = "my_location";
-  static const Contactustospecifytheaddress = "Contact us to specify the address";
+  static const Contactustospecifytheaddress =
+      "Contact us to specify the address";
   static const WhereDoWeProvidetheService = "3.Where Do We Provide the Service";
-  static const AtMyLocationanywhere="At My Location (anywhere)";
+  static const AtMyLocationanywhere = "At My Location (anywhere)";
+  static const FollowUs = "Follow Us";
+  static const HowcanIbookanappointmentformyvehicle =
+      "How can I book an appointment for my vehicle?";
+  static const HowcanIcontactyou = "How can I contact you?";
+  static const facebook = "Facebook";
+  static const twitter = "Twitter";
+  static const instagram = "Instagram";
+  static const HowcanIbookanappointmentformyvehicle2 =
+      "How can I book an appointment for my vehicle?";
+  static const HowcanIcontactyou2 = "How can I contact you?";
+  static const Youcanbookanappointmentforyourvehicle = "You can book an appointment for your vehicle by section Core Services in the application and choosing the Type service and the date and time of the service  .";
+  static const Whatpaymentmethodsdoyouaccept = "What payment methods do you accept?";
+  static const Weacceptcashandcreditcardsandanyother = "We accept cash and credit cards and any other.";
+  static const Doyouprovideemergencymaintenanceservice = "Do you provide emergency maintenance service?";
+  static const Yesweprovidemaintenancearoundtheclock = "Yes, we provide emergency maintenance service around the clock. You can request this from the “Emergency” screen...";
+  static const Thecostofrequestingservice = "The cost of requesting the service ";
+  static const Thecostofrequestingserviceis250pounds = "The cost of requesting the service is 250 pounds.";
+  static const ContactUs = "Contact Us";
+  static const CallUs = "Call Us";
+  static const ContactUsbyEmail = "Contact Us by Email";
+  static const FrequentlyAskedQuestions = "Frequently Asked Questions";
+  static const ContactUsbyChat = "Contact Us by Chat";
 
 }

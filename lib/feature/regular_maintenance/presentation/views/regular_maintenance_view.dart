@@ -2366,6 +2366,7 @@ void _confirmService() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, 
         backgroundColor: AppColors.primaryColor,
         title: Text(
           'Request Your Service', // App bar title.
@@ -2373,12 +2374,12 @@ void _confirmService() {
         ),
         centerTitle: true, // Centers the title.
         elevation: 0, // Removes shadow under the app bar.
-        shape: const RoundedRectangleBorder(
+       /* shape: const RoundedRectangleBorder(
           // Adds rounded corners to the bottom of the app bar.
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20),
           ),
-        ),
+        ),*/
       ),
       body: BlocBuilder<RegularServicesCubit, RegularServicesState>(
         builder: (context, state) {

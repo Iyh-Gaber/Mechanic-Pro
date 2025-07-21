@@ -32,6 +32,7 @@ class _OrdersViewState extends State<OrdersView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, 
         backgroundColor: AppColors.primaryColor,
         title: Text(
           LocaleKeys.MyOrders.tr(),
@@ -39,11 +40,7 @@ class _OrdersViewState extends State<OrdersView> {
         ),
         centerTitle: true,
         elevation: 0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
-          ),
-        ),
+        
       ),
       body: BlocBuilder<OrdersCubit, OrdersState>(
         builder: (context, state) {
