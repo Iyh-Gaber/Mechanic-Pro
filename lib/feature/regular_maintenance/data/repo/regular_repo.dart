@@ -4,7 +4,7 @@ import '../../../../core/services/dio_provider.dart';
 import '../models/response/regular_response/regular_response.dart';
 
 class RegularMaintenanceRepo {
-   Future<RegularResponse?> getRegularServices() async {
+  Future<RegularResponse?> getRegularServices() async {
     try {
       var response = await DioProvider.get(
           endPoint: ApiConstants.regularMaintenanceServices, headers: {});

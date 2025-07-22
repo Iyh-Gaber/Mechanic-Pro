@@ -2366,7 +2366,7 @@ void _confirmService() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, 
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primaryColor,
         title: Text(
           'Request Your Service', // App bar title.
@@ -2374,7 +2374,7 @@ void _confirmService() {
         ),
         centerTitle: true, // Centers the title.
         elevation: 0, // Removes shadow under the app bar.
-       /* shape: const RoundedRectangleBorder(
+        /* shape: const RoundedRectangleBorder(
           // Adds rounded corners to the bottom of the app bar.
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20),
@@ -2412,7 +2412,9 @@ void _confirmService() {
                 // Makes the content scrollable.
                 children: [
                   // Section 1: Choose Your Services
-                  SectionTitlePart(title: '1. Choose Your Services'), // Helper for section title.
+                  SectionTitlePart(
+                      title:
+                          '1. Choose Your Services'), // Helper for section title.
                   GridView.builder(
                     // Displays services in a grid.
                     shrinkWrap:
@@ -2461,9 +2463,14 @@ void _confirmService() {
 
                   // Section 2: Select Date and Time
                   SectionTitlePart(title: '2. When Do You Need the Service?'),
-                  DateTimePickerPart(context: context, label: 'Date', value: _selectedDate != null
-                        ? DateFormat('yyyy-MM-dd').format(_selectedDate!)
-                        : 'Select Date', icon: Icons.calendar_today, onTap: () => _selectDate(context)),
+                  DateTimePickerPart(
+                      context: context,
+                      label: 'Date',
+                      value: _selectedDate != null
+                          ? DateFormat('yyyy-MM-dd').format(_selectedDate!)
+                          : 'Select Date',
+                      icon: Icons.calendar_today,
+                      onTap: () => _selectDate(context)),
                   const SizedBox(height: 16.0), // Spacer.
                   // Time selection using a horizontal list of chips
                   if (_selectedDate !=
@@ -2521,189 +2528,174 @@ void _confirmService() {
                         ),
                       ],
                     ),
-                  
-                 
-24.verticalSpace,
-                 
-                  SectionTitlePart(title: LocaleKeys.WhereDoWeProvidetheService.tr()),
-                
-                
+
+                  24.verticalSpace,
+
+                  SectionTitlePart(
+                      title: LocaleKeys.WhereDoWeProvidetheService.tr()),
+
                   SectionSelectLocation(context),
-                 
-                  30.verticalSpace, 
-                 
+
+                  30.verticalSpace,
+
                   ConfirmationButton(),
-                 
+
                   20.verticalSpace,
-               ],
+                ],
               ),
             );
           }
-          return const SizedBox.shrink(); 
+          return const SizedBox.shrink();
         },
       ),
     );
   }
 
-
-
-
-
-
-
   Column SectionSelectLocation(BuildContext context) {
     return Column(
-                  
-                  children: [
-                    LocationPart(title: LocaleKeys.AtMyLocationanywhere.tr(), value: LocaleKeys.mylocation.tr(), groupValue: _selectedLocationType, onChanged: (value) {
-                        setState(() {
-                          _selectedLocationType = value;
-                          _selectedBranch =
-                              null; // Clears branch if 'my_location' is chosen.
-                          _hasContactedForLocation =
-                              false; // Reset contact status when location type changes.
-                        });
-                      }),
-                    17.verticalSpace,
-                    if (_selectedLocationType == LocaleKeys.mylocation.tr())
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: TextField(
-                              // Text field for detailed address.
-                              controller: _addressController,
-                              textAlign: TextAlign
-                                  .left, // Align text to left for LTR.
-                              decoration: InputDecoration(
-                                labelText: LocaleKeys
-                                    .EnterYourDetailedAddressOptional.tr(),
-                                labelStyle: getSmallStyle(
-                                    color: AppColors
-                                        .primaryColor), // Made optional.
-                                hintText:
-                                    LocaleKeys.ElnezlawyStBuilding10Apt5,
-                                hintStyle: getSmallStyle(
-                                    color: AppColors.primaryColor),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                prefixIcon: const Icon(Icons.location_on),
-                                contentPadding: const EdgeInsets.symmetric(
-                                    vertical: 16.0, horizontal: 12.0),
-                              ),
-                              onChanged: (value) {
-                                setState(() {
-                                  if (value.isNotEmpty) {
-                                    _hasContactedForLocation = false;
-                                  }
-                                });
-                              },
-                            ),
-                          ),
-                          7.verticalSpace,
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _hasContactedForLocation = true;
-                                _addressController.clear();
-                              });
+      children: [
+        LocationPart(
+            title: LocaleKeys.AtMyLocationanywhere.tr(),
+            value: LocaleKeys.mylocation.tr(),
+            groupValue: _selectedLocationType,
+            onChanged: (value) {
+              setState(() {
+                _selectedLocationType = value;
+                _selectedBranch =
+                    null; // Clears branch if 'my_location' is chosen.
+                _hasContactedForLocation =
+                    false; // Reset contact status when location type changes.
+              });
+            }),
+        17.verticalSpace,
+        if (_selectedLocationType == LocaleKeys.mylocation.tr())
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: TextField(
+                  // Text field for detailed address.
+                  controller: _addressController,
+                  textAlign: TextAlign.left, // Align text to left for LTR.
+                  decoration: InputDecoration(
+                    labelText: LocaleKeys.EnterYourDetailedAddressOptional.tr(),
+                    labelStyle: getSmallStyle(
+                        color: AppColors.primaryColor), // Made optional.
+                    hintText: LocaleKeys.ElnezlawyStBuilding10Apt5,
+                    hintStyle: getSmallStyle(color: AppColors.primaryColor),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    prefixIcon: const Icon(Icons.location_on),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 12.0),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      if (value.isNotEmpty) {
+                        _hasContactedForLocation = false;
+                      }
+                    });
+                  },
+                ),
+              ),
+              7.verticalSpace,
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _hasContactedForLocation = true;
+                    _addressController.clear();
+                  });
 
-                              context.pushNamed(Routes.connectUsView);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(
-                                  LocaleKeys.NavigatingtoContactUsscreen,
-                                  style: getSmallStyle(
-                                      color: AppColors.primaryColor),
-                                )),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primaryColor,
-                              foregroundColor: AppColors.whColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 17.0, horizontal: 17),
-                              elevation: 5,
-                            ),
-                            child: Text(
-                              LocaleKeys.Contactustospecifytheaddress.tr(),
-                              style: getSmallStyle(color: AppColors.whColor),
-                            ),
-                          ),
-                        ],
-                      ),
-                    7.verticalSpace,
-
-
-                    LocationPart(title: LocaleKeys.AtOneofOurBranches.tr(), value:LocaleKeys.ourBranch.tr(), groupValue: _selectedLocationType, onChanged: (value) {
-                        setState(() {
-                          _selectedLocationType = value;
-                          _addressController.clear();
-                          _hasContactedForLocation = false;
-                        });
-                      }),
-                    if (_selectedLocationType == LocaleKeys.ourBranch.tr())
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: DropdownButtonFormField<String>(
-                          value: _selectedBranch,
-                          hint:  Text(LocaleKeys.SelectBranch.tr(),style: getSmallStyle() ,
-                              textAlign: TextAlign.left),
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            prefixIcon: const Icon(Icons.store),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 16.0, horizontal: 12.0),
-                          ),
-                          isExpanded: true,
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedBranch = newValue;
-                            });
-                          },
-                          items: _branches
-                              .map<DropdownMenuItem<String>>((String branch) {
-                            return DropdownMenuItem<String>(
-                              value: branch,
-                              child: Text(branch, textAlign: TextAlign.left),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                  ],
+                  context.pushNamed(Routes.connectUsView);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(
+                      LocaleKeys.NavigatingtoContactUsscreen,
+                      style: getSmallStyle(color: AppColors.primaryColor),
+                    )),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryColor,
+                  foregroundColor: AppColors.whColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 17.0, horizontal: 17),
+                  elevation: 5,
+                ),
+                child: Text(
+                  LocaleKeys.Contactustospecifytheaddress.tr(),
+                  style: getSmallStyle(color: AppColors.whColor),
+                ),
+              ),
+            ],
+          ),
+        7.verticalSpace,
+        LocationPart(
+            title: LocaleKeys.AtOneofOurBranches.tr(),
+            value: LocaleKeys.ourBranch.tr(),
+            groupValue: _selectedLocationType,
+            onChanged: (value) {
+              setState(() {
+                _selectedLocationType = value;
+                _addressController.clear();
+                _hasContactedForLocation = false;
+              });
+            }),
+        if (_selectedLocationType == LocaleKeys.ourBranch.tr())
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: DropdownButtonFormField<String>(
+              value: _selectedBranch,
+              hint: Text(LocaleKeys.SelectBranch.tr(),
+                  style: getSmallStyle(), textAlign: TextAlign.left),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                prefixIcon: const Icon(Icons.store),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 16.0, horizontal: 12.0),
+              ),
+              isExpanded: true,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedBranch = newValue;
+                });
+              },
+              items: _branches.map<DropdownMenuItem<String>>((String branch) {
+                return DropdownMenuItem<String>(
+                  value: branch,
+                  child: Text(branch, textAlign: TextAlign.left),
                 );
+              }).toList(),
+            ),
+          ),
+      ],
+    );
   }
-
 
   ElevatedButton ConfirmationButton() {
     return ElevatedButton(
-                  onPressed: _isConfirmButtonEnabled ? _confirmService : null,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    elevation: 5,
-                    backgroundColor: AppColors.primaryColor,
-                    foregroundColor: AppColors.whColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                  ),
-                  child:  Text(
-                    LocaleKeys.ConfirmService.tr(),
-                  
-                    style: getSmallStyle(color: AppColors.whColor,fontSize: 18.0),
-                   
-                ),);
+      onPressed: _isConfirmButtonEnabled ? _confirmService : null,
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        elevation: 5,
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: AppColors.whColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      child: Text(
+        LocaleKeys.ConfirmService.tr(),
+        style: getSmallStyle(color: AppColors.whColor, fontSize: 18.0),
+      ),
+    );
   }
-
- 
-
- 
 
   @override
   void dispose() {

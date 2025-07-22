@@ -261,7 +261,7 @@ class AppRouter {
     final bool isAuthScreen = routeName == Routes.registrationView ||
         routeName == Routes.forgetPasswordView ||
         routeName == Routes.onboardingView ||
-        routeName == Routes.splashView||
+        routeName == Routes.splashView ||
         routeName == Routes.emergencyView; // أضف SplashView هنا
 
     // المنطق الأساسي للتوجيه:

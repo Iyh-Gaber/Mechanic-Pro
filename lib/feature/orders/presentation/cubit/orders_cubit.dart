@@ -22,7 +22,8 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(const CreateOrderLoading()); // إصدار حالة التحميل
 
     try {
-      final response = await _ordersRepo.createOrder(order); // استدعاء Repo لإرسال الطلب
+      final response =
+          await _ordersRepo.createOrder(order); // استدعاء Repo لإرسال الطلب
 
       if (response.isSuccess == true) {
         emit(CreateOrderSuccess(

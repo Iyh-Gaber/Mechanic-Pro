@@ -1,6 +1,3 @@
-
-
-
 class Routes {
   static const String homeView = '/';
   static const String profileView = '/profileView';
@@ -25,6 +22,6 @@ class Routes {
   static const String connectUsView = '/connectUsView';
   static const String ordersView = '/ordersView';
   static const String emergencyView = '/emergencyView';
- 
+
   // static const String someOtherRoute =
 }

@@ -1,5 +1,3 @@
-// lib/feature/orders/presentation/views/orders_view.dart
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +9,7 @@ import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
 import '../../../../core/routing/routes.dart';
-import '../widgets/order_card.dart'; // استيراد ويدجت OrderCard
+import '../widgets/order_card.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({super.key});
@@ -24,7 +22,7 @@ class _OrdersViewState extends State<OrdersView> {
   @override
   void initState() {
     super.initState();
-    // قم بجلب الطلبات عند تهيئة الشاشة
+
     context.read<OrdersCubit>().fetchOrdersFromApi();
   }
 
@@ -32,7 +30,7 @@ class _OrdersViewState extends State<OrdersView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, 
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primaryColor,
         title: Text(
           LocaleKeys.MyOrders.tr(),
@@ -40,7 +38,6 @@ class _OrdersViewState extends State<OrdersView> {
         ),
         centerTitle: true,
         elevation: 0,
-        
       ),
       body: BlocBuilder<OrdersCubit, OrdersState>(
         builder: (context, state) {
@@ -68,8 +65,7 @@ class _OrdersViewState extends State<OrdersView> {
                     16.verticalSpace,
                     ElevatedButton(
                       onPressed: () {
-                        // ارجع لشاشة طلب الخدمات لإنشاء طلب جديد
-                        context.pushNamed(Routes.layoutView); // تأكد من أن هذا هو المسار الصحيح لشاشة إنشاء الطلب
+                        context.pushNamed(Routes.layoutView);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryColor,
@@ -86,28 +82,28 @@ class _OrdersViewState extends State<OrdersView> {
               itemCount: state.orders.length,
               itemBuilder: (context, index) {
                 final orderData = state.orders[index];
-                return OrderCard(orderData: orderData); // تمرير كائن Data
+                return OrderCard(orderData: orderData);
               },
             );
-          }
-          // حالات إنشاء الطلب يمكن عرضها بشكل مختلف أو التعامل معها
-          // هنا نعرض رسالة بسيطة أو يمكن تجاهل هذه الحالات إذا لم تكن ذات صلة بعرض قائمة الطلبات
-          else if (state is CreateOrderLoading) {
+          } else if (state is CreateOrderLoading) {
             return Center(
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             );
           } else if (state is CreateOrderSuccess) {
-            // يمكن عرض SnackBar أو رسالة مؤقتة هنا
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.check_circle_outline, size: 80, color: Colors.green),
+                  Icon(Icons.check_circle_outline,
+                      size: 80, color: Colors.green),
                   16.verticalSpace,
-                  Text('Last order created: ${state.message}. Please refresh to see it.', style: getSmallStyle(color: Colors.green)),
+                  Text(
+                      'Last order created: ${state.message}. Please refresh to see it.',
+                      style: getSmallStyle(color: Colors.green)),
                   16.verticalSpace,
                   ElevatedButton(
-                    onPressed: () => context.read<OrdersCubit>().fetchOrdersFromApi(),
+                    onPressed: () =>
+                        context.read<OrdersCubit>().fetchOrdersFromApi(),
                     child: const Text('Refresh Orders'),
                   ),
                 ],
@@ -115,11 +111,12 @@ class _OrdersViewState extends State<OrdersView> {
             );
           } else if (state is CreateOrderError) {
             return Center(
-              child: Text('Creation Error: ${state.message}', style: const TextStyle(color: Colors.red)),
+              child: Text('Creation Error: ${state.message}',
+                  style: const TextStyle(color: Colors.red)),
             );
           }
-          // الحالة الأولية أو أي حالة غير متوقعة
-          return const Center(child: CircularProgressIndicator()); // أو SizedBox.shrink()
+
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );

@@ -24,7 +24,8 @@ class ContactCard extends StatelessWidget {
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.zero, // إزالة الهامش الافتراضي للـ Card
-      child: InkWell( // لجعل البطاقة قابلة للضغط
+      child: InkWell(
+        // لجعل البطاقة قابلة للضغط
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
         child: Padding(
@@ -38,21 +39,19 @@ class ContactCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style:  getSmallStyle(color: AppColors.whColor,fontSize: 20),
+                    style:
+                        getSmallStyle(color: AppColors.whColor, fontSize: 17),
                     textAlign: TextAlign.left,
                     maxLines: 2,
-
                   ),
                   4.verticalSpace,
-                  
-                  Text(
-                    subtitle,
-                    style: getSmallStyle(color: AppColors.bgColor)
-                  ),
+                  Text(subtitle,
+                      style: getSmallStyle(color: AppColors.bgColor)),
                 ],
               ),
-              const Spacer(), 
-              const Icon(Icons.arrow_forward_ios, color: AppColors.whColor, size: 20),
+              const Spacer(),
+              const Icon(Icons.arrow_forward_ios,
+                  color: AppColors.whColor, size: 20),
             ],
           ),
         ),

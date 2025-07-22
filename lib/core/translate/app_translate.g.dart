@@ -101,17 +101,24 @@ abstract class LocaleKeys {
   static const HowcanIbookanappointmentformyvehicle2 =
       "How can I book an appointment for my vehicle?";
   static const HowcanIcontactyou2 = "How can I contact you?";
-  static const Youcanbookanappointmentforyourvehicle = "You can book an appointment for your vehicle by section Core Services in the application and choosing the Type service and the date and time of the service  .";
-  static const Whatpaymentmethodsdoyouaccept = "What payment methods do you accept?";
-  static const Weacceptcashandcreditcardsandanyother = "We accept cash and credit cards and any other.";
-  static const Doyouprovideemergencymaintenanceservice = "Do you provide emergency maintenance service?";
-  static const Yesweprovidemaintenancearoundtheclock = "Yes, we provide emergency maintenance service around the clock. You can request this from the “Emergency” screen...";
-  static const Thecostofrequestingservice = "The cost of requesting the service ";
-  static const Thecostofrequestingserviceis250pounds = "The cost of requesting the service is 250 pounds.";
+  static const Youcanbookanappointmentforyourvehicle =
+      "You can book an appointment for your vehicle by section Core Services in the application and choosing the Type service and the date and time of the service  .";
+  static const Whatpaymentmethodsdoyouaccept =
+      "What payment methods do you accept?";
+  static const Weacceptcashandcreditcardsandanyother =
+      "We accept cash and credit cards and any other.";
+  static const Doyouprovideemergencymaintenanceservice =
+      "Do you provide emergency maintenance service?";
+  static const Yesweprovidemaintenancearoundtheclock =
+      "Yes, we provide emergency maintenance service around the clock. You can request this from the “Emergency” screen...";
+  static const Thecostofrequestingservice =
+      "The cost of requesting the service ";
+  static const Thecostofrequestingserviceis250pounds =
+      "The cost of requesting the service is 250 pounds.";
   static const ContactUs = "Contact Us";
   static const CallUs = "Call Us";
   static const ContactUsbyEmail = "Contact Us by Email";
   static const FrequentlyAskedQuestions = "Frequently Asked Questions";
   static const ContactUsbyChat = "Contact Us by Chat";
-
+  static const OtherServices = "Other Services";
 }

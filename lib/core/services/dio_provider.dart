@@ -1,4 +1,4 @@
- /*import 'package:dio/dio.dart';
+/*import 'package:dio/dio.dart';
 
 class DioProvider {
   static late Dio _dio;
@@ -153,9 +153,6 @@ class DioProvider {
 }
 */
 
-
-
-
 import 'package:dio/dio.dart';
 
 class DioProvider {
@@ -164,7 +161,8 @@ class DioProvider {
 
   // 1. تم تغيير اسم الدالة من 'init' إلى 'initialize' لتكون أكثر وضوحاً.
   //    وتمت إضافة LogInterceptor لتسجيل تفاصيل الطلبات والاستجابات، وهو مفيد جداً للتصحيح.
-  static void initialize() { // استخدم 'void' بدلاً من 'init' إذا لم تعد قيمة
+  static void initialize() {
+    // استخدم 'void' بدلاً من 'init' إذا لم تعد قيمة
     _dio = Dio(
       BaseOptions(
         // تأكد أن هذا الرابط صحيح ويحتوي على البروتوكول (http:// أو https://)
@@ -198,7 +196,8 @@ class DioProvider {
     // استخدم data إذا كان الـ API يتوقع body لطلب GET (نادراً)
     return await _dio.get(
       endPoint,
-      queryParameters: params, // عادة ما تكون الـ params في GET هي queryParameters
+      queryParameters:
+          params, // عادة ما تكون الـ params في GET هي queryParameters
       options: Options(headers: headers),
     );
   }
@@ -206,7 +205,8 @@ class DioProvider {
   static Future<Response> post({
     required String endPoint,
     dynamic data, // استخدم 'dynamic data' بدلاً من 'params' لـ POST body
-    Map<String, dynamic>? headers, required Map<String, dynamic> params,
+    Map<String, dynamic>? headers,
+    required Map<String, dynamic> params,
   }) async {
     // بالنسبة لـ POST، عادة ما تكون البيانات في 'data' وليس 'params'
     return await _dio.post(

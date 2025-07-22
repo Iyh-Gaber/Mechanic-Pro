@@ -138,10 +138,13 @@ class LocationPart extends StatelessWidget {
       child: RadioListTile<String>(
         title: Text(
           title,
-          style: getSmallStyle(fontWeight: FontWeight.bold,
-            color:
-                groupValue == value ? AppColors.primaryColor : const Color.fromARGB(255, 83, 78, 78),),
-          
+          style: getSmallStyle(
+            fontWeight: FontWeight.bold,
+            color: groupValue == value
+                ? AppColors.primaryColor
+                : const Color.fromARGB(255, 83, 78, 78),
+          ),
+
           /*TextStyle(
             fontWeight: FontWeight.bold,
             color:

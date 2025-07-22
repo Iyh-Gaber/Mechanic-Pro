@@ -17,7 +17,7 @@ class FAQItem extends StatelessWidget {
     return ExpansionTile(
       title: Text(
         question,
-        style: getSmallStyle(color: AppColors.blackColor,fontSize: 20),
+        style: getSmallStyle(color: AppColors.blackColor, fontSize: 20),
       ),
       children: <Widget>[
         Padding(

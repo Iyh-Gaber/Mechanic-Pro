@@ -121,11 +121,10 @@ class SectionTitlePart extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
       child: Text(
         title,
-        style: getSmallStyle(fontSize: 22.0,
-          fontWeight: FontWeight.bold,
-          color: AppColors.blackColor),
-        
-        
+        style: getSmallStyle(
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+            color: AppColors.blackColor),
         textAlign: TextAlign.left,
       ),
     );

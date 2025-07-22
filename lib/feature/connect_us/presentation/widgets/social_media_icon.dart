@@ -23,21 +23,18 @@ class SocialMediaIcon extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(30),
           child: CircleAvatar(
-            radius: 30,
+            radius: 27,
             backgroundColor: AppColors.bgColor,
             child: Icon(
               icon,
-              size: 35,
+              size: 33,
               color: AppColors.primaryColor,
             ),
           ),
         ),
         const SizedBox(height: 8),
         8.verticalSpace,
-        Text(
-          label,
-          style: getSmallStyle()
-        ),
+        Text(label, style: getSmallStyle()),
       ],
     );
   }

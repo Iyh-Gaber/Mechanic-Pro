@@ -112,9 +112,9 @@ import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/feature/regular_maintenance/data/models/response/regular_response/datumRegular.dart';
 
 class ServiceCard extends StatelessWidget {
-  final DatumRegular service; 
+  final DatumRegular service;
   final bool isSelected;
-  final IconData icon; 
+  final IconData icon;
 
   const ServiceCard({
     super.key,
@@ -163,9 +163,12 @@ class ServiceCard extends StatelessWidget {
               // Service name.
               service.subServiceName ?? 'N/A', // Use subServiceName from Datum
               // textAlign: TextAlign.center,
-              style: getBodyStyle(   fontSize: 17 ,color: isSelected
+              style: getBodyStyle(
+                fontSize: 17,
+                color: isSelected
                     ? const Color(0xFF336f67).withOpacity(0.7)
-                    : AppColors.blackColor,),
+                    : AppColors.blackColor,
+              ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -173,12 +176,16 @@ class ServiceCard extends StatelessWidget {
             Text(
               // Service description.
               service.description ??
-                  LocaleKeys.Nodescriptionavailable.tr(), // Use description from Datum
+                  LocaleKeys.Nodescriptionavailable
+                      .tr(), // Use description from Datum
               // textAlign: TextAlign.center,
-              style: getBodyStyle(   fontSize: 15 ,color: isSelected
+              style: getBodyStyle(
+                fontSize: 15,
+                color: isSelected
                     ? const Color(0xFF336f67).withOpacity(0.7)
-                    : Colors.grey.shade600,),
-              
+                    : Colors.grey.shade600,
+              ),
+
               /*TextStyle(
                 fontSize: 12.0,
                 color: isSelected

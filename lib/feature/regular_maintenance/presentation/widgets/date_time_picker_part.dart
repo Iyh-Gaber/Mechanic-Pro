@@ -140,7 +140,7 @@ class DateTimePickerPart extends StatelessWidget {
         ),
         child: Text(
           value,
-          style:getSmallStyle(fontSize: 16.0, color: AppColors.blackColor),
+          style: getSmallStyle(fontSize: 16.0, color: AppColors.blackColor),
           // const TextStyle(fontSize: 16.0, color: Colors.black87),
           textAlign: TextAlign.left,
         ),
