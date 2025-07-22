@@ -4,8 +4,8 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_model/order_model.dart';
-import 'package:mechpro/feature/orders/data/models/response/order_response/data.dart';
-import 'package:mechpro/feature/orders/data/models/response/order_response/order_response.dart';
+import 'package:mechpro/feature/orders/data/models/response/order_response/order_response/datum_order.dart';
+
 import 'package:mechpro/feature/orders/data/repo/order_repo.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
 
@@ -51,7 +51,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
     try {
       // التأكد من أن getOrdersFromApi ترجع List<Data> أو يمكن تحويلها
-      final List<DataOrder> orders = await _ordersRepo.getOrdersFromApi();
+      final List<DatumOrder> orders = await _ordersRepo.getOrdersFromApi();
       emit(OrdersLoaded(orders)); // إصدار حالة النجاح مع قائمة الطلبات
     } catch (e) {
       emit(OrdersError(e.toString())); // إصدار حالة الخطأ إذا فشل الجلب

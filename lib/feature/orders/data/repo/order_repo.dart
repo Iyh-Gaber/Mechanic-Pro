@@ -103,9 +103,11 @@ import 'package:dio/dio.dart';
 import 'package:mechpro/core/constants/api_constants.dart';
 import 'package:mechpro/core/services/dio_provider.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_model/order_model.dart';
-import 'package:mechpro/feature/orders/data/models/response/order_response/order_response.dart';
-import 'package:mechpro/feature/orders/data/models/response/order_response/data.dart';
+
+import 'package:mechpro/feature/orders/data/models/response/order_response/order_response/datum_order.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/response/order_response/order_response/order_response.dart';
 
 class OrdersRepo {
   OrdersRepo();
@@ -177,12 +179,12 @@ class OrdersRepo {
     }
   }
 
-  Future<List<DataOrder>> getOrdersFromApi() async {
+  Future<List<DatumOrder>> getOrdersFromApi() async {
     try {
       final headers = await _getAuthHeaders();
 
       final response = await DioProvider.get(
-        endPoint: ApiConstants.getOrders,
+        endPoint: ApiConstants.getAllOrders,
         headers: headers,
         params: {},
       );

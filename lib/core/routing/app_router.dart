@@ -236,8 +236,6 @@ class AppRouter {
           child: const SellingOriginalPartsView(),
         );
 
-
-
       case Routes.emergencyView:
         return const EmergencyView();
       case Routes.ordersView:
@@ -256,7 +254,6 @@ class AppRouter {
         );
     }
   }
-
 
   Route generateRoute(RouteSettings settings) {
     // التحقق من حالة المستخدم الحالي من Firebase Auth

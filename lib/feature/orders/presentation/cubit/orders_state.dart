@@ -1,7 +1,8 @@
 // lib/feature/orders/presentation/cubit/orders_state.dart
 
-import 'package:mechpro/feature/orders/data/models/response/order_response/data.dart';
-import 'package:mechpro/feature/orders/data/models/response/order_response/order_response.dart';
+
+
+import 'package:mechpro/feature/orders/data/models/response/order_response/order_response/datum_order.dart';
 
 abstract class OrdersState {
   const OrdersState();
@@ -17,7 +18,7 @@ class LoadingOrders extends OrdersState {
 }
 
 class OrdersLoaded extends OrdersState {
-  final List<DataOrder> orders;
+  final List<DatumOrder> orders;
   const OrdersLoaded(this.orders);
 }
 

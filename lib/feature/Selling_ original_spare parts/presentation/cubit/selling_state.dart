@@ -1,4 +1,3 @@
-
 /*
 
 abstract class SellingStates {}
@@ -14,7 +13,6 @@ class SellingErrorState extends SellingStates {
   SellingErrorState(this.error);
 }
 */
-
 
 import '../../data/models/response/selling_response/selling_response.dart';
 

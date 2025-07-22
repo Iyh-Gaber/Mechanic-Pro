@@ -1,14 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
+import 'package:mechpro/feature/orders/data/models/response/order_response/order_response/datum_order.dart';
 
 import '../../../../core/translate/locale_keys.g.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/text_style.dart';
-import '../../data/models/response/order_response/order_response.dart';
+
 
 class OrderCard extends StatelessWidget {
-  final DataOrder orderData; // 🌟🌟🌟 غير النوع هنا إلى Data 🌟🌟🌟
+  final DatumOrder orderData; // 🌟🌟🌟 غير النوع هنا إلى Data 🌟🌟🌟
 
   const OrderCard({super.key, required this.orderData});
 
@@ -39,7 +40,7 @@ class OrderCard extends StatelessWidget {
           children: [
             // 🌟🌟🌟 الوصول إلى orderNumber مباشرة من orderData 🌟🌟🌟
             Text(
-              '${LocaleKeys.OrderId.tr()}: ${orderData.orderNumber ?? 'N/A'}',
+              '${LocaleKeys.OrderId.tr()}: ${orderData.orderId ?? 'N/A'}',
               style: getSmallStyle(color: AppColors.blackColor),
             ),
             4.verticalSpace,

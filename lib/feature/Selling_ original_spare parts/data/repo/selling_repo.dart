@@ -1,4 +1,4 @@
- /* import 'package:mechpro/core/constants/api_constants.dart';
+/* import 'package:mechpro/core/constants/api_constants.dart';
 
 import '../../../../core/services/dio_provider.dart';
 
@@ -30,7 +30,8 @@ import '../../../../core/services/dio_provider.dart';
 class SellingRepo {
   static Future<SellingResponse?> getSelling() async {
     try {
-      var response = await DioProvider.get(endPoint: ApiConstants.sellingOriginalParts);
+      var response =
+          await DioProvider.get(endPoint: ApiConstants.sellingOriginalParts);
 
       if (response.statusCode == 200 && response.data != null) {
         // تحليل استجابة JSON إلى SellingResponse
@@ -45,12 +46,3 @@ class SellingRepo {
     }
   }
 }
-
-
-
-
-
-
-
-
-

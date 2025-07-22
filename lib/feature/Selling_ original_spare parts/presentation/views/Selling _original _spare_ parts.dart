@@ -1,4 +1,3 @@
-
 /*
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -166,17 +165,15 @@ class SellingOriginalPartsView extends StatefulWidget {
   const SellingOriginalPartsView({super.key});
 
   @override
-  State<SellingOriginalPartsView> createState() => _SellingOriginalPartsViewState();
+  State<SellingOriginalPartsView> createState() =>
+      _SellingOriginalPartsViewState();
 }
 
 class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
- 
   final List<String> _imagePaths = [
     'assets/images/Brake Pads.png',
     'assets/images/Oil Filter.png',
     'assets/images/Air Filter.png',
-   
-   
   ];
 
   @override
@@ -204,10 +201,11 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
               if (state is SellingLoadingState) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is SellingSuccessState) {
-                final List<DatumSelling> sellingData = state.sellingResponse.data ?? [];
+                final List<DatumSelling> sellingData =
+                    state.sellingResponse.data ?? [];
                 if (sellingData.isEmpty) {
                   return Center(
-                    child: Text('No data available'.tr()), 
+                    child: Text('No data available'.tr()),
                   );
                 }
                 return ListView.separated(
@@ -215,14 +213,15 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
                   separatorBuilder: (context, index) => 7.verticalSpace,
                   itemBuilder: (context, index) {
                     final DatumSelling item = sellingData[index];
-                   
-                  
-                    final String imageUrl = _imagePaths[index % _imagePaths.length];
+
+                    final String imageUrl =
+                        _imagePaths[index % _imagePaths.length];
 
                     return CustomServiceCard(
                       imageUrl: imageUrl,
                       serviceName: item.subServiceName ?? 'N/A',
-                      serviceDescription: item.description ?? 'No description available',
+                      serviceDescription:
+                          item.description ?? 'No description available',
                       onButtonPressed: () {
                         print('Service ${item.subServiceName} button pressed');
                       },
@@ -234,7 +233,8 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
                   child: Text('Error: ${state.error}'),
                 );
               }
-              return const Center(child: Text('Press the button to load data.'));
+              return const Center(
+                  child: Text('Press the button to load data.'));
             },
           ),
         ),
