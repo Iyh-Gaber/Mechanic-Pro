@@ -151,6 +151,7 @@ class AppRouter {
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // استيراد Firebase Auth
 import 'package:flutter_bloc/flutter_bloc.dart'; // استيراد BlocProvider
+import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/cubit/selling_cubit.dart';
 
 // استيراد جميع الشاشات التي تحتاجها
 import 'package:mechpro/feature/auth/presintation/views/registaration_view.dart';
@@ -228,8 +229,15 @@ class AppRouter {
         return const RepairingAutoBodyView();
       case Routes.otherServicesView:
         return const OtherServicesView();
+
       case Routes.sellingOriginalPartsView:
-        return const SellingOriginalPartsView();
+        return BlocProvider(
+          create: (context) => SellingCubit(),
+          child: const SellingOriginalPartsView(),
+        );
+
+
+
       case Routes.emergencyView:
         return const EmergencyView();
       case Routes.ordersView:
@@ -249,7 +257,7 @@ class AppRouter {
     }
   }
 
-  // هذه الدالة هي التي ستتحقق من حالة المصادقة وتوجه المستخدم
+
   Route generateRoute(RouteSettings settings) {
     // التحقق من حالة المستخدم الحالي من Firebase Auth
     final bool isLoggedIn = FirebaseAuth.instance.currentUser != null;

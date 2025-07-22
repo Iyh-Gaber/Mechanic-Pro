@@ -138,4 +138,5 @@ abstract class LocaleKeys {
   static const FrequentlyAskedQuestions = "Frequently Asked Questions";
   static const ContactUsbyChat = "Contact Us by Chat";
   static const OtherServices = "Other Services";
+  static const SellingOriginalParts = "Selling Original Parts";
 }
