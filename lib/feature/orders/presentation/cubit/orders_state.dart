@@ -2,7 +2,7 @@
 
 
 
-import 'package:mechpro/feature/orders/data/models/response/order_response/order_response/datum_order.dart';
+import 'package:mechpro/feature/orders/data/models/response/datum_order.dart';
 
 abstract class OrdersState {
   const OrdersState();

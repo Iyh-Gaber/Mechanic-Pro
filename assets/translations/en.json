@@ -108,7 +108,18 @@
      "Contact Us by Chat":"Contact Us by Chat",
      "Frequently Asked Questions":"Frequently Asked Questions",
      "Other Services":"Other Services",
-     "Selling Original Parts":"Selling Original Parts"
+     "Selling Original Parts":"Selling Original Parts",
+       "Core Services": "Core Services",
+  "IsPaid": "IsPaid",
+  "yes": "yes",
+  "no": "no",
+  "My Orders": "My Orders",
+  "Order ID": "Order ID",
+  "OrderAmount": "OrderAmount",
+  "OrderDate": "OrderDate",
+  "OrderStatus": "OrderStatus",
+  "OrderServices": "OrderServices",
+  "OrderSubServices": "OrderSubServices"
     
     
     

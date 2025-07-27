@@ -107,8 +107,13 @@
      "Call Us":"Call Us",
      "Contact Us by Email":"Contact Us by Email",
      "Frequently Asked Questions":"Frequently Asked Questions",
-      "Other Services":"خدمات اخرى",
-      "Selling Original Parts":"بيع قطع الغيار الاصلية"
+     
+  "My Orders": "طلباتي",
+  "Order ID": "رقم الطلب",
+  "IsPaid": "مدفوع؟",
+  "yes": "نعم",
+  "no": "لا",
+  "OrderAmount": "كميه الطلب"
       
     
   }

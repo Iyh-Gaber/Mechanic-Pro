@@ -1,10 +1,11 @@
 // lib/feature/orders/presentation/cubit/orders_cubit.dart
 
 // lib/feature/orders/presentation/cubit/orders_cubit.dart
-
+/*
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mechpro/feature/orders/data/models/request/order_model/order_model.dart';
-import 'package:mechpro/feature/orders/data/models/response/order_response/order_response/datum_order.dart';
+import 'package:mechpro/feature/orders/data/models/request/order_request/order_request.dart';
+import 'package:mechpro/feature/orders/data/models/response/datum_order.dart';
+
 
 import 'package:mechpro/feature/orders/data/repo/order_repo.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
@@ -18,7 +19,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   OrdersCubit(this._ordersRepo) : super(const OrdersInitial());
 
   // دالة لإنشاء طلب جديد وإرساله إلى الـ API
-  Future<void> createNewOrder(OrderModel order) async {
+  Future<void> createNewOrder(OrderRequest order) async {
     emit(const CreateOrderLoading()); // إصدار حالة التحميل
 
     try {
@@ -51,6 +52,64 @@ class OrdersCubit extends Cubit<OrdersState> {
 
     try {
       // التأكد من أن getOrdersFromApi ترجع List<Data> أو يمكن تحويلها
+      final List<DatumOrder> orders = await _ordersRepo.getOrdersFromApi();
+      emit(OrdersLoaded(orders)); // إصدار حالة النجاح مع قائمة الطلبات
+    } catch (e) {
+      emit(OrdersError(e.toString())); // إصدار حالة الخطأ إذا فشل الجلب
+    }
+  }
+}
+*/
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mechpro/feature/orders/data/models/request/order_request/order_request.dart';
+import 'package:mechpro/feature/orders/data/models/response/datum_order.dart';
+import 'package:mechpro/feature/orders/data/models/response/order_response.dart'; // <--- **أضف هذا الاستيراد!**
+
+
+import 'package:mechpro/feature/orders/data/repo/order_repo.dart';
+import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
+
+class OrdersCubit extends Cubit<OrdersState> {
+  final OrdersRepo _ordersRepo;
+
+  OrdersCubit(this._ordersRepo) : super(const OrdersInitial());
+
+  // دالة لإنشاء طلب جديد وإرساله إلى الـ API
+  Future<void> createNewOrder(OrderRequest order) async {
+    emit(const CreateOrderLoading()); // إصدار حالة التحميل
+
+    try {
+      final OrderResponse response = await _ordersRepo.createOrder(order); // <--- تأكد أن نوع الاستجابة هو OrderResponse
+
+      if (response.isSuccess == true) {
+        // إذا كان الـ OrderResponse قد يحتوي على OrderNumberModel في الـ data،
+        // يجب أن تتحقق من نوعه هنا أو تعدل emit ليتناسب.
+        // في حالتك الحالية، أنت ترجع فقط 'message'، وهذا قد يكون كافياً.
+        emit(CreateOrderSuccess(
+            message: response.successMessage ?? 'Order created successfully!'));
+      } else {
+        String errorMessage = 'Failed to create order.';
+        if (response.errorList != null && response.errorList!.isNotEmpty) {
+          errorMessage = response.errorList!.join(', ');
+        } else if (response.successMessage != null &&
+            response.successMessage!.isNotEmpty) {
+          errorMessage = response.successMessage!;
+        } else if (response.statusCode != null) {
+          errorMessage = 'Failed with status code: ${response.statusCode}';
+        }
+        emit(CreateOrderError(message: errorMessage));
+      }
+    } catch (e) {
+      emit(CreateOrderError(message: e.toString()));
+    }
+  }
+
+  // دالة لجلب الطلبات من الـ API
+  Future<void> fetchOrdersFromApi() async {
+    emit(const LoadingOrders()); // إصدار حالة التحميل لجلب الطلبات
+
+    try {
       final List<DatumOrder> orders = await _ordersRepo.getOrdersFromApi();
       emit(OrdersLoaded(orders)); // إصدار حالة النجاح مع قائمة الطلبات
     } catch (e) {
