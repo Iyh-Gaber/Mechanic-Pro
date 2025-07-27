@@ -44,16 +44,9 @@ class EmergencyButtonsCustom extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 30,
-                ),
+                Icon(icon, color: Colors.white, size: 30),
                 const SizedBox(width: 15),
-                Text(
-                  text,
-                  style: getBodyStyle(color: Colors.white),
-                ),
+                Text(text, style: getBodyStyle(color: Colors.white)),
               ],
             ),
           ),

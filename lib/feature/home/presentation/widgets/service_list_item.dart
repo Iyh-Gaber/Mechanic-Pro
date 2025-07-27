@@ -33,8 +33,10 @@ class ServiceListItem extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(12.0),
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 16.0,
+            ),
             child: Row(
               children: [
                 Icon(icon, color: Colors.black),
@@ -49,8 +51,11 @@ class ServiceListItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios,
-                    color: AppColors.blackColor, size: 16),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppColors.blackColor,
+                  size: 16,
+                ),
               ],
             ),
           ),

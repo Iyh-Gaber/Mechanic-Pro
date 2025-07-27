@@ -19,14 +19,10 @@ class NewServicesItem extends StatelessWidget {
       width: 147,
       child: InkWell(
         onTap: onTap,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image.asset(
-            image,
-            width: 33,
-            height: 33,
-          ),
-          Text(name),
-        ]),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Image.asset(image, width: 33, height: 33), Text(name)],
+        ),
       ),
     );
   }

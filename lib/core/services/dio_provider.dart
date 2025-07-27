@@ -174,16 +174,18 @@ class DioProvider {
     );
 
     // إضافة LogInterceptor لتسجيل تفاصيل الطلبات والاستجابات في الكونسول
-    _dio.interceptors.add(LogInterceptor(
-      requestBody: true, // تسجيل جسم الطلب (data)
-      responseBody: true, // تسجيل جسم الاستجابة (data)
-      requestHeader: true, // تسجيل رؤوس الطلب (headers)
-      responseHeader: true, // تسجيل رؤوس الاستجابة (headers)
-      logPrint: (obj) {
-        // يمكنك استخدام 'print' العادي أو logger خاص بك
-        print("DIO_LOG: $obj");
-      },
-    ));
+    _dio.interceptors.add(
+      LogInterceptor(
+        requestBody: true, // تسجيل جسم الطلب (data)
+        responseBody: true, // تسجيل جسم الاستجابة (data)
+        requestHeader: true, // تسجيل رؤوس الطلب (headers)
+        responseHeader: true, // تسجيل رؤوس الاستجابة (headers)
+        logPrint: (obj) {
+          // يمكنك استخدام 'print' العادي أو logger خاص بك
+          print("DIO_LOG: $obj");
+        },
+      ),
+    );
   }
 
   // دوال لطلبات HTTP

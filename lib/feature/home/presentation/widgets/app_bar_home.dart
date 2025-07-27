@@ -6,9 +6,7 @@ import 'package:mechpro/core/utils/app_color.dart';
 import '../../../../core/routing/routes.dart';
 
 class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarHome({
-    super.key,
-  });
+  const AppBarHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +27,14 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             context.pushNamed(Routes.notificationView);
           },
-          icon: Icon(
-            Icons.notifications_none,
-            color: AppColors.primaryColor,
-          ),
+          icon: Icon(Icons.notifications_none, color: AppColors.primaryColor),
           iconSize: 33,
         ),
         IconButton(
           onPressed: () {
             context.pushNamed(Routes.offersView);
           },
-          icon: Icon(
-            Icons.local_offer_outlined,
-            color: AppColors.primaryColor,
-          ),
+          icon: Icon(Icons.local_offer_outlined, color: AppColors.primaryColor),
         ),
         10.horizontalSpace,
       ],

@@ -6,11 +6,7 @@ import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer({
-    super.key,
-    required this.title,
-    required this.onTap,
-  });
+  const CustomContainer({super.key, required this.title, required this.onTap});
   final String title;
   final Function() onTap;
   @override
@@ -32,14 +28,7 @@ class CustomContainer extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          children: [
-            Text(
-              title.tr(),
-              style: getSmallStyle(),
-            ),
-          ],
-        ),
+        child: Row(children: [Text(title.tr(), style: getSmallStyle())]),
       ),
     );
   }

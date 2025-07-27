@@ -15,12 +15,15 @@ class PageViewCustom extends StatelessWidget {
   final String bodytitle;
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Expanded(child: Image.asset(image)),
-      Gap(20),
-      Text(title, style: getTitleStyle()),
-      Gap(20),
-      Text(bodytitle, style: getBodyStyle()),
-    ]);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(child: Image.asset(image)),
+        Gap(20),
+        Text(title, style: getTitleStyle()),
+        Gap(20),
+        Text(bodytitle, style: getBodyStyle()),
+      ],
+    );
   }
 }

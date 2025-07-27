@@ -174,8 +174,10 @@ class _OrdersViewState extends State<OrdersView> {
             );
           } else if (state is OrdersError) {
             return Center(
-              child: Text('Error: ${state.message}',
-                  style: const TextStyle(color: Colors.red)),
+              child: Text(
+                'Error: ${state.message}',
+                style: const TextStyle(color: Colors.red),
+              ),
             );
           } else if (state is OrdersLoaded) {
             if (state.orders.isEmpty) {
@@ -232,12 +234,16 @@ class _OrdersViewState extends State<OrdersView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.check_circle_outline,
-                      size: 80, color: Colors.green),
+                  Icon(
+                    Icons.check_circle_outline,
+                    size: 80,
+                    color: Colors.green,
+                  ),
                   16.verticalSpace,
                   Text(
-                      'Last order created: ${state.message}. Please pull down to refresh.', // تغيير الرسالة
-                      style: getSmallStyle(color: Colors.green)),
+                    'Last order created: ${state.message}. Please pull down to refresh.', // تغيير الرسالة
+                    style: getSmallStyle(color: Colors.green),
+                  ),
                   16.verticalSpace,
                   // يمكنك إزالة هذا الزر إذا كنت تفضل الاعتماد على السحب للتحديث فقط
                   // ElevatedButton(
@@ -250,8 +256,10 @@ class _OrdersViewState extends State<OrdersView> {
             );
           } else if (state is CreateOrderError) {
             return Center(
-              child: Text('Creation Error: ${state.message}',
-                  style: const TextStyle(color: Colors.red)),
+              child: Text(
+                'Creation Error: ${state.message}',
+                style: const TextStyle(color: Colors.red),
+              ),
             );
           }
 

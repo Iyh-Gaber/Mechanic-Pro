@@ -347,7 +347,6 @@ class OrderCard extends StatelessWidget {
 }
 */
 
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
@@ -362,7 +361,7 @@ import '../../../../core/utils/text_style.dart';
 
 class OrderCard extends StatelessWidget {
   // OrderCard الآن يستقبل DatumOrder بشكل صحيح
-  final DatumOrder orderData; 
+  final DatumOrder orderData;
 
   const OrderCard({super.key, required this.orderData});
 
@@ -408,7 +407,11 @@ class OrderCard extends StatelessWidget {
             // عرض حالة الدفع (isPaid)
             Text(
               '${LocaleKeys.IsPaid.tr()}: ${(orderData.isPaid ?? false) ? LocaleKeys.yes.tr() : LocaleKeys.no.tr()}',
-              style: getSmallStyle(color: (orderData.isPaid ?? false) ? AppColors.primaryColor : AppColors.redColor),
+              style: getSmallStyle(
+                color: (orderData.isPaid ?? false)
+                    ? AppColors.primaryColor
+                    : AppColors.redColor,
+              ),
             ),
             8.verticalSpace,
 
@@ -441,12 +444,14 @@ class OrderCard extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children:
-                                  service.orderSubServices!.map((subService) {
+                              children: service.orderSubServices!.map((
+                                subService,
+                              ) {
                                 return Text(
                                   '  • ${subService.orderSubServiceName ?? 'N/A'}', // الوصول الصحيح لـ orderSubServiceName
-                                  style:
-                                      getSmallStyle(color: AppColors.grColor),
+                                  style: getSmallStyle(
+                                    color: AppColors.grColor,
+                                  ),
                                 );
                               }).toList(),
                             ),
@@ -458,9 +463,8 @@ class OrderCard extends StatelessWidget {
               )
             else
               Text(
-               "No Services available",
+                "No Services available",
                 style: getSmallStyle(color: AppColors.grColor),
-                
               ),
           ],
         ),

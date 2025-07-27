@@ -230,7 +230,6 @@ class AuthCubit extends Cubit<AuthState> {
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 import 'package:mechpro/feature/auth/presintation/cubit/auth_states.dart';
 
 import '../../../../core/services/app_locale_storage.dart'; // تأكد من المسار الصحيح لهذا الملف
@@ -241,8 +240,9 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._firebaseAuth) : super(const AuthInitial(isLoginMode: true));
 
   void toggleAuthMode() {
-    final currentMode =
-        (state is AuthInitial) ? (state as AuthInitial).isLoginMode : true;
+    final currentMode = (state is AuthInitial)
+        ? (state as AuthInitial).isLoginMode
+        : true;
     emit(AuthInitial(isLoginMode: !currentMode));
   }
 
@@ -277,16 +277,17 @@ class AuthCubit extends Cubit<AuthState> {
       }
       emit(AuthError(errorMessage, isLoginMode: false));
     } catch (e) {
-      emit(AuthError('An unexpected error occurred: ${e.toString()}',
-          isLoginMode: false));
+      emit(
+        AuthError(
+          'An unexpected error occurred: ${e.toString()}',
+          isLoginMode: false,
+        ),
+      );
     }
   }
 
   // دالة لتسجيل دخول مستخدم موجود (Sign In)
-  Future<void> signIn({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> signIn({required String email, required String password}) async {
     emit(const AuthLoading(isLoginMode: true));
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
@@ -311,8 +312,12 @@ class AuthCubit extends Cubit<AuthState> {
       }
       emit(AuthError(errorMessage, isLoginMode: true));
     } catch (e) {
-      emit(AuthError('An unexpected error occurred: ${e.toString()}',
-          isLoginMode: true));
+      emit(
+        AuthError(
+          'An unexpected error occurred: ${e.toString()}',
+          isLoginMode: true,
+        ),
+      );
     }
   }
 
@@ -328,8 +333,11 @@ class AuthCubit extends Cubit<AuthState> {
         AppLocaleStorage.chacheData('firebase_user_id_token', idToken);
         print('Firebase ID Token saved via AppLocaleStorage: $idToken');
       }
-      
-      AppLocaleStorage.chacheData('firebase_user_uid', uid); // حفظ الـ UID في التخزين المحلي
+
+      AppLocaleStorage.chacheData(
+        'firebase_user_uid',
+        uid,
+      ); // حفظ الـ UID في التخزين المحلي
       print('Firebase User UID saved via AppLocaleStorage: $uid');
     }
   }
@@ -338,10 +346,16 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
     // مسح البيانات باستخدام AppLocaleStorage
-    await AppLocaleStorage.removeData('firebase_user_id_token'); // مسح الـ token عند تسجيل الخروج
-    await AppLocaleStorage.removeData('firebase_user_uid'); // مسح الـ UID عند تسجيل الخروج
-    
-    print('User signed out and local Firebase data cleared via AppLocaleStorage.');
+    await AppLocaleStorage.removeData(
+      'firebase_user_id_token',
+    ); // مسح الـ token عند تسجيل الخروج
+    await AppLocaleStorage.removeData(
+      'firebase_user_uid',
+    ); // مسح الـ UID عند تسجيل الخروج
+
+    print(
+      'User signed out and local Firebase data cleared via AppLocaleStorage.',
+    );
     emit(const AuthInitial(isLoginMode: true)); // العودة للحالة الأولية
   }
 }

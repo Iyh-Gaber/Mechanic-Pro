@@ -69,9 +69,7 @@ import '../../../../core/routing/routes.dart';
 import '../../../emergency_situations/presentation/views/emergency_view.dart';
 
 class FutureServicesPart extends StatelessWidget {
-  const FutureServicesPart({
-    super.key,
-  });
+  const FutureServicesPart({super.key});
 
   @override
   Widget build(BuildContext context) {

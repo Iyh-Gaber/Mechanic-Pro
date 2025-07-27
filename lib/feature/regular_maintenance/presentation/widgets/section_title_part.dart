@@ -108,10 +108,7 @@ import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 class SectionTitlePart extends StatelessWidget {
-  const SectionTitlePart({
-    super.key,
-    required this.title,
-  });
+  const SectionTitlePart({super.key, required this.title});
 
   final String title;
 
@@ -122,9 +119,10 @@ class SectionTitlePart extends StatelessWidget {
       child: Text(
         title,
         style: getSmallStyle(
-            fontSize: 22.0,
-            fontWeight: FontWeight.bold,
-            color: AppColors.blackColor),
+          fontSize: 22.0,
+          fontWeight: FontWeight.bold,
+          color: AppColors.blackColor,
+        ),
         textAlign: TextAlign.left,
       ),
     );

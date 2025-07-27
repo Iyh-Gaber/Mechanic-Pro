@@ -52,54 +52,62 @@ class WelcomeViews extends StatelessWidget {
                 width: 25.h,
                 height: 25.w,
               ),
-            )
+            ),
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(7.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Gap(155),
-            Image.asset(
-              AppAssets.logoIcon,
-              fit: BoxFit.cover,
-              height: 77.h,
-              width: 77.w,
-            ),
-            Gap(37),
-            RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: LocaleKeys.Welcometothe.tr(),
-                    style: getSmallStyle(),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.MechanicPro.tr(),
-                    style: getBodyStyle(
-                        color: AppColors.primaryColor, fontSize: 19.sp),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.platform.tr(),
-                    style: getSmallStyle(),
-                  ),
-                ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Gap(155),
+              Image.asset(
+                AppAssets.logoIcon,
+                fit: BoxFit.cover,
+                height: 77.h,
+                width: 77.w,
               ),
-            ),
-            Text(LocaleKeys.symbol.tr(),
-                textAlign: TextAlign.center, style: getSmallStyle()),
-            Spacer(),
-            CustomButton(
-              text: LocaleKeys.welcomeButtom.tr(),
-              onpressed: () {
-                context.pushAndRemoveUntil(
-                  Routes.onboardingView,
-                  routeBuilder: AppRouter.buildRoute,
-                  predicate: (route) => false,
-                );
-              },
-            ),
-            Gap(27),
-          ]),
+              Gap(37),
+              RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: LocaleKeys.Welcometothe.tr(),
+                      style: getSmallStyle(),
+                    ),
+                    TextSpan(
+                      text: LocaleKeys.MechanicPro.tr(),
+                      style: getBodyStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 19.sp,
+                      ),
+                    ),
+                    TextSpan(
+                      text: LocaleKeys.platform.tr(),
+                      style: getSmallStyle(),
+                    ),
+                  ],
+                ),
+              ),
+              Text(
+                LocaleKeys.symbol.tr(),
+                textAlign: TextAlign.center,
+                style: getSmallStyle(),
+              ),
+              Spacer(),
+              CustomButton(
+                text: LocaleKeys.welcomeButtom.tr(),
+                onpressed: () {
+                  context.pushAndRemoveUntil(
+                    Routes.onboardingView,
+                    routeBuilder: AppRouter.buildRoute,
+                    predicate: (route) => false,
+                  );
+                },
+              ),
+              Gap(27),
+            ],
+          ),
         ),
       ),
     );

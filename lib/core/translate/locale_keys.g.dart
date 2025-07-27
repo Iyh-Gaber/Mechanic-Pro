@@ -106,7 +106,7 @@ abstract class LocaleKeys {
   static const mylocation = "my_location";
   static const Contactustospecifytheaddress =
       "Contact us to specify the address";
-  static const WhereDoWeProvidetheService = "3.Where Do We Provide the Service";
+  static const WhereDoWeProvidetheService = "Where Do We Provide the Service";
   static const AtMyLocationanywhere = "At My Location (anywhere)";
   static const FollowUs = "Follow Us";
   static const HowcanIbookanappointmentformyvehicle =
@@ -139,13 +139,44 @@ abstract class LocaleKeys {
   static const ContactUsbyChat = "Contact Us by Chat";
   static const OtherServices = "Other Services";
   static const SellingOriginalParts = "Selling Original Parts";
-  
+
   static const OrderID = "Order ID";
 
   static const IsPaid = "IsPaid";
   static const yes = "yes";
   static const no = "no";
 
-  
   static const OrderAmount = "OrderAmount";
+  static const RequestYourService = "Request Your Service";
+
+  static const Chooseyourservices = "Choose your services";
+
+  static const WhenDoYouNeedtheService = "When Do You Need the Service";
+
+  static const SelectTime = "SelectTime";
+
+  static const SelectDate = "Select Date";
+
+  static const TryAgain = "Try Again";
+
+  static const SomethingWentWrong = "Something went wrong";
+
+  static const Confirm = "Confirm";
+
+  static const Yourrequesthasbeenconfirmedsuccessfully =
+      "Your request has been confirmed successfully";
+
+  static const Close = "Close";
+
+  static const SelectedServices = "Selected Services";
+
+  static const ConfirmServiceRequest = "Confirm Service Request";
+
+  static const ErrorLoadingServices = "Error Loading Services";
+
+  static const NoServicesAvailable = "No Services Available";
+
+  static var LocationNotSpecified;
+
+  static var WillContactForDetails;
 }

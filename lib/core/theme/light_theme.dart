@@ -12,11 +12,11 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   */
-
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor:
-          const Color(0xFF336f67), // Elevated button background color.
+      backgroundColor: const Color(
+        0xFF336f67,
+      ), // Elevated button background color.
       foregroundColor: Colors.white, // Elevated button text color.
     ),
   ),
@@ -43,7 +43,6 @@ ThemeData lightTheme = ThemeData(
   ),
 
   ///todo TextTheme
-
   textTheme: const TextTheme(
     // headlineLarge: TextStyle( color: ColorApp.primaryColor,  fontSize: 27,  ),
     bodyLarge: TextStyle(
@@ -51,10 +50,7 @@ ThemeData lightTheme = ThemeData(
       fontSize: 27,
       fontWeight: FontWeight.bold,
     ),
-    bodySmall: TextStyle(
-      color: AppColors.primaryColor,
-      fontSize: 22,
-    ),
+    bodySmall: TextStyle(color: AppColors.primaryColor, fontSize: 22),
   ),
 
   ///todo scaffoldBackgroundColor
@@ -83,9 +79,7 @@ ThemeData lightTheme = ThemeData(
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.primaryColor),
     ),
-    errorBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.red),
-    ),
+    errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
     focusedErrorBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.red),
     ),

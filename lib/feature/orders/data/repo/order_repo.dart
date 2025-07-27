@@ -258,8 +258,6 @@ import 'package:mechpro/feature/orders/data/models/request/order_request/order_r
 import 'package:mechpro/feature/orders/data/models/response/datum_order.dart';
 import 'package:mechpro/feature/orders/data/models/response/order_response.dart';
 
-
-
 import '../../../../core/services/app_locale_storage.dart'; // <--- **استيراد AppLocaleStorage**
 // import 'package:shared_preferences/shared_preferences.dart'; // <--- لم نعد بحاجة لهذا الاستيراد هنا
 
@@ -269,10 +267,15 @@ class OrdersRepo {
   // تم تعديل هذه الدالة لاستخدام AppLocaleStorage لجلب الـ token
   Future<Map<String, dynamic>> _getAuthHeaders() async {
     // final SharedPreferences prefs = await SharedPreferences.getInstance(); // <--- لم نعد بحاجة لهذا
-    final String? firebaseToken = AppLocaleStorage.getDate('firebase_user_id_token'); // <--- استخدام AppLocaleStorage
+    final String? firebaseToken = AppLocaleStorage.getDate(
+      'firebase_user_id_token',
+    ); // <--- استخدام AppLocaleStorage
 
-    if (firebaseToken == null || firebaseToken.isEmpty) { // أضفت || firebaseToken.isEmpty
-      print('ERROR: Firebase token is NULL or EMPTY. Cannot make authenticated API call.');
+    if (firebaseToken == null || firebaseToken.isEmpty) {
+      // أضفت || firebaseToken.isEmpty
+      print(
+        'ERROR: Firebase token is NULL or EMPTY. Cannot make authenticated API call.',
+      );
       throw Exception('المستخدم غير مصادق. لم يتم العثور على توكن Firebase.');
     }
 
@@ -301,7 +304,8 @@ class OrdersRepo {
           return OrderResponse.fromJson(response.data as Map<String, dynamic>);
         } else {
           throw Exception(
-              'نوع بيانات استجابة غير متوقع لـ createOrder: ${response.data.runtimeType}');
+            'نوع بيانات استجابة غير متوقع لـ createOrder: ${response.data.runtimeType}',
+          );
         }
       } else {
         throw DioException(
@@ -315,12 +319,14 @@ class OrdersRepo {
       String errorMessage =
           'فشل إنشاء الطلب. يرجى التحقق من اتصالك بالإنترنت أو المحاولة لاحقاً.';
       if (e.response != null) {
-        errorMessage = e.response?.data?['message'] ??
+        errorMessage =
+            e.response?.data?['message'] ??
             e.response?.data?['error'] ??
             e.response?.statusMessage ??
             errorMessage;
         print(
-            'خطأ Dio في createOrder (الحالة: ${e.response?.statusCode}): $errorMessage. الاستجابة الخام: ${e.response?.data}');
+          'خطأ Dio في createOrder (الحالة: ${e.response?.statusCode}): $errorMessage. الاستجابة الخام: ${e.response?.data}',
+        );
       } else {
         errorMessage = e.message ?? errorMessage;
         print('خطأ Dio في createOrder (لا توجد استجابة): $errorMessage');
@@ -342,7 +348,9 @@ class OrdersRepo {
       final String? firebaseUid = AppLocaleStorage.getDate('firebase_user_uid');
 
       if (firebaseUid == null || firebaseUid.isEmpty) {
-        throw Exception('Firebase UID not found in local storage. Please log in again.');
+        throw Exception(
+          'Firebase UID not found in local storage. Please log in again.',
+        );
       }
 
       // 2. تحديث نقطة نهاية الـ API لتشمل الـ UID
@@ -350,13 +358,15 @@ class OrdersRepo {
       // أو جزء URL مثل '/api/Order/GetAllOrdersOfUser/'
       // يجب أن تكون نقطة النهاية النهائية هي 'http://www.mechpro.somee.com/api/Order/GetAllOrdersOfUser/{UID}'
       // سنقوم بإنشاء الـ URL الكامل هنا لتوضيح
-      
+
       // تأكد من أن ApiConstants.getOrders هو الجزء الثابت من الـ URL بدون ID
       // مثلاً: ApiConstants.getOrders = '/api/Order/GetAllOrdersOfUser/';
-      final String fullUrlEndPoint = '${ApiConstants.getOrders}/$firebaseUid'; // <--- **تعديل الـ URL**
+      final String fullUrlEndPoint =
+          '${ApiConstants.getOrders}/$firebaseUid'; // <--- **تعديل الـ URL**
 
-      print('DEBUG: OrdersRepo - Fetching orders for UID: $firebaseUid from endpoint: $fullUrlEndPoint');
-
+      print(
+        'DEBUG: OrdersRepo - Fetching orders for UID: $firebaseUid from endpoint: $fullUrlEndPoint',
+      );
 
       final response = await DioProvider.get(
         endPoint: fullUrlEndPoint, // <--- **استخدام نقطة النهاية المعدلة**
@@ -375,23 +385,28 @@ class OrdersRepo {
           responseData = response.data as Map<String, dynamic>;
         } else {
           throw Exception(
-              'نوع بيانات استجابة غير متوقع لـ getOrdersFromApi: ${response.data.runtimeType}');
+            'نوع بيانات استجابة غير متوقع لـ getOrdersFromApi: ${response.data.runtimeType}',
+          );
         }
 
         final apiResponse = OrderResponse.fromJson(responseData);
 
         if (apiResponse.isSuccess == true && apiResponse.data != null) {
-          print('DEBUG: OrdersRepo - API Response Data: ${responseData}'); // طباعة الاستجابة الكاملة
+          print(
+            'DEBUG: OrdersRepo - API Response Data: ${responseData}',
+          ); // طباعة الاستجابة الكاملة
           return apiResponse.data!;
         } else {
-          String errorMessage = apiResponse.successMessage ??
+          String errorMessage =
+              apiResponse.successMessage ??
               'فشل جلب الطلبات: الـ API أعادت حالة غير نجاح.';
           if (apiResponse.errorList != null &&
               apiResponse.errorList!.isNotEmpty) {
             errorMessage += ' الأخطاء: ${apiResponse.errorList!.join(', ')}';
           }
           print(
-              'الـ API أعادت حالة غير نجاح لـ getOrdersFromApi: $errorMessage');
+            'الـ API أعادت حالة غير نجاح لـ getOrdersFromApi: $errorMessage',
+          );
           throw Exception(errorMessage);
         }
       } else {
@@ -406,12 +421,14 @@ class OrdersRepo {
       String errorMessage =
           'فشل جلب الطلبات. يرجى التحقق من اتصالك بالإنترنت أو المحاولة لاحقاً.';
       if (e.response != null) {
-        errorMessage = e.response?.data?['message'] ??
+        errorMessage =
+            e.response?.data?['message'] ??
             e.response?.data?['error'] ??
             e.response?.statusMessage ??
             errorMessage;
         print(
-            'خطأ Dio في getOrdersFromApi (الحالة: ${e.response?.statusCode}): $errorMessage. الاستجابة الخام: ${e.response?.data}');
+          'خطأ Dio في getOrdersFromApi (الحالة: ${e.response?.statusCode}): $errorMessage. الاستجابة الخام: ${e.response?.data}',
+        );
       } else {
         errorMessage = e.message ?? errorMessage;
         print('خطأ Dio في getOrdersFromApi (لا توجد استجابة): $errorMessage');

@@ -235,9 +235,7 @@ import '../../data/models/response/main_services_response/datum.dart';
 import '../cubit/main_services_cubit.dart';
 
 class CoreServicesPart extends StatelessWidget {
-  const CoreServicesPart({
-    super.key,
-  });
+  const CoreServicesPart({super.key});
 
   // تم تحديث هذه الخريطة لربط أسماء الخدمات التي قدمتها بالأيقونات والمسارات الصحيحة.
   static final Map<String, Map<String, dynamic>> _serviceConfig = {
@@ -291,26 +289,21 @@ class CoreServicesPart extends StatelessWidget {
       child: BlocBuilder<MainServicesCubit, MainServicesStates>(
         builder: (context, state) {
           print(
-              'CoreServicesPart BlocBuilder received state: ${state.runtimeType}');
+            'CoreServicesPart BlocBuilder received state: ${state.runtimeType}',
+          );
 
           if (state is MainServicesInitialState ||
               state is MainServicesLoadingState) {
             return Center(
-              child: CircularProgressIndicator(
-                color: AppColors.whColor,
-              ),
+              child: CircularProgressIndicator(color: AppColors.whColor),
             );
           } else if (state is MainServicesErrorState) {
-            return Center(
-              child: Text('Error: ${state.message}'),
-            );
+            return Center(child: Text('Error: ${state.message}'));
           } else if (state is MainServicesSuccessState) {
             final List<Datum>? services = state.mainServicesResponse.data;
 
             if (services == null || services.isEmpty) {
-              return Center(
-                child: Text('No services found.'),
-              );
+              return Center(child: Text('No services found.'));
             }
 
             return ListView.builder(
@@ -329,7 +322,8 @@ class CoreServicesPart extends StatelessWidget {
                     config?['icon'] ?? Icons.miscellaneous_services;
 
                 // تحديد المسار: إذا وجد في الخريطة، استخدمه، وإلا استخدم مسار افتراضي
-                final String routeName = config?['route'] ??
+                final String routeName =
+                    config?['route'] ??
                     Routes
                         .homeView; // مسار افتراضي إذا لم يتم العثور على الخدمة في الخريطة
 
@@ -342,7 +336,8 @@ class CoreServicesPart extends StatelessWidget {
                       // الانتقال إلى المسار المحدد ديناميكيًا
                       context.pushNamed(routeName);
                       print(
-                          'Navigating to: $routeName for service: $serviceName');
+                        'Navigating to: $routeName for service: $serviceName',
+                      );
                     },
                   ),
                 );
@@ -350,7 +345,8 @@ class CoreServicesPart extends StatelessWidget {
             );
           }
           print(
-              'CoreServicesPart received unhandled state: ${state.runtimeType}');
+            'CoreServicesPart received unhandled state: ${state.runtimeType}',
+          );
           return const SizedBox.shrink();
         },
       ),

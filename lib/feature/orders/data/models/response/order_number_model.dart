@@ -12,6 +12,7 @@ class OrderNumberModel {
 
   OrderNumberModel({this.orderNumber});
 
-  factory OrderNumberModel.fromJson(Map<String, dynamic> json) => _$OrderNumberModelFromJson(json);
+  factory OrderNumberModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderNumberModelFromJson(json);
   Map<String, dynamic> toJson() => _$OrderNumberModelToJson(this);
 }

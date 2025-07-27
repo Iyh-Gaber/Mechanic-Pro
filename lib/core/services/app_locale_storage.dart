@@ -50,7 +50,9 @@ class AppLocaleStorage {
       _preferences.setDouble(key, value);
     } else {
       // طباعة تحذير لأنواع البيانات غير المدعومة بشكل صريح
-      print('Warning: AppLocaleStorage - Unhandled data type for key $key: ${value.runtimeType}');
+      print(
+        'Warning: AppLocaleStorage - Unhandled data type for key $key: ${value.runtimeType}',
+      );
     }
   }
 

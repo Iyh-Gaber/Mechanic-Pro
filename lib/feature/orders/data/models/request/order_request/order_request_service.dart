@@ -6,14 +6,17 @@ import 'order_request_sub_service.dart'; // <--- **التغيير هنا: است
 part 'order_request_service.g.dart'; // <--- تأكد أن اسم الـ part file يتطابق مع اسم الكلاس الجديد
 
 @JsonSerializable()
-class OrderRequestService { // اسم الكلاس صحيح الآن
+class OrderRequestService {
+  // اسم الكلاس صحيح الآن
   String? orderServiceName;
-  List<OrderRequestSubService>? orderSubServices; // <--- **التغيير هنا: استخدام OrderRequestSubService**
+  List<OrderRequestSubService>?
+  orderSubServices; // <--- **التغيير هنا: استخدام OrderRequestSubService**
 
   OrderRequestService({this.orderServiceName, this.orderSubServices});
 
   // <--- التغيير هنا: استخدم اسم الكلاس الجديد في الدوال المولدة
-  factory OrderRequestService.fromJson(Map<String, dynamic> json) => _$OrderRequestServiceFromJson(json);
+  factory OrderRequestService.fromJson(Map<String, dynamic> json) =>
+      _$OrderRequestServiceFromJson(json);
 
   // <--- التغيير هنا: استخدم اسم الكلاس الجديد في الدوال المولدة
   Map<String, dynamic> toJson() => _$OrderRequestServiceToJson(this);

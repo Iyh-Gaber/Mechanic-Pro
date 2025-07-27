@@ -5,9 +5,6 @@ class BranchModel {
   BranchModel({required this.id, required this.name});
 
   factory BranchModel.fromJson(Map<String, dynamic> json) {
-    return BranchModel(
-      id: json['id'].toString(),
-      name: json['name'] as String,
-    );
+    return BranchModel(id: json['id'].toString(), name: json['name'] as String);
   }
 }

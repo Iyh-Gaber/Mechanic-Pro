@@ -69,9 +69,7 @@ void main() async {
   // ignore: await_only_futures
   // await AppLocaleStorage(); // هذا السطر غير صحيح، AppLocaleStorage.init() كافية
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final AppRouter appRouter = AppRouter();
 
@@ -82,9 +80,7 @@ void main() async {
       fallbackLocale: const Locale('en'),
       child: BlocProvider<MainServicesCubit>(
         create: (context) => MainServicesCubit(MainServicesRepo()),
-        child: MyMechPro(
-          appRouter: appRouter,
-        ),
+        child: MyMechPro(appRouter: appRouter),
       ),
     ),
   );

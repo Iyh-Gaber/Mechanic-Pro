@@ -39,19 +39,26 @@ class ContactCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style:
-                        getSmallStyle(color: AppColors.whColor, fontSize: 17),
+                    style: getSmallStyle(
+                      color: AppColors.whColor,
+                      fontSize: 17,
+                    ),
                     textAlign: TextAlign.left,
                     maxLines: 2,
                   ),
                   4.verticalSpace,
-                  Text(subtitle,
-                      style: getSmallStyle(color: AppColors.bgColor)),
+                  Text(
+                    subtitle,
+                    style: getSmallStyle(color: AppColors.bgColor),
+                  ),
                 ],
               ),
               const Spacer(),
-              const Icon(Icons.arrow_forward_ios,
-                  color: AppColors.whColor, size: 20),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.whColor,
+                size: 20,
+              ),
             ],
           ),
         ),

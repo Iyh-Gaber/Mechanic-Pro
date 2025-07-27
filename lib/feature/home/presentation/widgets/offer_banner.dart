@@ -10,9 +10,7 @@ import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 class OfferBanner extends StatefulWidget {
-  const OfferBanner({
-    super.key,
-  });
+  const OfferBanner({super.key});
 
   @override
   State<OfferBanner> createState() => _OfferBannerState();
@@ -36,7 +34,9 @@ class _OfferBannerState extends State<OfferBanner> {
               color: AppColors.whColor,
               borderRadius: BorderRadius.circular(12.0),
               image: DecorationImage(
-                  image: AssetImage(AppAssets.offer), fit: BoxFit.cover),
+                image: AssetImage(AppAssets.offer),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           InkWell(
@@ -46,13 +46,8 @@ class _OfferBannerState extends State<OfferBanner> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  LocaleKeys.ShowMore.tr(),
-                  style: getSmallStyle(),
-                ),
-                Icon(
-                  Icons.arrow_right,
-                ),
+                Text(LocaleKeys.ShowMore.tr(), style: getSmallStyle()),
+                Icon(Icons.arrow_right),
               ],
             ),
           ),

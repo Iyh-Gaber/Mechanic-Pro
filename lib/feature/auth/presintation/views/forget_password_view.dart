@@ -19,22 +19,16 @@ class ForgetPasswordView extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.whColor,
         title: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              AppAssets.logo,
-              width: 41,
-              height: 41,
-            )),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Image.asset(AppAssets.logo, width: 41, height: 41),
+        ),
       ),
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Remember Password ? ',
-            style: getSmallStyle(),
-          ),
+          Text('Remember Password ? ', style: getSmallStyle()),
           TextButton(
             onPressed: () {
               context.pushReplacementNamed(Routes.registrationView);
@@ -44,7 +38,7 @@ class ForgetPasswordView extends StatelessWidget {
               'Login',
               style: getSmallStyle(color: AppColors.primaryColor),
             ),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -53,10 +47,7 @@ class ForgetPasswordView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(25),
-            Text(
-              'Forget Password ?',
-              style: getTitleStyle(),
-            ),
+            Text('Forget Password ?', style: getTitleStyle()),
             Gap(25),
             Text(
               'Don\'t worry! It occurs. Please enter the email address linked with your account.',

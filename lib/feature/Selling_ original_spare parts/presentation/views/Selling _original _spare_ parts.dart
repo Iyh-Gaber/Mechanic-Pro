@@ -188,8 +188,10 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         automaticallyImplyLeading: false,
-        title: Text(LocaleKeys.SellingOriginalParts.tr(),
-            style: getBodyStyle(color: AppColors.whColor)),
+        title: Text(
+          LocaleKeys.SellingOriginalParts.tr(),
+          style: getBodyStyle(color: AppColors.whColor),
+        ),
         centerTitle: true,
         elevation: 0,
       ),
@@ -204,9 +206,7 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
                 final List<DatumSelling> sellingData =
                     state.sellingResponse.data ?? [];
                 if (sellingData.isEmpty) {
-                  return Center(
-                    child: Text('No data available'.tr()),
-                  );
+                  return Center(child: Text('No data available'.tr()));
                 }
                 return ListView.separated(
                   itemCount: sellingData.length,
@@ -229,12 +229,11 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
                   },
                 );
               } else if (state is SellingErrorState) {
-                return Center(
-                  child: Text('Error: ${state.error}'),
-                );
+                return Center(child: Text('Error: ${state.error}'));
               }
               return const Center(
-                  child: Text('Press the button to load data.'));
+                child: Text('Press the button to load data.'),
+              );
             },
           ),
         ),

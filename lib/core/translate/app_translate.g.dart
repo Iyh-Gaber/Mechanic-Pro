@@ -128,6 +128,30 @@ abstract class LocaleKeys {
   static const yes = "yes";
   static const no = "no";
   static const OrderAmount = "OrderAmount";
-  
+  static const RequestYourService = "Request Your Service";
+  static const Chooseyourservices = "Choose your services";
 
+  static const WhenDoYouNeedtheService = "When Do You Need the Service";
+
+  static const SelectTime = "SelectTime";
+  static const SelectDate = "Select Date";
+
+  static const TryAgain = "Try Again";
+
+  static const SomethingWentWrong = "Something went wrong";
+
+  static const Confirm = "Confirm";
+
+  static const Yourrequesthasbeenconfirmedsuccessfully =
+      "Your request has been confirmed successfully";
+
+  static const Close = "Close";
+
+  static const SelectedServices = "Selected Services";
+
+  static const ConfirmServiceRequest = "Confirm Service Request";
+
+  static const ErrorLoadingServices = "Error Loading Services";
+
+  static const NoServicesAvailable = "No Services Available";
 }

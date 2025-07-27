@@ -57,8 +57,10 @@ class MyMechPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(MediaQuery.of(context).size.width,
-          MediaQuery.of(context).size.height),
+      designSize: Size(
+        MediaQuery.of(context).size.width,
+        MediaQuery.of(context).size.height,
+      ),
       minTextAdapt: true,
       builder: (_, child) {
         return MaterialApp(

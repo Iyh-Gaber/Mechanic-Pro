@@ -79,7 +79,8 @@ class _OnboardingViewState extends State<OnboardingView> {
       children: [
         TextButton(
           style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor)),
+            backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
+          ),
           onPressed: () {
             context.pushAndRemoveUntil(
               Routes.registrationView,
@@ -96,11 +97,14 @@ class _OnboardingViewState extends State<OnboardingView> {
         Spacer(),
         TextButton(
           style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor)),
+            backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
+          ),
           onPressed: () {
             if (controller.page != 2) {
               controller.nextPage(
-                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease,
+              );
             } else {
               // context.pushAndRemoveUntil(RegistrationView, routeBuilder: (String , Object? ) {  });
               context.pushAndRemoveUntil(

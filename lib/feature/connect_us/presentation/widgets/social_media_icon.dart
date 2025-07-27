@@ -25,11 +25,7 @@ class SocialMediaIcon extends StatelessWidget {
           child: CircleAvatar(
             radius: 27,
             backgroundColor: AppColors.bgColor,
-            child: Icon(
-              icon,
-              size: 33,
-              color: AppColors.primaryColor,
-            ),
+            child: Icon(icon, size: 33, color: AppColors.primaryColor),
           ),
         ),
         const SizedBox(height: 8),

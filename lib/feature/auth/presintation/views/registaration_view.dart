@@ -374,9 +374,9 @@ class _RegistrationViewState extends State<RegistrationView> {
 
   // Helper method to show SnackBar messages
   void _showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -411,10 +411,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                   bool isLoginMode = (state is AuthInitial)
                       ? state.isLoginMode
                       : (state is AuthLoading)
-                          ? state.isLoginMode
-                          : (state is AuthError)
-                              ? state.isLoginMode
-                              : true; // Default to true if state is not recognized
+                      ? state.isLoginMode
+                      : (state is AuthError)
+                      ? state.isLoginMode
+                      : true; // Default to true if state is not recognized
 
                   bool isLoading = state is AuthLoading;
 
@@ -447,15 +447,24 @@ class _RegistrationViewState extends State<RegistrationView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTabButton(
-                                context, LocaleKeys.LogIn.tr(), isLoginMode),
+                              context,
+                              LocaleKeys.LogIn.tr(),
+                              isLoginMode,
+                            ),
                             _buildTabButton(
-                                context, LocaleKeys.signup.tr(), !isLoginMode),
+                              context,
+                              LocaleKeys.signup.tr(),
+                              !isLoginMode,
+                            ),
                           ],
                         ),
                         SizedBox(height: 15.0),
 
                         _buildAuthFormContainer(
-                            context, isLoginMode, isLoading),
+                          context,
+                          isLoginMode,
+                          isLoading,
+                        ),
 
                         15.verticalSpace,
 
@@ -464,15 +473,17 @@ class _RegistrationViewState extends State<RegistrationView> {
                             style: getSmallStyle(color: AppColors.blackColor),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: isLoginMode
-                                      ? LocaleKeys.DonThaveanaccount.tr()
-                                      : LocaleKeys.lreadyhaveaccount.tr()),
+                                text: isLoginMode
+                                    ? LocaleKeys.DonThaveanaccount.tr()
+                                    : LocaleKeys.lreadyhaveaccount.tr(),
+                              ),
                               TextSpan(
                                 text: isLoginMode
                                     ? LocaleKeys.signup.tr()
                                     : LocaleKeys.LogIn.tr(),
                                 style: getSmallStyle(
-                                    color: AppColors.primaryColor),
+                                  color: AppColors.primaryColor,
+                                ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     // Toggle auth mode using Cubit
@@ -497,7 +508,10 @@ class _RegistrationViewState extends State<RegistrationView> {
 
   // Extracted method for the main form container
   Widget _buildAuthFormContainer(
-      BuildContext context, bool isLoginMode, bool isLoading) {
+    BuildContext context,
+    bool isLoginMode,
+    bool isLoading,
+  ) {
     final authCubit = context.read<AuthCubit>(); // Get Cubit instance
 
     return Container(
@@ -507,8 +521,9 @@ class _RegistrationViewState extends State<RegistrationView> {
         borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryColor
-                .withOpacity(0.2), // Slightly less intense shadow
+            color: AppColors.primaryColor.withOpacity(
+              0.2,
+            ), // Slightly less intense shadow
             spreadRadius: 3,
             blurRadius: 7,
             offset: const Offset(0, 3),
@@ -550,8 +565,9 @@ class _RegistrationViewState extends State<RegistrationView> {
               if (value == null || value.isEmpty) {
                 return LocaleKeys.Pleaseenteremail.tr();
               }
-              if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                  .hasMatch(value)) {
+              if (!RegExp(
+                r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              ).hasMatch(value)) {
                 return LocaleKeys.Pleaseentervalidemail.tr();
               }
               return null;
@@ -576,19 +592,19 @@ class _RegistrationViewState extends State<RegistrationView> {
                 return LocaleKeys.Passwordmustleast8characters.tr();
               }
               if (!value.contains(RegExp(r'[A-Z]'))) {
-                return LocaleKeys.Passwordmustcontainatleastoneuppercaseletter
-                    .tr();
+                return LocaleKeys
+                    .Passwordmustcontainatleastoneuppercaseletter.tr();
               }
               if (!value.contains(RegExp(r'[a-z]'))) {
-                return LocaleKeys.Passwordmustcontainatleastonelowercaseletter
-                    .tr();
+                return LocaleKeys
+                    .Passwordmustcontainatleastonelowercaseletter.tr();
               }
               if (!value.contains(RegExp(r'[0-9]'))) {
                 return LocaleKeys.Passwordmustcontainatleastonedigit.tr();
               }
               if (!value.contains(RegExp(r'[!@#\$%^&*(),.?":{}|<>]'))) {
-                return LocaleKeys.PasswordmustcontainatleastoneSpecialcharacter
-                    .tr();
+                return LocaleKeys
+                    .PasswordmustcontainatleastoneSpecialcharacter.tr();
               }
               return null;
             },
@@ -639,7 +655,8 @@ class _RegistrationViewState extends State<RegistrationView> {
           20.verticalSpace,
           isLoading
               ? CircularProgressIndicator(
-                  color: AppColors.primaryColor) // Show loading indicator
+                  color: AppColors.primaryColor,
+                ) // Show loading indicator
               : ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -651,7 +668,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                       } else {
                         String name = _nameController.text.trim();
                         authCubit.register(
-                            name: name, email: email, password: password);
+                          name: name,
+                          email: email,
+                          password: password,
+                        );
                       }
                     }
                   },
@@ -666,8 +686,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                     isLoginMode
                         ? LocaleKeys.LogIn.tr()
                         : LocaleKeys.signup.tr(),
-                    style:
-                        getSmallStyle(color: AppColors.whColor, fontSize: 14.0),
+                    style: getSmallStyle(
+                      color: AppColors.whColor,
+                      fontSize: 14.0,
+                    ),
                   ),
                 ),
         ],

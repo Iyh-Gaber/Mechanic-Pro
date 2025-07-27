@@ -113,7 +113,22 @@
   "IsPaid": "مدفوع؟",
   "yes": "نعم",
   "no": "لا",
-  "OrderAmount": "كميه الطلب"
+  "OrderAmount": "كميه الطلب",
+  "Request Your Service": "طلب الخدمة",
+  "Choose your services":"اختار الخدمات",
+  "When Do You Need the Service":"متى تحتاج الخدمة",
+  "Select Time":"اختر الوقت",
+  "Select Date":"اختر التاريخ",
+  "Try Again":"حاول مرة اخرى",
+  "Something went wrong":"حدث خطأ ما",
+  "Confirm":"تأكيد",
+  "Your request has been confirmed successfully":"تم تأكيد طلبك بنجاح",
+  "Close":"اغلاق",
+  "Selected Services": "الخدمات المحددة",
+  "Confirm Service Request": "تأكيد طلب الخدمة",
+   "Error Loading Services":"خطأ في تحميل الخدمات",
+  "No Services Available":"لا يوجد خدمات متاحة"
+
       
     
   }

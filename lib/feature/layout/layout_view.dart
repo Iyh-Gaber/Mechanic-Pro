@@ -101,92 +101,99 @@ class _LayoutViewState extends State<LayoutView> {
   List<Widget> views = [
     ShowCarsView(),
     BlocProvider(
-        create: (BuildContext context) {
-          return MainServicesCubit(MainServicesRepo());
-        },
-        child: HomeView()),
+      create: (BuildContext context) {
+        return MainServicesCubit(MainServicesRepo());
+      },
+      child: HomeView(),
+    ),
     BlocProvider(
-        create: (BuildContext context) {
-          return OrdersCubit(OrdersRepo());
-        },
-        child: OrdersView()),
-    ConnectUsView()
+      create: (BuildContext context) {
+        return OrdersCubit(OrdersRepo());
+      },
+      child: OrdersView(),
+    ),
+    ConnectUsView(),
   ];
   int currentPage = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whColor,
+      body: views[currentPage],
+      bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColors.whColor,
-        body: views[currentPage],
-        bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: AppColors.whColor,
-          color: AppColors.primaryColor,
-          animationDuration: const Duration(milliseconds: 300),
-          index: currentPage,
-          onTap: (value) {
-            setState(() {
-              currentPage = value;
-            });
-          },
-          items: [
-            Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.center, // Center items vertically
-              children: [
-                SvgPicture.asset(
-                  AppAssets.carSvg,
-                  color: AppColors.whColor,
-                  width: 30,
-                  height: 30,
-                ),
-                2.verticalSpace, // Add some space between icon and text
-                Text(
-                  'Cars', // Label for Cars
-                  style: getSmallStyle(color: AppColors.whColor),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.home_outlined,
-                  color: AppColors.whColor,
-                  size: 30,
-                ),
-                2.verticalSpace,
-                Text(
-                  'Home', // Label for Home
-                  style: getSmallStyle(color: AppColors.whColor),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(AppAssets.oredrSvg,
-                    width: 27, height: 27, color: AppColors.whColor),
-                2.verticalSpace,
-                Text(
-                  'Orders', // Label for Offers
-                  style: getSmallStyle(color: AppColors.whColor),
-                  // style: TextStyle(color: AppColors.whColor, fontSize: 17),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(AppAssets.connectSvg,
-                    width: 30, height: 30, color: AppColors.whColor),
-                2.verticalSpace,
-                Text(
-                  'Contact Us', // Label for Connect Us
-                  style: getSmallStyle(color: AppColors.whColor),
-                ),
-              ],
-            ),
-          ],
-        ));
+        color: AppColors.primaryColor,
+        animationDuration: const Duration(milliseconds: 300),
+        index: currentPage,
+        onTap: (value) {
+          setState(() {
+            currentPage = value;
+          });
+        },
+        items: [
+          Column(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Center items vertically
+            children: [
+              SvgPicture.asset(
+                AppAssets.carSvg,
+                color: AppColors.whColor,
+                width: 30,
+                height: 30,
+              ),
+              2.verticalSpace, // Add some space between icon and text
+              Text(
+                'Cars', // Label for Cars
+                style: getSmallStyle(color: AppColors.whColor),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.home_outlined, color: AppColors.whColor, size: 30),
+              2.verticalSpace,
+              Text(
+                'Home', // Label for Home
+                style: getSmallStyle(color: AppColors.whColor),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                AppAssets.oredrSvg,
+                width: 27,
+                height: 27,
+                color: AppColors.whColor,
+              ),
+              2.verticalSpace,
+              Text(
+                'Orders', // Label for Offers
+                style: getSmallStyle(color: AppColors.whColor),
+                // style: TextStyle(color: AppColors.whColor, fontSize: 17),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                AppAssets.connectSvg,
+                width: 30,
+                height: 30,
+                color: AppColors.whColor,
+              ),
+              2.verticalSpace,
+              Text(
+                'Contact Us', // Label for Connect Us
+                style: getSmallStyle(color: AppColors.whColor),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

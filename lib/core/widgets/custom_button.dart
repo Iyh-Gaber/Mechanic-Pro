@@ -25,23 +25,26 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 50,
-        width: double.infinity,
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                side: borderColor != null
-                    ? BorderSide(color: borderColor ?? AppColors.primaryColor)
-                    : BorderSide.none,
+      height: 50,
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          side: borderColor != null
+              ? BorderSide(color: borderColor ?? AppColors.primaryColor)
+              : BorderSide.none,
 
-                // side: borderColor =!null ??  BorderSide(color:borderColor ):BorderSide.none,
-                backgroundColor: whColor ?? AppColors.primaryColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12))),
-            onPressed: onpressed,
-            child: Text(
-              text,
-              style:
-                  getSmallStyle(color: fgColor ?? Colors.white, fontSize: 19),
-            )));
+          // side: borderColor =!null ??  BorderSide(color:borderColor ):BorderSide.none,
+          backgroundColor: whColor ?? AppColors.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        onPressed: onpressed,
+        child: Text(
+          text,
+          style: getSmallStyle(color: fgColor ?? Colors.white, fontSize: 19),
+        ),
+      ),
+    );
   }
 }

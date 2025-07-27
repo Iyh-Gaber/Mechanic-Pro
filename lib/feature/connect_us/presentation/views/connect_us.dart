@@ -166,24 +166,26 @@ class ConnectUsView extends StatelessWidget {
           children: [
             // قسم الاتصال الهاتفي
             ContactCard(
-                icon: Icons.call,
-                title: LocaleKeys.CallUs.tr(),
-                subtitle: phoneNumber,
-                onTap: () => _launchURL('tel:$phoneNumber')),
+              icon: Icons.call,
+              title: LocaleKeys.CallUs.tr(),
+              subtitle: phoneNumber,
+              onTap: () => _launchURL('tel:$phoneNumber'),
+            ),
             const SizedBox(height: 15),
 
             // قسم البريد الإلكتروني
             ContactCard(
-                icon: Icons.email,
-                title: LocaleKeys.ContactUsbyEmail.tr(),
-                subtitle: emailAddress,
-                onTap: () => _launchURL('mailto:$emailAddress')),
+              icon: Icons.email,
+              title: LocaleKeys.ContactUsbyEmail.tr(),
+              subtitle: emailAddress,
+              onTap: () => _launchURL('mailto:$emailAddress'),
+            ),
             const SizedBox(height: 15), // أضفنا مسافة للبطاقة الجديدة
 
             ContactCard(
               icon: Icons.chat, // أيقونة محادثة مناسبة للواتساب
-              title: LocaleKeys.ContactUsbyChat
-                  .tr(), // ستحتاج لإضافة هذا المفتاح لملف الترجمة الخاص بك
+              title: LocaleKeys
+                  .ContactUsbyChat.tr(), // ستحتاج لإضافة هذا المفتاح لملف الترجمة الخاص بك
               subtitle: whatsappNumber,
               onTap: () => _launchURL(whatsappUrl),
             ),
@@ -195,18 +197,21 @@ class ConnectUsView extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             FAQItem(
-                question: LocaleKeys.HowcanIbookanappointmentformyvehicle.tr(),
-                answer: LocaleKeys.Youcanbookanappointmentforyourvehicle.tr()),
+              question: LocaleKeys.HowcanIbookanappointmentformyvehicle.tr(),
+              answer: LocaleKeys.Youcanbookanappointmentforyourvehicle.tr(),
+            ),
             FAQItem(
-                question: LocaleKeys.Whatpaymentmethodsdoyouaccept.tr(),
-                answer: LocaleKeys.Weacceptcashandcreditcardsandanyother.tr()),
+              question: LocaleKeys.Whatpaymentmethodsdoyouaccept.tr(),
+              answer: LocaleKeys.Weacceptcashandcreditcardsandanyother.tr(),
+            ),
             FAQItem(
-                question:
-                    LocaleKeys.Doyouprovideemergencymaintenanceservice.tr(),
-                answer: LocaleKeys.Yesweprovidemaintenancearoundtheclock.tr()),
+              question: LocaleKeys.Doyouprovideemergencymaintenanceservice.tr(),
+              answer: LocaleKeys.Yesweprovidemaintenancearoundtheclock.tr(),
+            ),
             FAQItem(
-                question: LocaleKeys.Thecostofrequestingservice.tr(),
-                answer: LocaleKeys.Thecostofrequestingserviceis250pounds.tr()),
+              question: LocaleKeys.Thecostofrequestingservice.tr(),
+              answer: LocaleKeys.Thecostofrequestingserviceis250pounds.tr(),
+            ),
 
             const SizedBox(height: 25),
 
@@ -220,20 +225,21 @@ class ConnectUsView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SocialMediaIcon(
-                    icon: Icons.facebook,
-                    label: LocaleKeys.facebook.tr(),
-                    onTap: () => _launchURL(facebookUrl)),
+                  icon: Icons.facebook,
+                  label: LocaleKeys.facebook.tr(),
+                  onTap: () => _launchURL(facebookUrl),
+                ),
 
                 SocialMediaIcon(
-                    icon: Icons.flutter_dash,
-                    label: LocaleKeys.twitter.tr(),
-                    onTap: () => _launchURL(
-                        twitterUrl)), // تم تغيير الأيقونة لأيقونة عامة
+                  icon: Icons.flutter_dash,
+                  label: LocaleKeys.twitter.tr(),
+                  onTap: () => _launchURL(twitterUrl),
+                ), // تم تغيير الأيقونة لأيقونة عامة
                 SocialMediaIcon(
-                    icon: Icons.camera_alt,
-                    label: LocaleKeys.instagram.tr(),
-                    onTap: () => _launchURL(
-                        instagramUrl)), // تم تغيير الأيقونة لأيقونة عامة
+                  icon: Icons.camera_alt,
+                  label: LocaleKeys.instagram.tr(),
+                  onTap: () => _launchURL(instagramUrl),
+                ), // تم تغيير الأيقونة لأيقونة عامة
               ],
             ),
           ],

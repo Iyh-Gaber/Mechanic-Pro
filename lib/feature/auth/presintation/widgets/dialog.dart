@@ -12,9 +12,9 @@ showDailogTaost(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-              // child: Lottie.asset('assets/images/Animation - 1740397466836.json',
-              //     width: 170),
-              ),
+            // child: Lottie.asset('assets/images/Animation - 1740397466836.json',
+            //     width: 170),
+          ),
         ],
       );
     },

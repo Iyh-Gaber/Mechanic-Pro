@@ -131,12 +131,12 @@ class DateTimePickerPart extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           labelStyle: const TextStyle(color: AppColors.primaryColor),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
           prefixIcon: Icon(icon, color: AppColors.primaryColor),
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 12.0,
+          ),
         ),
         child: Text(
           value,

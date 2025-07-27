@@ -6,9 +6,7 @@ import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 class EmergencyButton extends StatelessWidget {
-  const EmergencyButton({
-    super.key,
-  });
+  const EmergencyButton({super.key});
 
   @override
   Widget build(BuildContext context) {

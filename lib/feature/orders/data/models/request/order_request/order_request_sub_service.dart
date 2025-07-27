@@ -25,9 +25,12 @@ class OrderRequestSubService {
   final String? orderSubServiceName; // <--- **أضف هذا السطر**
 
   // <--- **تأكد أن الـ constructor يأخذ الحقل الجديد**
-  OrderRequestSubService({this.orderSubServiceName}); // <--- **عدل الـ constructor ليحتوي على الحقل**
+  OrderRequestSubService({
+    this.orderSubServiceName,
+  }); // <--- **عدل الـ constructor ليحتوي على الحقل**
 
   // <--- **تأكد أن الدوال المولدة تستخدم أسماء الدوال الصحيحة**
-  factory OrderRequestSubService.fromJson(Map<String, dynamic> json) => _$OrderRequestSubServiceFromJson(json);
+  factory OrderRequestSubService.fromJson(Map<String, dynamic> json) =>
+      _$OrderRequestSubServiceFromJson(json);
   Map<String, dynamic> toJson() => _$OrderRequestSubServiceToJson(this);
 }

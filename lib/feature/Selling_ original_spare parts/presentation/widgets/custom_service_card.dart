@@ -22,9 +22,7 @@ class CustomServiceCard extends StatelessWidget {
     return Card(
       color: AppColors.whColor,
       elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       margin: const EdgeInsets.all(12.0),
       child: Padding(
         padding: const EdgeInsets.all(10.0),

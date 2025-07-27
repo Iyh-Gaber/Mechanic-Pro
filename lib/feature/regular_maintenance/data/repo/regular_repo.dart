@@ -7,7 +7,9 @@ class RegularMaintenanceRepo {
   Future<RegularResponse?> getRegularServices() async {
     try {
       var response = await DioProvider.get(
-          endPoint: ApiConstants.regularMaintenanceServices, headers: {});
+        endPoint: ApiConstants.regularMaintenanceServices,
+        headers: {},
+      );
       if (response.statusCode == 200) {
         return RegularResponse.fromJson(response.data);
       } else {

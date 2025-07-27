@@ -118,17 +118,23 @@ class MainServicesCubit extends Cubit<MainServicesStates> {
         // إذا كنت ما زلت تحتاج لتخزينها في الكيوبيت (عادةً لا يلزم إذا كانت في الـ state)
         // mainServicesResponse = value;
 
-        emit(MainServicesSuccessState(
-            value)); // تمرير الاستجابة (value) مع حالة النجاح
+        emit(
+          MainServicesSuccessState(value),
+        ); // تمرير الاستجابة (value) مع حالة النجاح
       } else {
-        emit(MainServicesErrorState(
-            'something went wrong: Null response from repository. Please try again.')); // رسالة أوضح
+        emit(
+          MainServicesErrorState(
+            'something went wrong: Null response from repository. Please try again.',
+          ),
+        ); // رسالة أوضح
       }
     } catch (e) {
       print(
-          'Error in MainServicesCubit.fetchMainServices: $e'); // طباعة الخطأ الكامل
-      emit(MainServicesErrorState(
-          'An unexpected error occurred: ${e.toString()}')); // رسالة عامة للواجهة
+        'Error in MainServicesCubit.fetchMainServices: $e',
+      ); // طباعة الخطأ الكامل
+      emit(
+        MainServicesErrorState('An unexpected error occurred: ${e.toString()}'),
+      ); // رسالة عامة للواجهة
     }
   }
 }

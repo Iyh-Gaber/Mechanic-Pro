@@ -1,4 +1,4 @@
- /*import 'order_request_service.dart';
+/*import 'order_request_service.dart';
 
 class OrderRequest {
   int? userId;
@@ -64,7 +64,8 @@ class OrderRequest {
   });
 
   // استبدل الدالة المكتوبة يدوياً بـ fromJson المولدة
-  factory OrderRequest.fromJson(Map<String, dynamic> json) => _$OrderRequestFromJson(json);
+  factory OrderRequest.fromJson(Map<String, dynamic> json) =>
+      _$OrderRequestFromJson(json);
 
   // استبدل الدالة المكتوبة يدوياً بـ toJson المولدة
   Map<String, dynamic> toJson() => _$OrderRequestToJson(this);

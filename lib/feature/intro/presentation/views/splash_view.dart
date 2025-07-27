@@ -15,30 +15,23 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     //super.initState();
-    Future.delayed(
-      Duration(seconds: 2),
-      () {
-        if (context.mounted) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return WelcomeViews();
-              },
-            ),
-            (route) => false,
-          );
-        }
-      },
-    );
+    Future.delayed(Duration(seconds: 2), () {
+      if (context.mounted) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return WelcomeViews();
+            },
+          ),
+          (route) => false,
+        );
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Image.asset(AppAssets.logo),
-      ),
-    );
+    return Scaffold(body: Center(child: Image.asset(AppAssets.logo)));
   }
 }

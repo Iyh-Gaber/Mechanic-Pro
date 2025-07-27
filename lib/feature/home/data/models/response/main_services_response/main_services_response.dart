@@ -34,12 +34,12 @@ class MainServicesResponse {
   }
 
   Map<String, dynamic> toJson() => {
-        'data': data?.map((e) => e.toJson()).toList(),
-        'successMessage': successMessage,
-        'statusCode': statusCode,
-        'errorList': errorList,
-        'validationErrorList': validationErrorList,
-        'isSuccess': isSuccess,
-        'totalRecords': totalRecords,
-      };
+    'data': data?.map((e) => e.toJson()).toList(),
+    'successMessage': successMessage,
+    'statusCode': statusCode,
+    'errorList': errorList,
+    'validationErrorList': validationErrorList,
+    'isSuccess': isSuccess,
+    'totalRecords': totalRecords,
+  };
 }

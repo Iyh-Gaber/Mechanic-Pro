@@ -20,9 +20,7 @@ class AddNewCarsView extends StatelessWidget {
           child: ListView(
             children: [
               Text(LocaleKeys.carInformation.tr(), style: getSmallStyle()),
-              SizedBox(
-                height: 7,
-              ),
+              SizedBox(height: 7),
               TextformfieldWidget(
                 title: LocaleKeys.CarName.tr(),
                 //  hiteTitle: 'Write Name',
@@ -48,11 +46,12 @@ class AddNewCarsView extends StatelessWidget {
                 //  hiteTitle: 'Write Meter Reading (km)',
               ),
               CustomButton(
-                  text: LocaleKeys.RegisterCar.tr(),
-                  onpressed: () {
-                    context.pushNamed(Routes.carsRegister);
-                    //  context.pushTo(CarsRegister());
-                  }),
+                text: LocaleKeys.RegisterCar.tr(),
+                onpressed: () {
+                  context.pushNamed(Routes.carsRegister);
+                  //  context.pushTo(CarsRegister());
+                },
+              ),
             ],
           ),
         ),

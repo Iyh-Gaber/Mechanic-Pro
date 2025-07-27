@@ -119,7 +119,22 @@
   "OrderDate": "OrderDate",
   "OrderStatus": "OrderStatus",
   "OrderServices": "OrderServices",
-  "OrderSubServices": "OrderSubServices"
+  "OrderSubServices": "OrderSubServices",
+  "Request Your Service": "Request Your Service",
+  "Choose your services":"Choose your services",
+  "When Do You Need the Service":"When Do You Need the Service",
+  "Select Time":"Select Time",
+  "Select Date":"Select Date",
+  "Try Again":"Try Again",
+  "Something went wrong":"Something went wrong",
+  "Confirm":"Confirm",
+  "Your request has been confirmed successfully":"Your request has been confirmed successfully",
+  "Close":"Close",
+  "Selected Services": "Selected Services",
+  "Confirm Service Request": "Confirm Service Request",
+  "Error Loading Services":"Error Loading Services",
+  "No Services Available":"No Services Available"
+  
     
     
     

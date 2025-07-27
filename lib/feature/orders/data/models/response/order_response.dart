@@ -12,7 +12,8 @@ class OrderResponse {
   final String? successMessage;
   final int? statusCode;
   final List<String>? errorList;
-  final List<String>? validationErrorList; // قد يكون List<dynamic> إذا كانت الأنواع مختلفة
+  final List<String>?
+  validationErrorList; // قد يكون List<dynamic> إذا كانت الأنواع مختلفة
   final bool? isSuccess;
   final int? totalRecords;
 
@@ -28,9 +29,12 @@ class OrderResponse {
 
   factory OrderResponse.fromJson(Map<String, dynamic> json) {
     dynamic parsedData;
-    if (json['data'] is Map<String, dynamic> && json['data'].containsKey('orderNumber')) {
+    if (json['data'] is Map<String, dynamic> &&
+        json['data'].containsKey('orderNumber')) {
       // هذا هو سيناريو MakeOrder
-      parsedData = OrderNumberModel.fromJson(json['data'] as Map<String, dynamic>);
+      parsedData = OrderNumberModel.fromJson(
+        json['data'] as Map<String, dynamic>,
+      );
     } else if (json['data'] is List) {
       // هذا هو سيناريو GetAllOrders
       parsedData = (json['data'] as List<dynamic>)

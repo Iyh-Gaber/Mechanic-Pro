@@ -3,11 +3,7 @@ import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 class FAQItem extends StatelessWidget {
-  const FAQItem({
-    super.key,
-    required this.question,
-    required this.answer,
-  });
+  const FAQItem({super.key, required this.question, required this.answer});
 
   final String question;
   final String answer;
@@ -22,10 +18,7 @@ class FAQItem extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Text(
-            answer,
-            style: getSmallStyle(color: AppColors.grColor),
-          ),
+          child: Text(answer, style: getSmallStyle(color: AppColors.grColor)),
         ),
       ],
     );

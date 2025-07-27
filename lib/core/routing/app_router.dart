@@ -155,6 +155,8 @@ import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/c
 
 // استيراد جميع الشاشات التي تحتاجها
 import 'package:mechpro/feature/auth/presintation/views/registaration_view.dart';
+import 'package:mechpro/feature/auto_body_repair/data/repo/auto_body_repo.dart';
+import 'package:mechpro/feature/auto_body_repair/presentation/cubit/auto_body_cubit.dart';
 import 'package:mechpro/feature/home/presentation/views/home_view.dart';
 import 'package:mechpro/feature/notifications/presentation/views/notification_view.dart';
 import 'package:mechpro/feature/offers/presentation/views/offers.dart';
@@ -163,10 +165,13 @@ import 'package:mechpro/feature/orders/presentation/views/orders_view.dart';
 import 'package:mechpro/feature/other_services/presentation/views/other_services.dart';
 import 'package:mechpro/feature/profile/presentation/views/profile_view.dart';
 import 'package:mechpro/core/routing/routes.dart';
+import 'package:mechpro/feature/repairing_electrical_faults/data/repo/electrical_repo.dart';
+import 'package:mechpro/feature/repairing_electrical_faults/presentation/cubit/electrical_cubit.dart';
+import 'package:mechpro/feature/repairing_mechanical_faults/presentation/cubit/mechanical_cubit.dart';
 
 import '../../feature/Selling_ original_spare parts/presentation/views/Selling _original _spare_ parts.dart';
 import '../../feature/auth/presintation/views/forget_password_view.dart';
-import '../../feature/auto_body_repair/presentation/views/auto_body_repair.dart';
+import '../../feature/auto_body_repair/presentation/views/repairing_auto_body_view.dart';
 import '../../feature/car_rental/presentation/views/car_rental.dart';
 import '../../feature/cars_registration/presentation/views/add_new_car.dart';
 import '../../feature/cars_registration/presentation/views/cars_registration.dart';
@@ -174,6 +179,7 @@ import '../../feature/connect_us/presentation/views/connect_us.dart';
 import '../../feature/emergency_situations/presentation/views/emergency_view.dart';
 import '../../feature/intro/presentation/views/splash_view.dart';
 import '../../feature/layout/layout_view.dart';
+import '../../feature/other_services/presentation/cubit/other_services_cubit.dart';
 import '../../feature/regular_maintenance/data/repo/regular_repo.dart';
 import '../../feature/regular_maintenance/presentation/cubit/regular_services_cubit.dart';
 import '../../feature/regular_maintenance/presentation/views/regular_maintenance_view.dart';
@@ -221,14 +227,40 @@ class AppRouter {
           create: (context) => RegularServicesCubit(RegularMaintenanceRepo()),
           child: const RegularMaintenanceView(),
         );
+
       case Routes.repairingMechanicalFaultsView:
-        return const RepairingMechanicalFaultsView();
+        return BlocProvider(
+          create: (context) => MechanicalCubit(),
+          child: const RepairingMechanicalFaultsView(),
+        );
+
       case Routes.repairingElectricalFaultsView:
-        return const RepairingElectricalFaults();
+        return BlocProvider(
+          create: (context) => ElectricalCubit(ElectricalRepo()),
+          child: const RepairingElectricalFaults(),
+        );
+
       case Routes.repairingAutoBodyView:
-        return const RepairingAutoBodyView();
-      case Routes.otherServicesView:
-        return const OtherServicesView();
+        return BlocProvider(
+          create: (context) => AutoBodyCubit(), // لا يمرر repo في constructor
+          child: const RepairingAutoBodyView(
+            serviceName: '',
+          ), // لا يمرر serviceName هنا
+        );
+     
+     
+     
+    
+
+  case Routes.otherServicesView: 
+        return BlocProvider(
+          create: (context) => OtherServicesCubit(), 
+          
+          child: const OtherServicesView(),
+        );
+
+
+
 
       case Routes.sellingOriginalPartsView:
         return BlocProvider(
@@ -248,9 +280,7 @@ class AppRouter {
         return const SplashView();
       default:
         return Scaffold(
-          body: Center(
-            child: Text('Error: Route not found $routeName.'),
-          ),
+          body: Center(child: Text('Error: Route not found $routeName.')),
         );
     }
   }
@@ -263,7 +293,8 @@ class AppRouter {
     final String routeName = settings.name ?? '/'; // افتراضيًا المسار الجذر
 
     // شاشات المصادقة (لا تتطلب تسجيل دخول)
-    final bool isAuthScreen = routeName == Routes.registrationView ||
+    final bool isAuthScreen =
+        routeName == Routes.registrationView ||
         routeName == Routes.forgetPasswordView ||
         routeName == Routes.onboardingView ||
         routeName == Routes.splashView ||

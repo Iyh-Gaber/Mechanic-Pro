@@ -66,7 +66,6 @@ import 'package:mechpro/feature/orders/data/models/request/order_request/order_r
 import 'package:mechpro/feature/orders/data/models/response/datum_order.dart';
 import 'package:mechpro/feature/orders/data/models/response/order_response.dart'; // <--- **أضف هذا الاستيراد!**
 
-
 import 'package:mechpro/feature/orders/data/repo/order_repo.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
 
@@ -80,14 +79,19 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(const CreateOrderLoading()); // إصدار حالة التحميل
 
     try {
-      final OrderResponse response = await _ordersRepo.createOrder(order); // <--- تأكد أن نوع الاستجابة هو OrderResponse
+      final OrderResponse response = await _ordersRepo.createOrder(
+        order,
+      ); // <--- تأكد أن نوع الاستجابة هو OrderResponse
 
       if (response.isSuccess == true) {
         // إذا كان الـ OrderResponse قد يحتوي على OrderNumberModel في الـ data،
         // يجب أن تتحقق من نوعه هنا أو تعدل emit ليتناسب.
         // في حالتك الحالية، أنت ترجع فقط 'message'، وهذا قد يكون كافياً.
-        emit(CreateOrderSuccess(
-            message: response.successMessage ?? 'Order created successfully!'));
+        emit(
+          CreateOrderSuccess(
+            message: response.successMessage ?? 'Order created successfully!',
+          ),
+        );
       } else {
         String errorMessage = 'Failed to create order.';
         if (response.errorList != null && response.errorList!.isNotEmpty) {

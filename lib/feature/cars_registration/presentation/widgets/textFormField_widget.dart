@@ -6,9 +6,7 @@ import '../../../../core/utils/text_style.dart';
 class TextformfieldWidget extends StatelessWidget {
   String title;
   //String hiteTitle;
-  TextformfieldWidget({
-    required this.title,
-  });
+  TextformfieldWidget({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +21,8 @@ class TextformfieldWidget extends StatelessWidget {
           height: 57,
           child: TextFormField(
             decoration: InputDecoration(
-                // hintText: hiteTitle,
-                ),
+              // hintText: hiteTitle,
+            ),
           ),
         ),
         10.verticalSpace,

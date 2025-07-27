@@ -16,10 +16,7 @@ class EmergencyView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.whColor,
         elevation: 0,
-        title: Text(
-          LocaleKeys.EmergencySituations.tr(),
-          style: getBodyStyle(),
-        ),
+        title: Text(LocaleKeys.EmergencySituations.tr(), style: getBodyStyle()),
         centerTitle: true,
       ),
       body: Padding(
@@ -35,25 +32,28 @@ class EmergencyView extends StatelessWidget {
             ),
 
             EmergencyButtonsCustom(
-                context: context,
-                text: LocaleKeys.CallNow.tr(),
-                icon: Icons.phone,
-                color: const Color(0xFFEB5757),
-                onPressed: () {}),
+              context: context,
+              text: LocaleKeys.CallNow.tr(),
+              icon: Icons.phone,
+              color: const Color(0xFFEB5757),
+              onPressed: () {},
+            ),
 
             EmergencyButtonsCustom(
-                context: context,
-                text: LocaleKeys.Transportcrane.tr(),
-                icon: Icons.car_repair,
-                color: AppColors.primaryColor,
-                onPressed: () {}),
+              context: context,
+              text: LocaleKeys.Transportcrane.tr(),
+              icon: Icons.car_repair,
+              color: AppColors.primaryColor,
+              onPressed: () {},
+            ),
 
             EmergencyButtonsCustom(
-                context: context,
-                text: LocaleKeys.ReportAccident.tr(),
-                icon: Icons.warning_amber_rounded,
-                color: AppColors.primaryColor,
-                onPressed: () {}),
+              context: context,
+              text: LocaleKeys.ReportAccident.tr(),
+              icon: Icons.warning_amber_rounded,
+              color: AppColors.primaryColor,
+              onPressed: () {},
+            ),
 
             // Current Location Section
 
@@ -83,7 +83,6 @@ class EmergencyView extends StatelessWidget {
               ],
             ),
             */
-
             22.verticalSpace,
           ],
         ),

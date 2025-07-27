@@ -197,10 +197,7 @@ class _HomeViewState extends State<HomeView> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                AppColors.whColor,
-                AppColors.whColor,
-              ],
+              colors: [AppColors.whColor, AppColors.whColor],
               stops: [0.6, 0.3],
             ),
           ),
@@ -211,7 +208,6 @@ class _HomeViewState extends State<HomeView> {
                 OfferBanner(),
 
                 //  EmergencyButton(),
-
                 FutureWorkServices(),
 
                 Padding(
