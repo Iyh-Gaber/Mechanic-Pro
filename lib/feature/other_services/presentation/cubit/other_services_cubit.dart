@@ -32,11 +32,16 @@ class OtherServicesCubit extends Cubit<OtherServicesState> {
     try {
       emit(OtherServicesLoading());
       final response = await OtherServicesRepo().getOtherServices();
-      if (response != null && response.isSuccess == true) { // تأكد من isSuccess
+      if (response != null && response.isSuccess == true) {
+        // تأكد من isSuccess
         emit(OtherServicesSuccess(response));
       } else {
         // إذا كان response null أو isSuccess خاطئ، اعرض رسالة خطأ مناسبة
-        emit(OtherServicesError(response?.successMessage ?? 'Failed to load services.'));
+        emit(
+          OtherServicesError(
+            response?.successMessage ?? 'Failed to load services.',
+          ),
+        );
       }
     } catch (e) {
       emit(OtherServicesError(e.toString()));

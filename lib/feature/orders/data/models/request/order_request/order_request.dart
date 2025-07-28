@@ -47,7 +47,7 @@ part 'order_request.g.dart'; // أضف هذا السطر
 
 @JsonSerializable() // أضف هذا التعليق التوضيحي (annotation)
 class OrderRequest {
-  int? userId;
+  String? userId;
   String? userName;
   List<OrderRequestService>? orderServices;
   String? maintenanceCenter;

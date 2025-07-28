@@ -7,16 +7,18 @@ part of 'order_request.dart';
 // **************************************************************************
 
 OrderRequest _$OrderRequestFromJson(Map<String, dynamic> json) => OrderRequest(
-  userId: (json['userId'] as num?)?.toInt(),
+  userId: json['userId'] as String?,
   userName: json['userName'] as String?,
-  orderServices: (json['orderServices'] as List<dynamic>?)
-      ?.map((e) => OrderRequestService.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  orderServices:
+      (json['orderServices'] as List<dynamic>?)
+          ?.map((e) => OrderRequestService.fromJson(e as Map<String, dynamic>))
+          .toList(),
   maintenanceCenter: json['maintenanceCenter'] as String?,
   isHomeService: json['isHomeService'] as bool?,
-  orderDate: json['orderDate'] == null
-      ? null
-      : DateTime.parse(json['orderDate'] as String),
+  orderDate:
+      json['orderDate'] == null
+          ? null
+          : DateTime.parse(json['orderDate'] as String),
 );
 
 Map<String, dynamic> _$OrderRequestToJson(OrderRequest instance) =>

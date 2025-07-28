@@ -50,7 +50,9 @@ class OtherServicesRepo {
   Future<OtherServicesResponse?> getOtherServices() async {
     try {
       final token = AppLocaleStorage.getDate('firebaseToken'); // جلب التوكن
-      log('DEBUG: Firebase Token from AppLocaleStorage in OtherServicesRepo: $token'); // طباعة للتصحيح
+      log(
+        'DEBUG: Firebase Token from AppLocaleStorage in OtherServicesRepo: $token',
+      ); // طباعة للتصحيح
 
       var response = await DioProvider.get(
         endPoint: ApiConstants.otherServices,
@@ -60,11 +62,15 @@ class OtherServicesRepo {
         },
       );
       if (response.statusCode == 200) {
-        log('DEBUG: OtherServices API Response Status Code: ${response.statusCode}');
+        log(
+          'DEBUG: OtherServices API Response Status Code: ${response.statusCode}',
+        );
         log('DEBUG: OtherServices API Raw Response Data: ${response.data}');
         return OtherServicesResponse.fromJson(response.data);
       } else {
-        log('DEBUG: OtherServices API Error Status Code: ${response.statusCode}');
+        log(
+          'DEBUG: OtherServices API Error Status Code: ${response.statusCode}',
+        );
         return null;
       }
     } on Exception catch (e) {

@@ -25,11 +25,11 @@ class OtherServicesInitial extends OtherServicesState {}
 class OtherServicesLoading extends OtherServicesState {}
 
 class OtherServicesSuccess extends OtherServicesState {
-  final OtherServicesResponse response; // ****** تم التعديل لإضافة final property ******
+  final OtherServicesResponse response;
   OtherServicesSuccess(this.response);
 }
 
 class OtherServicesError extends OtherServicesState {
-  final String message; // ****** تم التعديل لإضافة final property ******
+  final String message;
   OtherServicesError(this.message);
 }

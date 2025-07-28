@@ -603,7 +603,8 @@ class ServiceCard<T> extends StatelessWidget {
       return (service as DatumElectrical).subServiceName;
     } else if (service is DatumAutoBody) {
       return (service as DatumAutoBody).subServiceName;
-    } else if (service is DatumOtherServices) { // **تم الإضافة**
+    } else if (service is DatumOtherServices) {
+      // **تم الإضافة**
       return (service as DatumOtherServices).subServiceName;
     }
     return null;
@@ -618,7 +619,8 @@ class ServiceCard<T> extends StatelessWidget {
       return (service as DatumElectrical).description;
     } else if (service is DatumAutoBody) {
       return (service as DatumAutoBody).description;
-    } else if (service is DatumOtherServices) { // **تم الإضافة**
+    } else if (service is DatumOtherServices) {
+      // **تم الإضافة**
       return (service as DatumOtherServices).description;
     }
     return null;
@@ -627,7 +629,8 @@ class ServiceCard<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serviceName = _getServiceName() ?? 'Service Name N/A';
-    final serviceDescription = _getServiceDescription() ?? 'No description available';
+    final serviceDescription =
+        _getServiceDescription() ?? 'No description available';
 
     return Container(
       decoration: BoxDecoration(

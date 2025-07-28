@@ -9,11 +9,13 @@ part of 'order_request_service.dart';
 OrderRequestService _$OrderRequestServiceFromJson(Map<String, dynamic> json) =>
     OrderRequestService(
       orderServiceName: json['orderServiceName'] as String?,
-      orderSubServices: (json['orderSubServices'] as List<dynamic>?)
-          ?.map(
-            (e) => OrderRequestSubService.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
+      orderSubServices:
+          (json['orderSubServices'] as List<dynamic>?)
+              ?.map(
+                (e) =>
+                    OrderRequestSubService.fromJson(e as Map<String, dynamic>),
+              )
+              .toList(),
     );
 
 Map<String, dynamic> _$OrderRequestServiceToJson(

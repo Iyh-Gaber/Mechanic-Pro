@@ -157,10 +157,13 @@ import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/c
 import 'package:mechpro/feature/auth/presintation/views/registaration_view.dart';
 import 'package:mechpro/feature/auto_body_repair/data/repo/auto_body_repo.dart';
 import 'package:mechpro/feature/auto_body_repair/presentation/cubit/auto_body_cubit.dart';
+import 'package:mechpro/feature/car_rental/presentation/cubit/car_rental_cubit.dart';
 import 'package:mechpro/feature/home/presentation/views/home_view.dart';
 import 'package:mechpro/feature/notifications/presentation/views/notification_view.dart';
 import 'package:mechpro/feature/offers/presentation/views/offers.dart';
 import 'package:mechpro/feature/onboarding/presentation/views/onboarding_view.dart';
+import 'package:mechpro/feature/orders/data/repo/order_repo.dart';
+import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:mechpro/feature/orders/presentation/views/orders_view.dart';
 import 'package:mechpro/feature/other_services/presentation/views/other_services.dart';
 import 'package:mechpro/feature/profile/presentation/views/profile_view.dart';
@@ -172,7 +175,7 @@ import 'package:mechpro/feature/repairing_mechanical_faults/presentation/cubit/m
 import '../../feature/Selling_ original_spare parts/presentation/views/Selling _original _spare_ parts.dart';
 import '../../feature/auth/presintation/views/forget_password_view.dart';
 import '../../feature/auto_body_repair/presentation/views/repairing_auto_body_view.dart';
-import '../../feature/car_rental/presentation/views/car_rental.dart';
+import '../../feature/car_rental/presentation/views/car_rental_view.dart';
 import '../../feature/cars_registration/presentation/views/add_new_car.dart';
 import '../../feature/cars_registration/presentation/views/cars_registration.dart';
 import '../../feature/connect_us/presentation/views/connect_us.dart';
@@ -185,7 +188,7 @@ import '../../feature/regular_maintenance/presentation/cubit/regular_services_cu
 import '../../feature/regular_maintenance/presentation/views/regular_maintenance_view.dart';
 import '../../feature/repairing_electrical_faults/presentation/views/repairing_electrical_faults.dart';
 import '../../feature/repairing_mechanical_faults/presentation/views/repairing_mechanical_faults.dart';
-import '../../feature/tool_rental/presentation/views/tool_rental .dart';
+import '../../feature/tool_rental/presentation/views/tool_rental_view .dart';
 
 // استيراد AuthCubit
 import '../../feature/auth/presintation/cubit/auth_cubit.dart';
@@ -247,20 +250,13 @@ class AppRouter {
             serviceName: '',
           ), // لا يمرر serviceName هنا
         );
-     
-     
-     
-    
 
-  case Routes.otherServicesView: 
+      case Routes.otherServicesView:
         return BlocProvider(
-          create: (context) => OtherServicesCubit(), 
-          
+          create: (context) => OtherServicesCubit(),
+
           child: const OtherServicesView(),
         );
-
-
-
 
       case Routes.sellingOriginalPartsView:
         return BlocProvider(
@@ -272,8 +268,26 @@ class AppRouter {
         return const EmergencyView();
       case Routes.ordersView:
         return const OrdersView();
-      case Routes.carRentalView:
-        return const CarRentalView();
+
+
+
+
+     
+
+  case Routes.carRentalView:
+        // توفير CarRentalCubit و OrdersCubit لشاشة CarRentalView
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<CarRentalCubit>(
+              create: (context) => CarRentalCubit(),
+            ),
+            BlocProvider<OrdersCubit>(
+              create: (context) => OrdersCubit(OrdersRepo()), // توفير OrdersRepo
+            ),
+          ],
+          child: const CarRentalView(),
+        );
+
       case Routes.toolRentalView:
         return const ToolRentalView();
       case Routes.splashView:

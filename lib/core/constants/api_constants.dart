@@ -15,9 +15,14 @@ class ApiConstants {
   static const String baseUrl = 'http://www.MechPro.somee.com/';
 
   static const String mainServices = 'api/Services/GetAllServices/1';
-static const String otherServices = 'api/SubServices/GetAllSubServices/Other services';
+  static const String otherServices =
+      'api/SubServices/GetAllSubServices/Other services';
   static const String regularMaintenanceServices =
       'api/SubServices/GetAllSubServices/Regular maintenance';
+  static const String carRental =
+      "api/SubServices/GetAllSubServices/Car Rental";
+  static const String toolRental =
+      "api/SubServices/GetAllSubServices/Tool Rental";
   static const String mechanicalFaults =
       'api/SubServices/GetAllSubServices/Repairing mechanical faults';
 

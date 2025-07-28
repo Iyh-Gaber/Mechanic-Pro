@@ -15,7 +15,6 @@ class OtherServicesView extends StatelessWidget {
 }
 */
 
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +36,6 @@ import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service
 
 import 'package:mechpro/core/routing/app_router.dart';
 import 'package:mechpro/core/routing/routes.dart';
-
 
 class OtherServicesView extends StatefulWidget {
   // لا تستقبل serviceName هنا، تماماً مثل RepairingElectricalFaults
@@ -133,9 +131,11 @@ class _OtherServicesViewState extends State<OtherServicesView> {
     return _selectedServices.isNotEmpty &&
         _selectedDate != null &&
         _selectedTime != null &&
-        (_selectedLocationType == LocaleKeys.ourBranch.tr() && _selectedBranch != null ||
+        (_selectedLocationType == LocaleKeys.ourBranch.tr() &&
+                _selectedBranch != null ||
             _selectedLocationType == LocaleKeys.mylocation.tr() &&
-                (_addressController.text.isNotEmpty || _hasContactedForLocation));
+                (_addressController.text.isNotEmpty ||
+                    _hasContactedForLocation));
   }
 
   void _confirmService() {
@@ -238,9 +238,11 @@ class _OtherServicesViewState extends State<OtherServicesView> {
             17.verticalSpace,
             BlocBuilder<OtherServicesCubit, OtherServicesState>(
               builder: (context, state) {
-                if (state is OtherServicesLoading) { // لاحظ: الاسم هنا OtherServicesLoading
+                if (state is OtherServicesLoading) {
+                  // لاحظ: الاسم هنا OtherServicesLoading
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is OtherServicesSuccess) { // لاحظ: الاسم هنا OtherServicesSuccess
+                } else if (state is OtherServicesSuccess) {
+                  // لاحظ: الاسم هنا OtherServicesSuccess
                   final List<DatumOtherServices> otherServices =
                       state.response.data ?? [];
                   if (otherServices.isEmpty) {
@@ -253,11 +255,11 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16.0,
-                      mainAxisSpacing: 16.0,
-                      childAspectRatio: 0.7,
-                    ),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16.0,
+                          mainAxisSpacing: 16.0,
+                          childAspectRatio: 0.7,
+                        ),
                     itemCount: otherServices.length,
                     itemBuilder: (context, index) {
                       final service = otherServices[index];
@@ -275,7 +277,8 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                             }
                           });
                         },
-                        child: ServiceCard<DatumOtherServices>( // تأكد من Generic Type
+                        child: ServiceCard<DatumOtherServices>(
+                          // تأكد من Generic Type
                           service: service,
                           isSelected: isSelected,
                           icon: icon,
@@ -283,7 +286,8 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                       );
                     },
                   );
-                } else if (state is OtherServicesError) { // لاحظ: الاسم هنا OtherServicesError
+                } else if (state is OtherServicesError) {
+                  // لاحظ: الاسم هنا OtherServicesError
                   return Center(
                     child: Text(
                       LocaleKeys.ErrorLoadingServices.tr(args: [state.message]),
@@ -400,7 +404,8 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                           controller: _addressController,
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
-                            labelText: LocaleKeys.EnterYourDetailedAddressOptional.tr(),
+                            labelText: LocaleKeys
+                                .EnterYourDetailedAddressOptional.tr(),
                             labelStyle: getSmallStyle(
                               color: AppColors.primaryColor,
                             ),
@@ -411,7 +416,10 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            prefixIcon: const Icon(Icons.location_on, color: AppColors.primaryColor),
+                            prefixIcon: const Icon(
+                              Icons.location_on,
+                              color: AppColors.primaryColor,
+                            ),
                             contentPadding: const EdgeInsets.symmetric(
                               vertical: 16.0,
                               horizontal: 12.0,
@@ -489,7 +497,10 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0),
                         ),
-                        prefixIcon: const Icon(Icons.store, color: AppColors.primaryColor),
+                        prefixIcon: const Icon(
+                          Icons.store,
+                          color: AppColors.primaryColor,
+                        ),
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 12.0,

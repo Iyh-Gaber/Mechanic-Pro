@@ -14,7 +14,7 @@
   }
 }
 */
-
+/*
 import 'package:json_annotation/json_annotation.dart'; // <--- **تأكد من وجود هذا الاستيراد**
 
 part 'order_request_sub_service.g.dart'; // <--- **تأكد من وجود هذا السطر بالظبط**
@@ -30,6 +30,21 @@ class OrderRequestSubService {
   }); // <--- **عدل الـ constructor ليحتوي على الحقل**
 
   // <--- **تأكد أن الدوال المولدة تستخدم أسماء الدوال الصحيحة**
+  factory OrderRequestSubService.fromJson(Map<String, dynamic> json) =>
+      _$OrderRequestSubServiceFromJson(json);
+  Map<String, dynamic> toJson() => _$OrderRequestSubServiceToJson(this);
+}
+*/
+import 'package:json_annotation/json_annotation.dart';
+
+part 'order_request_sub_service.g.dart';
+
+@JsonSerializable()
+class OrderRequestSubService {
+  final String? orderSubServiceName;
+
+  OrderRequestSubService({this.orderSubServiceName});
+
   factory OrderRequestSubService.fromJson(Map<String, dynamic> json) =>
       _$OrderRequestSubServiceFromJson(json);
   Map<String, dynamic> toJson() => _$OrderRequestSubServiceToJson(this);

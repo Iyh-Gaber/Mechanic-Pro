@@ -154,4 +154,14 @@ abstract class LocaleKeys {
   static const ErrorLoadingServices = "Error Loading Services";
 
   static const NoServicesAvailable = "No Services Available";
+
+  static var PleaseFillAllFields;
+
+  static var RepairingElectricalFaults;
+
+  static var LoginRequired;
+
+  static var ConfirmOrder;
+
+  static var SelectedService;
 }
