@@ -127,7 +127,10 @@
   "Selected Services": "الخدمات المحددة",
   "Confirm Service Request": "تأكيد طلب الخدمة",
    "Error Loading Services":"خطأ في تحميل الخدمات",
-  "No Services Available":"لا يوجد خدمات متاحة"
+  "No Services Available":"لا يوجد خدمات متاحة",
+  "Tool Rental":"تأجير الأدوات",
+  "Will Contact For Details":"سوف يتواصل معك للحصول على التفاصيل",
+  "Location Not Specified":"الموقع غير محدد"
 
       
     
