@@ -87,7 +87,7 @@ import '../connect_us/presentation/views/connect_us.dart';
 import '../home/presentation/cubit/main_services_cubit.dart';
 import '../home/presentation/views/home_view.dart';
 
-import '../offers/presentation/views/offers.dart';
+import '../offers/presentation/views/offers_view.dart';
 import '../orders/data/repo/order_repo.dart';
 
 class LayoutView extends StatefulWidget {

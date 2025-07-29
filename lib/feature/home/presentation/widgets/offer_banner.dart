@@ -35,6 +35,7 @@ class _OfferBannerState extends State<OfferBanner> {
               borderRadius: BorderRadius.circular(12.0),
               image: DecorationImage(
                 image: AssetImage(AppAssets.offer),
+
                 fit: BoxFit.cover,
               ),
             ),

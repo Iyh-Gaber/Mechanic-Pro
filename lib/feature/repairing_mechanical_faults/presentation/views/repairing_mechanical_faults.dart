@@ -3555,7 +3555,6 @@ class _RepairingMechanicalFaultsViewState
 }
 */
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
@@ -3581,12 +3580,12 @@ import 'package:mechpro/feature/regular_maintenance/presentation/widgets/locatio
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart'; // استيراد ServiceCard
 import 'package:mechpro/core/widgets/section_header.dart'; // استيراد SectionHeader
 
-
 class RepairingMechanicalFaultsView extends StatefulWidget {
   const RepairingMechanicalFaultsView({super.key});
 
   @override
-  State<RepairingMechanicalFaultsView> createState() => _RepairingMechanicalFaultsViewState();
+  State<RepairingMechanicalFaultsView> createState() =>
+      _RepairingMechanicalFaultsViewState();
 }
 
 // يمكنك إضافة مسارات صور خاصة بإصلاح الأعطال الميكانيكية هنا إذا أردت
@@ -3596,7 +3595,8 @@ final List<String> _imagePaths = [
   // تأكد من أن هذه المسارات صحيحة وأن الصور موجودة في مجلد الأصول
 ];
 
-class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFaultsView> {
+class _RepairingMechanicalFaultsViewState
+    extends State<RepairingMechanicalFaultsView> {
   static final Map<String, IconData> _serviceIcons = {
     'Engine and Transmission Repair': Icons.car_crash,
     'Suspension and Steering Repair': Icons.settings,
@@ -3639,7 +3639,9 @@ class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFault
   void initState() {
     super.initState();
     // جلب بيانات خدمات إصلاح الأعطال الميكانيكية عند تهيئة الودجت
-    context.read<MechanicalCubit>().getMechanical(); // استبدل بـ دالة جلب الخدمات الفعلية
+    context
+        .read<MechanicalCubit>()
+        .getMechanical(); // استبدل بـ دالة جلب الخدمات الفعلية
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -3674,7 +3676,7 @@ class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFault
         _selectedDate != null &&
         _selectedTime != null &&
         (_selectedLocationType == LocaleKeys.ourBranch.tr() &&
-            _selectedBranch != null ||
+                _selectedBranch != null ||
             _selectedLocationType == LocaleKeys.mylocation.tr() &&
                 (_addressController.text.isNotEmpty ||
                     _hasContactedForLocation));
@@ -3696,21 +3698,28 @@ class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFault
     if (firebaseUserId == null) {
       print('ERROR: Firebase User ID is null. Cannot create order.');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.')),
+        const SnackBar(
+          content: Text(
+            'خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.',
+          ),
+        ),
       );
       return;
     }
 
     // بناء قائمة الخدمات الفرعية للطلب
     final List<OrderRequestSubService> orderSubServices = _selectedServices
-        .map((service) => OrderRequestSubService(
-              orderSubServiceName: service.subServiceName,
-            ))
+        .map(
+          (service) => OrderRequestSubService(
+            orderSubServiceName: service.subServiceName,
+          ),
+        )
         .toList();
 
     // بناء خدمة الطلب الرئيسية
     final orderRequestService = OrderRequestService(
-      orderServiceName: "Mechanical Repair Service", // اسم عام لخدمة إصلاح الأعطال الميكانيكية
+      orderServiceName:
+          "Mechanical Repair Service", // اسم عام لخدمة إصلاح الأعطال الميكانيكية
       orderSubServices: orderSubServices,
     );
 
@@ -3759,11 +3768,17 @@ class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFault
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}'),
+                Text(
+                  '${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}'),
+                Text(
+                  '${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}'),
+                Text(
+                  '${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}',
+                ),
                 const SizedBox(height: 8),
                 Text('${LocaleKeys.Location.tr()}: $locationDetails'),
               ],
@@ -3809,12 +3824,16 @@ class _RepairingMechanicalFaultsViewState extends State<RepairingMechanicalFault
               title: LocaleKeys.Chooseyourservices.tr(),
             ),
             17.verticalSpace,
-            BlocBuilder<MechanicalCubit, MechanicalStates>( // تأكد من اسم Cubit وحالته الصحيحة
+            BlocBuilder<MechanicalCubit, MechanicalStates>(
+              // تأكد من اسم Cubit وحالته الصحيحة
               builder: (context, state) {
-                if (state is MechanicalLoadingState) { // تأكد من اسم حالة التحميل الصحيحة
+                if (state is MechanicalLoadingState) {
+                  // تأكد من اسم حالة التحميل الصحيحة
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is MechanicalSuccessState) { // تأكد من اسم حالة النجاح الصحيحة
-                  final mechanicalServices = state.value.data ?? []; // تأكد من اسم استجابة API
+                } else if (state is MechanicalSuccessState) {
+                  // تأكد من اسم حالة النجاح الصحيحة
+                  final mechanicalServices =
+                      state.value.data ?? []; // تأكد من اسم استجابة API
 
                   if (mechanicalServices.isEmpty) {
                     return Center(

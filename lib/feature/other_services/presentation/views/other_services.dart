@@ -586,7 +586,6 @@ import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class OtherServicesView extends StatefulWidget {
   // لا تستقبل serviceName هنا، تماماً مثل RepairingElectricalFaults
   const OtherServicesView({super.key});
@@ -682,7 +681,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
         _selectedDate != null &&
         _selectedTime != null &&
         (_selectedLocationType == LocaleKeys.ourBranch.tr() &&
-            _selectedBranch != null ||
+                _selectedBranch != null ||
             _selectedLocationType == LocaleKeys.mylocation.tr() &&
                 (_addressController.text.isNotEmpty ||
                     _hasContactedForLocation));
@@ -703,16 +702,22 @@ class _OtherServicesViewState extends State<OtherServicesView> {
     if (firebaseUserId == null) {
       print('ERROR: Firebase User ID is null. Cannot create order.');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.')),
+        const SnackBar(
+          content: Text(
+            'خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.',
+          ),
+        ),
       );
       return;
     }
 
     // بناء قائمة الخدمات الفرعية للطلب
     final List<OrderRequestSubService> orderSubServices = _selectedServices
-        .map((service) => OrderRequestSubService(
-              orderSubServiceName: service.subServiceName,
-            ))
+        .map(
+          (service) => OrderRequestSubService(
+            orderSubServiceName: service.subServiceName,
+          ),
+        )
         .toList();
 
     // بناء خدمة الطلب الرئيسية
@@ -766,11 +771,17 @@ class _OtherServicesViewState extends State<OtherServicesView> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}'),
+                Text(
+                  '${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}'),
+                Text(
+                  '${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}'),
+                Text(
+                  '${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}',
+                ),
                 const SizedBox(height: 8),
                 Text('${LocaleKeys.Location.tr()}: $locationDetails'),
               ],
@@ -811,9 +822,9 @@ class _OtherServicesViewState extends State<OtherServicesView> {
           BlocListener<OtherServicesCubit, OtherServicesState>(
             listener: (context, state) {
               if (state is OtherServicesError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -822,14 +833,14 @@ class _OtherServicesViewState extends State<OtherServicesView> {
               if (state is CreateOrderLoading) {
                 // يمكنك عرض مؤشر تحميل هنا
               } else if (state is CreateOrderSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -894,7 +905,9 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                   } else if (state is OtherServicesError) {
                     return Center(
                       child: Text(
-                        LocaleKeys.ErrorLoadingServices.tr(args: [state.message]),
+                        LocaleKeys.ErrorLoadingServices.tr(
+                          args: [state.message],
+                        ),
                       ),
                     );
                   }
@@ -945,7 +958,9 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                         return ChoiceChip(
                           label: Text(time.format(context)),
                           selected: isSelected,
-                          selectedColor: AppColors.primaryColor.withOpacity(0.7),
+                          selectedColor: AppColors.primaryColor.withOpacity(
+                            0.7,
+                          ),
                           labelStyle: TextStyle(
                             color: isSelected ? Colors.white : Colors.black87,
                             fontWeight: isSelected
@@ -1013,7 +1028,8 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                               labelStyle: getSmallStyle(
                                 color: AppColors.primaryColor,
                               ),
-                              hintText: LocaleKeys.ElnezlawyStBuilding10Apt5.tr(),
+                              hintText:
+                                  LocaleKeys.ElnezlawyStBuilding10Apt5.tr(),
                               hintStyle: getSmallStyle(
                                 color: AppColors.primaryColor,
                               ),
@@ -1050,7 +1066,9 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                               SnackBar(
                                 content: Text(
                                   LocaleKeys.NavigatingtoContactUsscreen.tr(),
-                                  style: getSmallStyle(color: AppColors.whColor),
+                                  style: getSmallStyle(
+                                    color: AppColors.whColor,
+                                  ),
                                 ),
                                 backgroundColor: AppColors.primaryColor,
                               ),

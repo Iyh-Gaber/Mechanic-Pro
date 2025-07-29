@@ -554,7 +554,6 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
 }
 */
 
-
 /*
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -1195,7 +1194,6 @@ import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class RepairingElectricalFaults extends StatefulWidget {
   const RepairingElectricalFaults({super.key});
 
@@ -1296,7 +1294,7 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
         _selectedDate != null &&
         _selectedTime != null &&
         (_selectedLocationType == LocaleKeys.ourBranch.tr() &&
-            _selectedBranch != null ||
+                _selectedBranch != null ||
             _selectedLocationType == LocaleKeys.mylocation.tr() &&
                 (_addressController.text.isNotEmpty ||
                     _hasContactedForLocation));
@@ -1319,21 +1317,28 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
     if (firebaseUserId == null) {
       print('ERROR: Firebase User ID is null. Cannot create order.');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.')),
+        const SnackBar(
+          content: Text(
+            'خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.',
+          ),
+        ),
       );
       return;
     }
 
     // بناء قائمة الخدمات الفرعية للطلب
     final List<OrderRequestSubService> orderSubServices = _selectedServices
-        .map((service) => OrderRequestSubService(
-              orderSubServiceName: service.subServiceName,
-            ))
+        .map(
+          (service) => OrderRequestSubService(
+            orderSubServiceName: service.subServiceName,
+          ),
+        )
         .toList();
 
     // بناء خدمة الطلب الرئيسية
     final orderRequestService = OrderRequestService(
-      orderServiceName: "Electrical Fault Repair Service", // اسم عام لخدمة إصلاح الأعطال الكهربائية
+      orderServiceName:
+          "Electrical Fault Repair Service", // اسم عام لخدمة إصلاح الأعطال الكهربائية
       orderSubServices: orderSubServices,
     );
 
@@ -1383,11 +1388,17 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
             child: ListBody(
               children: <Widget>[
                 // تم دمج النصوص مع المتغيرات مباشرة بناءً على ملف الترجمة الحالي
-                Text('${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}'),
+                Text(
+                  '${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}'),
+                Text(
+                  '${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}'),
+                Text(
+                  '${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}',
+                ),
                 const SizedBox(height: 8),
                 Text('${LocaleKeys.Location.tr()}: $locationDetails'),
               ],
@@ -1402,10 +1413,14 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop(); // إغلاق الـ AlertDialog بعد التأكيد
+                Navigator.of(
+                  context,
+                ).pop(); // إغلاق الـ AlertDialog بعد التأكيد
                 // استدعاء Cubit لإنشاء الطلب
                 context.read<OrdersCubit>().createNewOrder(orderRequest);
-                print('تم الضغط على زر الحجز لـ: Electrical Fault Repair Service');
+                print(
+                  'تم الضغط على زر الحجز لـ: Electrical Fault Repair Service',
+                );
               },
               child: Text(LocaleKeys.Confirm.tr()),
             ),
@@ -1423,14 +1438,15 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
         showLeading: true,
         onLeadingPressed: () => Navigator.of(context).pop(),
       ),
-      body: MultiBlocListener( // استخدام MultiBlocListener للاستماع لأكثر من Cubit
+      body: MultiBlocListener(
+        // استخدام MultiBlocListener للاستماع لأكثر من Cubit
         listeners: [
           BlocListener<ElectricalCubit, ElectricalState>(
             listener: (context, state) {
               if (state is ElectricalErrorState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -1439,14 +1455,14 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
               if (state is CreateOrderLoading) {
                 // يمكنك عرض مؤشر تحميل هنا
               } else if (state is CreateOrderSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -1468,7 +1484,8 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
                   } else if (state is ElectricalSuccessState) {
                     // التعديل هنا: تبسيط تعيين electricalServices
                     // بما أن state.response.data هو بالفعل List<DatumElectrical>
-                    final List<DatumElectrical> electricalServices = state.response.data ?? [];
+                    final List<DatumElectrical> electricalServices =
+                        state.response.data ?? [];
 
                     if (electricalServices.isEmpty) {
                       return Center(
@@ -1504,7 +1521,8 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
                             });
                           },
                           // استخدام ServiceCard العامة التي قدمتها
-                          child: ServiceCard<DatumElectrical>( // تحديد النوع العام هنا
+                          child: ServiceCard<DatumElectrical>(
+                            // تحديد النوع العام هنا
                             service: service,
                             isSelected: isSelected,
                             icon: icon,
@@ -1515,7 +1533,9 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
                   } else if (state is ElectricalErrorState) {
                     return Center(
                       child: Text(
-                        LocaleKeys.ErrorLoadingServices.tr(args: [state.message]),
+                        LocaleKeys.ErrorLoadingServices.tr(
+                          args: [state.message],
+                        ),
                       ),
                     );
                   }
@@ -1567,7 +1587,9 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
                         return ChoiceChip(
                           label: Text(time.format(context)),
                           selected: isSelected,
-                          selectedColor: AppColors.primaryColor.withOpacity(0.7),
+                          selectedColor: AppColors.primaryColor.withOpacity(
+                            0.7,
+                          ),
                           labelStyle: TextStyle(
                             color: isSelected ? Colors.white : Colors.black87,
                             fontWeight: isSelected
@@ -1635,7 +1657,8 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
                               labelStyle: getSmallStyle(
                                 color: AppColors.primaryColor,
                               ),
-                              hintText: LocaleKeys.ElnezlawyStBuilding10Apt5.tr(),
+                              hintText:
+                                  LocaleKeys.ElnezlawyStBuilding10Apt5.tr(),
                               hintStyle: getSmallStyle(
                                 color: AppColors.primaryColor,
                               ),

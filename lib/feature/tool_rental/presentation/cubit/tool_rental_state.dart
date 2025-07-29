@@ -1,5 +1,3 @@
-
-
 import 'package:mechpro/feature/tool_rental/data/models/response/tool_rental_response/tool_rental_response.dart';
 
 abstract class ToolRentalStates {}
@@ -15,5 +13,5 @@ class ToolRentalSuccessState extends ToolRentalStates {
 
 class ToolRentalErrorState extends ToolRentalStates {
   final String error;
- ToolRentalErrorState(this.error);
+  ToolRentalErrorState(this.error);
 }

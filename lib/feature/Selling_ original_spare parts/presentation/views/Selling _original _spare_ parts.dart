@@ -261,8 +261,6 @@ import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/c
 import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/cubit/selling_state.dart';
 import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/widgets/custom_service_card.dart';
 
-
-
 // استيرادات لمنطق الحجز
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_service.dart';
@@ -274,7 +272,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 // لم تعد هذه الاستيرادات مستخدمة بعد إزالة الـ dialog
 // import 'package:mechpro/feature/regular_maintenance/presentation/widgets/date_time_picker_part.dart';
 // import 'package:mechpro/feature/regular_maintenance/presentation/widgets/location_part.dart';
-
 
 class SellingOriginalPartsView extends StatefulWidget {
   const SellingOriginalPartsView({super.key});
@@ -316,14 +313,15 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: MultiBlocListener( // استخدام MultiBlocListener للاستماع لأكثر من Cubit
+      body: MultiBlocListener(
+        // استخدام MultiBlocListener للاستماع لأكثر من Cubit
         listeners: [
           BlocListener<SellingCubit, SellingStates>(
             listener: (context, state) {
               if (state is SellingErrorState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.error)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.error)));
               }
             },
           ),
@@ -332,15 +330,15 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
               if (state is CreateOrderLoading) {
                 // يمكنك عرض مؤشر تحميل هنا
               } else if (state is CreateOrderSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
                 // التوجيه إلى شاشة الطلبات بعد نجاح الطلب
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -377,37 +375,52 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
                           final user = FirebaseAuth.instance.currentUser;
                           if (user == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('الرجاء تسجيل الدخول لإجراء طلب.')),
+                              const SnackBar(
+                                content: Text(
+                                  'الرجاء تسجيل الدخول لإجراء طلب.',
+                                ),
+                              ),
                             );
                             return;
                           }
 
                           final String? firebaseUserId = user.uid;
                           if (firebaseUserId == null) {
-                            print('ERROR: Firebase User ID is null. Cannot create order.');
+                            print(
+                              'ERROR: Firebase User ID is null. Cannot create order.',
+                            );
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.')),
+                              const SnackBar(
+                                content: Text(
+                                  'خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.',
+                                ),
+                              ),
                             );
                             return;
                           }
 
                           // استخدام قيم افتراضية للتاريخ والوقت والموقع لعملية الشراء المباشرة
-                          final String locationDetails = "Online Purchase - Pickup at Main Branch";
+                          final String locationDetails =
+                              "Online Purchase - Pickup at Main Branch";
                           const bool isHomeService = false;
                           final DateTime orderDateTime = DateTime.now();
 
                           final orderRequestService = OrderRequestService(
-                            orderServiceName: "Selling Original Spare Parts", // اسم الخدمة
+                            orderServiceName:
+                                "Selling Original Spare Parts", // اسم الخدمة
                             orderSubServices: [
                               OrderRequestSubService(
                                 orderSubServiceName: item.subServiceName,
-                              )
+                              ),
                             ],
                           );
 
                           final orderRequest = OrderRequest(
                             userId: firebaseUserId,
-                            userName: user.displayName ?? user.email ?? 'Unknown User',
+                            userName:
+                                user.displayName ??
+                                user.email ??
+                                'Unknown User',
                             orderServices: [orderRequestService],
                             maintenanceCenter: locationDetails,
                             isHomeService: isHomeService,
@@ -415,18 +428,24 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
                           );
 
                           // استدعاء Cubit لإنشاء الطلب
-                          context.read<OrdersCubit>().createNewOrder(orderRequest);
-                          print('تم الضغط على زر الشراء لـ: ${item.subServiceName} - تم إنشاء الطلب مباشرة.');
+                          context.read<OrdersCubit>().createNewOrder(
+                            orderRequest,
+                          );
+                          print(
+                            'تم الضغط على زر الشراء لـ: ${item.subServiceName} - تم إنشاء الطلب مباشرة.',
+                          );
                         },
                       );
                     },
                   );
                 } else if (state is SellingErrorState) {
-                  return Center(child: Text(LocaleKeys.ErrorLoadingServices.tr(args: [state.error])));
+                  return Center(
+                    child: Text(
+                      LocaleKeys.ErrorLoadingServices.tr(args: [state.error]),
+                    ),
+                  );
                 }
-                return const Center(
-                  child: Text(''),
-                );
+                return const Center(child: Text(''));
               },
             ),
           ),

@@ -176,9 +176,9 @@ abstract class LocaleKeys {
 
   static const NoServicesAvailable = "No Services Available";
 
-  static const LocationNotSpecified="Location Not Specified";
+  static const LocationNotSpecified = "Location Not Specified";
 
-  static const WillContactForDetails="Will Contact For Details";
+  static const WillContactForDetails = "Will Contact For Details";
 
-  static const ToolRental="Tool Rental";
+  static const ToolRental = "Tool Rental";
 }

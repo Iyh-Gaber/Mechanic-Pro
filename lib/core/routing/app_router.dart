@@ -355,7 +355,7 @@ import 'package:mechpro/feature/auto_body_repair/data/repo/auto_body_repo.dart';
 import 'package:mechpro/feature/auto_body_repair/presentation/cubit/auto_body_cubit.dart';
 import 'package:mechpro/feature/home/presentation/views/home_view.dart';
 import 'package:mechpro/feature/notifications/presentation/views/notification_view.dart';
-import 'package:mechpro/feature/offers/presentation/views/offers.dart';
+import 'package:mechpro/feature/offers/presentation/views/offers_view.dart';
 import 'package:mechpro/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:mechpro/feature/orders/presentation/views/orders_view.dart';
 import 'package:mechpro/feature/other_services/presentation/views/other_services.dart';
@@ -389,7 +389,6 @@ import '../../feature/auth/presintation/cubit/auth_cubit.dart';
 import '../../feature/car_rental/presentation/cubit/car_rental_cubit.dart';
 import '../../feature/orders/data/repo/order_repo.dart';
 import '../../feature/orders/presentation/cubit/orders_cubit.dart';
-
 
 class AppRouter {
   static Widget buildRoute(String routeName, Object? arguments) {
@@ -425,7 +424,8 @@ class AppRouter {
         return MultiBlocProvider(
           providers: [
             BlocProvider<RegularServicesCubit>(
-              create: (context) => RegularServicesCubit(RegularMaintenanceRepo()),
+              create: (context) =>
+                  RegularServicesCubit(RegularMaintenanceRepo()),
             ),
             BlocProvider<OrdersCubit>(
               create: (context) => OrdersCubit(OrdersRepo()),
@@ -466,16 +466,12 @@ class AppRouter {
         // مثال: إذا أردت تطبيق نفس المنطق هنا
         return MultiBlocProvider(
           providers: [
-            BlocProvider<AutoBodyCubit>(
-              create: (context) => AutoBodyCubit(),
-            ),
+            BlocProvider<AutoBodyCubit>(create: (context) => AutoBodyCubit()),
             BlocProvider<OrdersCubit>(
               create: (context) => OrdersCubit(OrdersRepo()),
             ),
           ],
-          child: const RepairingAutoBodyView(
-            serviceName: '',
-          ),
+          child: const RepairingAutoBodyView(serviceName: ''),
         );
 
       case Routes.otherServicesView:
@@ -496,9 +492,7 @@ class AppRouter {
         // مثال: إذا أردت تطبيق نفس المنطق هنا
         return MultiBlocProvider(
           providers: [
-            BlocProvider<SellingCubit>(
-              create: (context) => SellingCubit(),
-            ),
+            BlocProvider<SellingCubit>(create: (context) => SellingCubit()),
             BlocProvider<OrdersCubit>(
               create: (context) => OrdersCubit(OrdersRepo()),
             ),
@@ -513,9 +507,7 @@ class AppRouter {
       case Routes.carRentalView:
         return MultiBlocProvider(
           providers: [
-            BlocProvider<CarRentalCubit>(
-              create: (context) => CarRentalCubit(),
-            ),
+            BlocProvider<CarRentalCubit>(create: (context) => CarRentalCubit()),
             BlocProvider<OrdersCubit>(
               create: (context) => OrdersCubit(OrdersRepo()),
             ),
@@ -523,12 +515,12 @@ class AppRouter {
           child: const CarRentalView(),
         );
 
-
       case Routes.toolRentalView:
         // **التعديل هنا: إضافة ToolRentalCubit**
         return MultiBlocProvider(
           providers: [
-            BlocProvider<ToolRentalCubit>( // **تمت الإضافة**
+            BlocProvider<ToolRentalCubit>(
+              // **تمت الإضافة**
               create: (context) => ToolRentalCubit(),
             ),
             BlocProvider<OrdersCubit>(

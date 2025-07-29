@@ -11,14 +11,12 @@ OrderResponse _$OrderResponseFromJson(Map<String, dynamic> json) =>
       data: json['data'],
       successMessage: json['successMessage'] as String?,
       statusCode: (json['statusCode'] as num?)?.toInt(),
-      errorList:
-          (json['errorList'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      validationErrorList:
-          (json['validationErrorList'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
+      errorList: (json['errorList'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      validationErrorList: (json['validationErrorList'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       isSuccess: json['isSuccess'] as bool?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
     );

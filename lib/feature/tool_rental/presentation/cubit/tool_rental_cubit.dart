@@ -8,9 +8,9 @@ class ToolRentalCubit extends Cubit<ToolRentalStates> {
   Future<void> getToolRental() async {
     emit(ToolRentalLoadingState());
     try {
-      final value = await ToolRentalRepo.getToolRental(); // استخدم await
+      final value = await ToolRentalRepo.getToolRental();
       if (value != null) {
-        emit(ToolRentalSuccessState(value)); // مرّر SellingResponse
+        emit(ToolRentalSuccessState(value)); 
       } else {
         emit(ToolRentalErrorState('Failed to load selling original parts.'));
       }

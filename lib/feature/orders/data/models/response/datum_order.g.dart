@@ -10,24 +10,20 @@ DatumOrder _$DatumOrderFromJson(Map<String, dynamic> json) => DatumOrder(
   orderId: (json['orderId'] as num?)?.toInt(),
   userId: (json['userId'] as num?)?.toInt(),
   userName: json['userName'] as String?,
-  orderServices:
-      (json['orderServices'] as List<dynamic>?)
-          ?.map((e) => OrderRequestService.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  orderServices: (json['orderServices'] as List<dynamic>?)
+      ?.map((e) => OrderRequestService.fromJson(e as Map<String, dynamic>))
+      .toList(),
   maintenanceCenter: json['maintenanceCenter'] as String?,
   isHomeService: json['isHomeService'] as bool?,
-  orderDate:
-      json['orderDate'] == null
-          ? null
-          : DateTime.parse(json['orderDate'] as String),
-  startDate:
-      json['startDate'] == null
-          ? null
-          : DateTime.parse(json['startDate'] as String),
-  endDate:
-      json['endDate'] == null
-          ? null
-          : DateTime.parse(json['endDate'] as String),
+  orderDate: json['orderDate'] == null
+      ? null
+      : DateTime.parse(json['orderDate'] as String),
+  startDate: json['startDate'] == null
+      ? null
+      : DateTime.parse(json['startDate'] as String),
+  endDate: json['endDate'] == null
+      ? null
+      : DateTime.parse(json['endDate'] as String),
   isPaid: json['isPaid'] as bool?,
   orderAmount: (json['orderAmount'] as num?)?.toDouble(),
   isCanceled: json['isCanceled'] as bool?,

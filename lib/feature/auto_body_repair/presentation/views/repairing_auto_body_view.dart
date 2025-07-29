@@ -569,7 +569,6 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
 }
 */
 
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -597,7 +596,6 @@ import 'package:mechpro/feature/orders/data/models/request/order_request/order_r
 import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class RepairingAutoBodyView extends StatefulWidget {
   final String serviceName;
@@ -694,7 +692,7 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
         _selectedDate != null &&
         _selectedTime != null &&
         (_selectedLocationType == LocaleKeys.ourBranch.tr() &&
-            _selectedBranch != null ||
+                _selectedBranch != null ||
             _selectedLocationType == LocaleKeys.mylocation.tr() &&
                 (_addressController.text.isNotEmpty ||
                     _hasContactedForLocation));
@@ -717,16 +715,22 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
     if (firebaseUserId == null) {
       print('ERROR: Firebase User ID is null. Cannot create order.');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.')),
+        const SnackBar(
+          content: Text(
+            'خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.',
+          ),
+        ),
       );
       return;
     }
 
     // بناء قائمة الخدمات الفرعية للطلب
     final List<OrderRequestSubService> orderSubServices = _selectedServices
-        .map((service) => OrderRequestSubService(
-              orderSubServiceName: service.subServiceName,
-            ))
+        .map(
+          (service) => OrderRequestSubService(
+            orderSubServiceName: service.subServiceName,
+          ),
+        )
         .toList();
 
     // بناء خدمة الطلب الرئيسية
@@ -781,11 +785,17 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}'),
+                Text(
+                  '${LocaleKeys.SelectedServices.tr()}: ${_selectedServices.map((s) => s.subServiceName).join(', ')}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}'),
+                Text(
+                  '${LocaleKeys.Date.tr()}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}',
+                ),
                 const SizedBox(height: 8),
-                Text('${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}'),
+                Text(
+                  '${LocaleKeys.Time.tr()}: ${_selectedTime!.format(context)}',
+                ),
                 const SizedBox(height: 8),
                 Text('${LocaleKeys.Location.tr()}: $locationDetails'),
               ],
@@ -823,14 +833,15 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
         showLeading: true,
         onLeadingPressed: () => Navigator.of(context).pop(),
       ),
-      body: MultiBlocListener( // استخدام MultiBlocListener للاستماع لأكثر من Cubit
+      body: MultiBlocListener(
+        // استخدام MultiBlocListener للاستماع لأكثر من Cubit
         listeners: [
           BlocListener<AutoBodyCubit, AutoBodyState>(
             listener: (context, state) {
               if (state is AutoBodyErrorState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -839,15 +850,15 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
               if (state is CreateOrderLoading) {
                 // يمكنك عرض مؤشر تحميل هنا
               } else if (state is CreateOrderSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
                 // التوجيه إلى شاشة الطلبات بعد نجاح الطلب
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -868,7 +879,8 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is AutoBodySuccessState) {
                     // بما أن state.response.data هو بالفعل List<DatumAutoBody>
-                    final List<DatumAutoBody> autoBodyServices = state.response.data ?? [];
+                    final List<DatumAutoBody> autoBodyServices =
+                        state.response.data ?? [];
 
                     if (autoBodyServices.isEmpty) {
                       return Center(
@@ -902,7 +914,8 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                               }
                             });
                           },
-                          child: ServiceCard<DatumAutoBody>( // تحديد النوع العام هنا
+                          child: ServiceCard<DatumAutoBody>(
+                            // تحديد النوع العام هنا
                             service: service,
                             isSelected: isSelected,
                             icon: icon,
@@ -913,7 +926,9 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                   } else if (state is AutoBodyErrorState) {
                     return Center(
                       child: Text(
-                        LocaleKeys.ErrorLoadingServices.tr(args: [state.message]),
+                        LocaleKeys.ErrorLoadingServices.tr(
+                          args: [state.message],
+                        ),
                       ),
                     );
                   }
@@ -964,7 +979,9 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                         return ChoiceChip(
                           label: Text(time.format(context)),
                           selected: isSelected,
-                          selectedColor: AppColors.primaryColor.withOpacity(0.7),
+                          selectedColor: AppColors.primaryColor.withOpacity(
+                            0.7,
+                          ),
                           labelStyle: TextStyle(
                             color: isSelected ? Colors.white : Colors.black87,
                             fontWeight: isSelected
@@ -1032,7 +1049,8 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                               labelStyle: getSmallStyle(
                                 color: AppColors.primaryColor,
                               ),
-                              hintText: LocaleKeys.ElnezlawyStBuilding10Apt5.tr(),
+                              hintText:
+                                  LocaleKeys.ElnezlawyStBuilding10Apt5.tr(),
                               hintStyle: getSmallStyle(
                                 color: AppColors.primaryColor,
                               ),
@@ -1072,7 +1090,9 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                               SnackBar(
                                 content: Text(
                                   LocaleKeys.NavigatingtoContactUsscreen.tr(),
-                                  style: getSmallStyle(color: AppColors.whColor),
+                                  style: getSmallStyle(
+                                    color: AppColors.whColor,
+                                  ),
                                 ),
                                 backgroundColor: AppColors.primaryColor,
                               ),

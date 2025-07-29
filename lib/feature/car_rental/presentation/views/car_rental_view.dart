@@ -122,7 +122,6 @@ class _CarRentalViewState extends State<CarRentalView> {
 }
 */
 
-
 /*
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // استيراد مكتبة flutter_bloc
@@ -320,15 +319,16 @@ class _CarRentalViewState extends State<CarRentalView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: "Car Rental", showLeading: false),
-      body: MultiBlocListener( // استخدام MultiBlocListener للاستماع لأكثر من Cubit
+      body: MultiBlocListener(
+        // استخدام MultiBlocListener للاستماع لأكثر من Cubit
         listeners: [
           BlocListener<CarRentalCubit, CarRentalStates>(
             listener: (context, state) {
               if (state is CarRentalErrorState) {
                 // عرض رسالة خطأ إذا حدث خطأ ما في جلب خدمات تأجير السيارات
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.error)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.error)));
               }
             },
           ),
@@ -341,16 +341,16 @@ class _CarRentalViewState extends State<CarRentalView> {
                 // );
               } else if (state is CreateOrderSuccess) {
                 // عرض رسالة نجاح عند إنشاء الطلب
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
                 // بعد النجاح، يمكن التوجيه إلى شاشة الطلبات
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
                 // عرض رسالة خطأ عند فشل إنشاء الطلب
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message)));
               }
             },
           ),
@@ -365,7 +365,9 @@ class _CarRentalViewState extends State<CarRentalView> {
               final carRentalServices = state.carRentalResponse.data;
 
               if (carRentalServices == null || carRentalServices.isEmpty) {
-                return const Center(child: Text('لا توجد خدمات تأجير سيارات متاحة.'));
+                return const Center(
+                  child: Text('لا توجد خدمات تأجير سيارات متاحة.'),
+                );
               }
 
               return ListView.separated(
@@ -375,15 +377,19 @@ class _CarRentalViewState extends State<CarRentalView> {
                   final service = carRentalServices[index]; // الخدمة الحالية
 
                   return CustomServiceCard(
-                    imageUrl: _imagePaths[imageIndex], // استخدام نمط متكرر للصور
+                    imageUrl:
+                        _imagePaths[imageIndex], // استخدام نمط متكرر للصور
                     serviceName: service.subServiceName ?? 'غير متوفر',
-                    serviceDescription: service.description ?? 'لا يوجد وصف متاح.',
+                    serviceDescription:
+                        service.description ?? 'لا يوجد وصف متاح.',
                     onButtonPressed: () {
                       // منطق الحجز: عند الضغط على زر الحجز
                       final user = FirebaseAuth.instance.currentUser;
                       if (user == null) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('الرجاء تسجيل الدخول لإجراء طلب.')),
+                          const SnackBar(
+                            content: Text('الرجاء تسجيل الدخول لإجراء طلب.'),
+                          ),
                         );
                         return;
                       }
@@ -395,9 +401,15 @@ class _CarRentalViewState extends State<CarRentalView> {
                       final String? firebaseUserId = user.uid;
 
                       if (firebaseUserId == null) {
-                        print('ERROR: Firebase User ID is null. Cannot create order.');
+                        print(
+                          'ERROR: Firebase User ID is null. Cannot create order.',
+                        );
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.')),
+                          const SnackBar(
+                            content: Text(
+                              'خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.',
+                            ),
+                          ),
                         );
                         return;
                       }
@@ -409,36 +421,46 @@ class _CarRentalViewState extends State<CarRentalView> {
 
                       // إنشاء OrderRequestService
                       final orderRequestService = OrderRequestService(
-                        orderServiceName: "Car Rental Service", // اسم عام لخدمة تأجير السيارات
+                        orderServiceName:
+                            "Car Rental Service", // اسم عام لخدمة تأجير السيارات
                         orderSubServices: [orderSubService],
                       );
 
                       // إنشاء OrderRequest
                       final orderRequest = OrderRequest(
-                        userId: firebaseUserId, // استخدام Firebase UID كـ String
-                        userName: user.displayName ?? user.email ?? 'Unknown User',
+                        userId:
+                            firebaseUserId, // استخدام Firebase UID كـ String
+                        userName:
+                            user.displayName ?? user.email ?? 'Unknown User',
                         orderServices: [orderRequestService],
-                        maintenanceCenter: "N/A", // يمكن تعديل هذا إذا كان هناك مركز صيانة محدد
-                        isHomeService: false, // تأجير السيارات ليس خدمة منزلية عادةً
+                        maintenanceCenter:
+                            "N/A", // يمكن تعديل هذا إذا كان هناك مركز صيانة محدد
+                        isHomeService:
+                            false, // تأجير السيارات ليس خدمة منزلية عادةً
                         orderDate: DateTime.now(),
                       );
 
                       // استدعاء Cubit لإنشاء الطلب
                       context.read<OrdersCubit>().createNewOrder(orderRequest);
 
-                      print('تم الضغط على زر الحجز لـ: ${service.subServiceName}');
+                      print(
+                        'تم الضغط على زر الحجز لـ: ${service.subServiceName}',
+                      );
                     },
                   );
                 },
                 separatorBuilder: (context, index) => 7.verticalSpace,
-                itemCount: carRentalServices.length, // استخدام العدد الفعلي من API
+                itemCount:
+                    carRentalServices.length, // استخدام العدد الفعلي من API
               );
             } else if (state is CarRentalErrorState) {
               // عرض رسالة خطأ إذا فشل الجلب
               return Center(child: Text('خطأ: ${state.error}'));
             }
             // الحالة الأولية أو حالة غير متوقعة
-            return const Center(child: Text('اضغط لتحميل خدمات تأجير السيارات.'));
+            return const Center(
+              child: Text('اضغط لتحميل خدمات تأجير السيارات.'),
+            );
           },
         ),
       ),
