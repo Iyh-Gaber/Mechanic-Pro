@@ -320,12 +320,12 @@ class _CarRentalViewState extends State<CarRentalView> {
     return Scaffold(
       appBar: CustomAppBar(title: "Car Rental", showLeading: false),
       body: MultiBlocListener(
-        // استخدام MultiBlocListener للاستماع لأكثر من Cubit
+       
         listeners: [
           BlocListener<CarRentalCubit, CarRentalStates>(
             listener: (context, state) {
               if (state is CarRentalErrorState) {
-                // عرض رسالة خطأ إذا حدث خطأ ما في جلب خدمات تأجير السيارات
+               
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(state.error)));

@@ -136,7 +136,19 @@
   "No Services Available":"No Services Available",
   "Tool Rental":"Tool Rental",
   "Will Contact For Details":"Will Contact For Details",
-  "Location Not Specified":"Location Not Specified"
+  "Location Not Specified":"Location Not Specified",
+  "Offers": "Offers",
+  "No Offers Available":"No Offers Available",
+  "TryAgain": "Try Again",
+  "ValidUntil": "Valid until",
+  "UnknownOffer": "Unknown Offer",
+  "PleaseLoginToRedeemOffer": "Please login to redeem the offer.",
+  "ErrorUserIdNotFound": "Error: User ID not found. Please log in again.",
+  "OnlineOfferRedemption": "Online Offer Redemption",
+  "OfferRedemption": "Offer Redemption",
+  "UnknownUser": "Unknown User",
+  "RedeemOffer": "Redeem Offer"
+  
   
     
     

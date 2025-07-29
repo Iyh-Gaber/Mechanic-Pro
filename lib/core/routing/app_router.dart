@@ -355,6 +355,8 @@ import 'package:mechpro/feature/auto_body_repair/data/repo/auto_body_repo.dart';
 import 'package:mechpro/feature/auto_body_repair/presentation/cubit/auto_body_cubit.dart';
 import 'package:mechpro/feature/home/presentation/views/home_view.dart';
 import 'package:mechpro/feature/notifications/presentation/views/notification_view.dart';
+import 'package:mechpro/feature/offers/data/repo/offers_repo.dart';
+import 'package:mechpro/feature/offers/presentation/cubit/offers_cubit.dart';
 import 'package:mechpro/feature/offers/presentation/views/offers_view.dart';
 import 'package:mechpro/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:mechpro/feature/orders/presentation/views/orders_view.dart';
@@ -399,8 +401,29 @@ class AppRouter {
         return const ProfileView();
       case Routes.notificationView:
         return const NotificationView();
-      case Routes.offersView:
-        return const OffersView();
+     
+     
+     
+    
+
+case Routes.offersView: // تأكد من اسم المسار الصحيح
+  return MultiBlocProvider(
+    providers: [
+      BlocProvider<OffersCubit>(
+        create: (context) => OffersCubit(), // تمرير OffersRepo
+      ),
+      BlocProvider<OrdersCubit>(
+        create: (context) => OrdersCubit(OrdersRepo()),
+      ),
+    ],
+    child: const OffersView(),
+  );
+
+
+
+
+
+
       case Routes.registrationView:
         return BlocProvider(
           create: (context) => AuthCubit(FirebaseAuth.instance),

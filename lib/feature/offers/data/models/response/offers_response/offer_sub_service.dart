@@ -1,4 +1,4 @@
-class OfferSubService {
+/*class OfferSubService {
   OfferSubService();
 
   factory OfferSubService.fromJson(Map<String, dynamic> json) {
@@ -12,4 +12,24 @@ class OfferSubService {
     // TODO: implement toJson
     throw UnimplementedError();
   }
+}
+*/
+class OfferSubService {
+  int? offerId;
+  int? subServiceId;
+
+  OfferSubService({
+    this.offerId,
+    this.subServiceId,
+  });
+
+  factory OfferSubService.fromJson(Map<String, dynamic> json) => OfferSubService(
+        offerId: json['offerId'] as int?,
+        subServiceId: json['subServiceId'] as int?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'offerId': offerId,
+        'subServiceId': subServiceId,
+      };
 }

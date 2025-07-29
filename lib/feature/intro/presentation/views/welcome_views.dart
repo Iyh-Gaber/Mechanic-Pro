@@ -30,8 +30,8 @@ class WelcomeViews extends StatelessWidget {
             child: Image.asset(
               AppAssets.iconEmrg,
               //  fit: BoxFit.cover,
-              height: 7.h,
-              width: 7.w,
+              height: 5.h,
+              width: 5.w,
             ),
           ),
           actions: [
@@ -56,10 +56,11 @@ class WelcomeViews extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(7.0),
+          padding: const EdgeInsets.all(17.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              
               Gap(155),
               Image.asset(
                 AppAssets.logoIcon,

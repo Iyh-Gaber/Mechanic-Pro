@@ -160,14 +160,23 @@ abstract class LocaleKeys {
   static const WillContactForDetails = "Will Contact For Details";
 
   static const ToolRental = "Tool Rental";
+  static const NoOffersAvailable="No Offers Available";
 
-  static var PleaseFillAllFields;
+  static const Offers="Offers";
 
-  static var RepairingElectricalFaults;
+ 
+  static const ValidUntil="Valid Until";
+  static const UnknownOffer="Unknown Offer";
+  static const PleaseLoginToRedeemOffer="Please Login To Redeem Offer";
+  static const ErrorUserIdNotFound="Error: User ID not found. Please log in again.";
+  static const OnlineOfferRedemption="Online Offer Redemption";
+  static const OfferRedemption="Offer Redemption";
+  static const UnknownUser="Unknown User";
+  static const RedeemOffer="Redeem Offer";
 
-  static var LoginRequired;
+  
 
-  static var ConfirmOrder;
 
-  static var SelectedService;
+  
+  
 }

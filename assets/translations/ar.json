@@ -130,7 +130,19 @@
   "No Services Available":"لا يوجد خدمات متاحة",
   "Tool Rental":"تأجير الأدوات",
   "Will Contact For Details":"سوف يتواصل معك للحصول على التفاصيل",
-  "Location Not Specified":"الموقع غير محدد"
+  "Location Not Specified":"الموقع غير محدد",
+  "Offers": "العروض",
+  "No Offers Available":"لا يوجد عروض متاحة",
+  "TryAgain": "حاول مرة اخرى",
+    "ValidUntil": "صالح حتى",
+  "UnknownOffer": "عرض غير معروف",
+  "PleaseLoginToRedeemOffer": "الرجاء تسجيل الدخول للاستفادة من العرض.",
+  "ErrorUserIdNotFound": "خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى.",
+  "OnlineOfferRedemption": "استفادة من العرض عبر الإنترنت",
+  "OfferRedemption": "استفادة من العرض",
+  "UnknownUser": "مستخدم غير معروف",
+  "RedeemOffer": "استفد من العرض"
+
 
       
     
