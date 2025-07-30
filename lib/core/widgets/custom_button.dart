@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
               ? BorderSide(color: borderColor ?? AppColors.primaryColor)
               : BorderSide.none,
 
-          // side: borderColor =!null ??  BorderSide(color:borderColor ):BorderSide.none,
+        
           backgroundColor: whColor ?? AppColors.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -42,7 +42,8 @@ class CustomButton extends StatelessWidget {
         onPressed: onpressed,
         child: Text(
           text,
-          style: getSmallStyle(color: fgColor ?? Colors.white, fontSize: 19),
+          style: getSmallStyle(color: fgColor ?? Colors.white, 
+          ),
         ),
       ),
     );

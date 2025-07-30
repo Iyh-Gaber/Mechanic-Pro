@@ -1,30 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // import bloc
+import 'package:flutter_bloc/flutter_bloc.dart'; 
 import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
-import 'package:mechpro/core/utils/MangeSpacing.dart'; // تأكد من أن هذا الملف موجود ويحتوي على verticalSpace
+import 'package:mechpro/core/utils/MangeSpacing.dart'; 
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/date_time_picker_part.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/location_part.dart';
-import 'package:mechpro/feature/regular_maintenance/presentation/widgets/section_title_part.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../core/routing/app_router.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/text_style.dart';
 
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/section_header.dart';
-import '../../data/models/response/regular_response/datumRegular.dart'; // Import the Datum model
+import '../../data/models/response/regular_response/datumRegular.dart'; 
 import '../cubit/regular_services_cubit.dart';
 import '../cubit/regular_services_state.dart';
 
-import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart'; // استيراد الـ Cubit الجديد
-// استيراد نموذج الطلب
-
-import 'package:mechpro/feature/regular_maintenance/data/models/response/regular_response/datumRegular.dart';
 
 class RegularMaintenanceView extends StatefulWidget {
   const RegularMaintenanceView({super.key});
@@ -42,18 +34,18 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
     'Tire Check and Air Pressure': Icons.tire_repair,
   };
 
-  // State variables to manage user selections.
+  
   final Set<DatumRegular> _selectedServices =
-      {}; // Stores selected services (now Datum objects).
-  DateTime? _selectedDate; // Stores the chosen date.
-  TimeOfDay? _selectedTime; // Stores the chosen time.
+      {}; 
+  DateTime? _selectedDate; 
+  TimeOfDay? _selectedTime; 
   String?
-  _selectedLocationType; // 'my_location' or 'our_branches' to track location choice.
-  String? _selectedBranch; // Stores the name of the selected branch.
+  _selectedLocationType; 
+  String? _selectedBranch; 
   bool _hasContactedForLocation =
-      false; // New state variable to track if "Contact Us" button was pressed.
+      false; 
 
-  // Dummy list of branches for demonstration purposes.
+ 
   final List<String> _branches = [
     'Qatar Branch - Twin Towers A, Street 303',
     'Riyadh Branch - Al Nakheel District',
@@ -63,7 +55,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
     'Elminia Branch - Palace Square',
   ];
 
-  // Dummy list of available times for demonstration purposes.
+ 
   final List<TimeOfDay> _availableTimes = [
     const TimeOfDay(hour: 9, minute: 0),
     const TimeOfDay(hour: 10, minute: 30),
@@ -73,37 +65,37 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
     const TimeOfDay(hour: 12, minute: 0), // 12:00 PM
   ];
 
-  // Controller for the address input text field.
+ 
   final TextEditingController _addressController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // ابدأ بجلب الخدمات فوراً عند تهيئة الـ State
+    
     context.read<RegularServicesCubit>().getRegularServices();
   }
 
-  // Function to display a date picker dialog.
+ 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate:
           _selectedDate ??
-          DateTime.now(), // Initial date is current date or previously selected.
-      firstDate: DateTime.now(), // User cannot select a past date.
+          DateTime.now(), 
+      firstDate: DateTime.now(), 
       lastDate: DateTime.now().add(
         const Duration(days: 365),
-      ), // User can select up to one year in advance.
+      ), 
       builder: (BuildContext context, Widget? child) {
         return Theme(
-          // Customizes the theme of the date picker.
+          
           data: ThemeData.light().copyWith(
             primaryColor: const Color(
               0xFF336f67,
-            ), // Header background color of the date picker.
+            ), 
             colorScheme: const ColorScheme.light(
               primary: Color(0xFF336f67),
-            ), // Color for selected day.
+            ), 
             buttonTheme: const ButtonThemeData(
               textTheme: ButtonTextTheme.primary,
             ),
@@ -112,72 +104,70 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
         );
       },
     );
-    // If a date is picked and it's different from the current selected date, update state.
+   
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-        _selectedTime = null; // Reset time when date changes.
+        _selectedTime = null; 
       });
     }
   }
 
-  // Getter to determine if the confirmation button should be enabled.
-  // It checks if all necessary fields are filled.
+ 
   bool get _isConfirmButtonEnabled {
     return _selectedServices
-            .isNotEmpty && // At least one service must be selected.
-        _selectedDate != null && // A date must be selected.
-        _selectedTime != null && // A time must be selected.
+            .isNotEmpty && 
+        _selectedDate != null && 
+        _selectedTime != null && 
         (_selectedLocationType == 'our_branches' &&
                 _selectedBranch !=
-                    null || // If branch, a branch must be chosen.
+                    null || 
             _selectedLocationType == 'my_location' &&
                 (_addressController.text.isNotEmpty ||
-                    _hasContactedForLocation)); // If my location, either address or contact button must be used.
+                    _hasContactedForLocation)); 
   }
 
-  // Function to handle the service confirmation logic.
+ 
 
   void _confirmService() {
-    // Collects all selected data for confirmation.
+    
     String servicesList = _selectedServices
         .map((s) => s.subServiceName ?? 'Unknown Service')
-        .join(', '); // Joins selected service names.
+        .join(', '); 
     String date = _selectedDate != null
         ? DateFormat('yyyy-MM-dd').format(_selectedDate!)
-        : 'N/A'; // Formats date.
+        : 'N/A'; 
     String time = _selectedTime != null
         ? _selectedTime!.format(context)
-        : 'N/A'; // Formats time.
+        : 'N/A'; 
     String location;
 
-    // Determines the location string based on user's choice.
+   
     if (_selectedLocationType == 'my_location') {
       location = _addressController.text.isNotEmpty
           ? 'Customer\'s Location: ${_addressController.text}'
-          : 'Customer\'s Location (Will contact for details)'; // Updated based on address input or contact button.
+          : 'Customer\'s Location (Will contact for details)'; 
     } else if (_selectedLocationType == 'our_branches') {
       location = 'Branch: $_selectedBranch';
     } else {
       location = 'Location not specified';
     }
 
-    // Displays a confirmation dialog to the user.
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),
-          ), // Rounded corners for the dialog.
+          ), 
           title: const Text(
-            'Confirm Service Request', // Dialog title.
-            textAlign: TextAlign.left, // Align title to the left for LTR.
+            'Confirm Service Request',
+            textAlign: TextAlign.left, 
           ),
           content: SingleChildScrollView(
-            // Allows content to scroll if it's too long.
+           
             child: ListBody(
-              // Arranges text widgets vertically.
+            
               children: <Widget>[
                 Text('Selected Services: $servicesList'),
                 const SizedBox(height: 8),
@@ -192,23 +182,22 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Closes the dialog.
+                Navigator.of(context).pop(); 
               },
-              child: const Text('Close'), // Close button.
+              child: const Text('Close'), 
             ),
             ElevatedButton(
-              // Changed to ElevatedButton for consistency with theme.
+             
               onPressed: () {
-                // In a real app, this is where you'd send data to a backend.
-                // For this example, we just print to console and show a SnackBar.
+                
                 print('Service Confirmed:');
                 print('Services: $servicesList');
                 print('Date: $date');
                 print('Time: $time');
                 print('Location: $location');
-                Navigator.of(context).pop(); // Closes the dialog.
+                Navigator.of(context).pop(); 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  // Shows a success message.
+                  
                   const SnackBar(
                     content: Text(
                       'Your request has been confirmed successfully!',
@@ -216,7 +205,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                   ),
                 );
               },
-              child: const Text('Confirm'), // Confirm button.
+              child: const Text('Confirm'), 
             ),
           ],
         );
@@ -228,12 +217,12 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        // هنا استخدمنا الـ Widget الجديد
+        
         title: LocaleKeys.RequestYourService.tr(),
         showLeading:
-            false, // هنا اخترنا إنه ما يظهرش زر الرجوع في الشاشة دي بالذات
-        // onLeadingPressed: () => Navigator.of(context).pop(), // لو حبيت تحط وظيفة مخصصة لزر الرجوع
+            false, 
       ),
+     
       body: BlocBuilder<RegularServicesCubit, RegularServicesState>(
         builder: (context, state) {
           if (state is RegularServicesLoadingState ||
@@ -242,7 +231,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             );
           } else if (state is RegularServicesErrorState) {
-            // Updated to get the actual error message
+            
             return Center(
               child: Text(
                 'Error: ${(state as RegularServicesErrorState).message}',
@@ -260,24 +249,24 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
             }
 
             return Padding(
-              // Adds padding around the content.
-              padding: const EdgeInsets.all(16.0),
+             
+              padding: const EdgeInsets.all(10.0),
               child: ListView(
-                // Makes the content scrollable.
+               
                 children: [
-                  // Section 1: Choose Your Services
+                   17.verticalSpace,
                   SectionHeader(
-                    leadingText: '1', // الرقم '1' اللي كان ظاهر
-                    title: 'Choose your services', // النص اللي كان ظاهر
+                    leadingText: '1', 
+                    title: LocaleKeys.Chooseyourservices.tr(), 
                   ),
-
-                  // Helper for section title.
+ 17.verticalSpace,
+                
                   GridView.builder(
-                    // Displays services in a grid.
+                    
                     shrinkWrap:
-                        true, // Takes only as much space as its children.
+                        true, 
                     physics:
-                        const NeverScrollableScrollPhysics(), // Disables GridView's own scrolling.
+                        const NeverScrollableScrollPhysics(), 
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Two columns in the grid.
@@ -286,19 +275,19 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                           childAspectRatio: 0.7, // Aspect ratio for each card.
                         ),
                     itemCount: servicesFromApi
-                        .length, // Number of service cards from API.
+                        .length, 
                     itemBuilder: (context, index) {
                       final service = servicesFromApi[index];
-                      // احصل على الأيقونة من الخريطة، أو استخدم أيقونة افتراضية
+                     
                       final IconData icon =
                           _serviceIcons[service.subServiceName ?? ''] ??
                           Icons.miscellaneous_services;
                       final isSelected = _selectedServices.contains(service);
                       return GestureDetector(
-                        // Makes the card tappable.
+                       
                         onTap: () {
                           setState(() {
-                            // Updates the UI when a service is selected/deselected.
+                           
                             if (isSelected) {
                               _selectedServices.remove(service);
                             } else {
@@ -307,25 +296,24 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                           });
                         },
                         child: ServiceCard(
-                          // Custom widget for each service card.
+                          
                           service: service,
                           isSelected: isSelected,
-                          icon: icon, // Pass the determined icon
+                          icon: icon, 
                         ),
                       );
                     },
                   ),
-                  // تم تقليل المسافة هنا
-                  const SizedBox(height: 24.0), // Spacer.
-                  // Section 2: Select Date and Time
+                 17.verticalSpace,
+               
                   SectionHeader(
-                    leadingText: '2', // الرقم '1' اللي كان ظاهر
+                    leadingText: '2', 
                     title:
-                        'When Do You Need the Service?', // النص اللي كان ظاهر
+                        LocaleKeys.WhenDoYouNeedtheService.tr(), 
                   ),
 
-                  // SectionTitlePart(title: '2. When Do You Need the Service?'),
-                  10.verticalSpace,
+                 
+                  17.verticalSpace,
 
                   DateTimePickerPart(
                     context: context,
@@ -336,10 +324,10 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                     icon: Icons.calendar_today,
                     onTap: () => _selectDate(context),
                   ),
-                  const SizedBox(height: 16.0), // Spacer.
-                  // Time selection using a horizontal list of chips
+                  17.verticalSpace,
+                
                   if (_selectedDate !=
-                      null) // Only show time options if a date is selected.
+                      null) 
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -395,25 +383,22 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                       ],
                     ),
 
-                  10.verticalSpace,
+                   17.verticalSpace,
 
                   SectionHeader(
-                    leadingText: '3', // الرقم '1' اللي كان ظاهر
+                    leadingText: '3', 
                     title:
-                        'Where Do We Provide the Service?', // النص اللي كان ظاهر
+                        LocaleKeys.WhereDoWeProvidetheService.tr(), 
                   ),
-                  /*  SectionTitlePart(
-                    title: LocaleKeys.WhereDoWeProvidetheService.tr(),
-                  ),
-                  */
-                  10.verticalSpace,
+                 
+                  17.verticalSpace,
                   SectionSelectLocation(context),
 
-                  30.verticalSpace,
+                  17.verticalSpace,
 
                   ConfirmationButton(),
 
-                  20.verticalSpace,
+                17.verticalSpace,
                 ],
               ),
             );
@@ -423,6 +408,10 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
       ),
     );
   }
+
+
+
+
 
   Column SectionSelectLocation(BuildContext context) {
     return Column(

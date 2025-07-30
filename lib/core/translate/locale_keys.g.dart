@@ -28,7 +28,7 @@ abstract class LocaleKeys {
   static const Createanewaccount = 'Createanewaccount';
   static const loginaccount = 'loginaccount';
   static const forgotPassword = 'forgotPassword';
-  static const DonThaveanaccount = 'DonThaveanaccount?';
+  static const DonThaveanaccount = 'Don\'t have an account ? ';
   static const LogIn = 'LogIn';
   static const Pleaseentername = 'Pleaseentername';
   static const Email = 'Email';
@@ -46,7 +46,7 @@ abstract class LocaleKeys {
   static const Passwordsdonotmatch = 'Passwordsdonotmatch';
   static const PasswordmustcontainatleastoneSpecialcharacter =
       'PasswordmustcontainatleastoneSpecialcharacter';
-  static const lreadyhaveaccount = 'lreadyhaveaccount?';
+  static const lreadyhaveaccount = 'Already have account ? ';
   static const carInformation = 'carInformation';
   static const CarName = 'CarName';
   static const CarType = 'CarType';
@@ -193,4 +193,9 @@ abstract class LocaleKeys {
   static const OfferRedemption="Offer Redemption";
   static const UnknownUser="Unknown User";
   static const RedeemOffer="Redeem Offer";
+  static const Authenticationsuccessful="Authentication successful!";
+  static const Invalidusernameorpassword="Invalid username or password.";
+  static const Pleaseenteravalidemailaddress="Please enter a valid email address.";
+  static const Pleaseenteravalidphonenumber="Please enter a valid phone number.";
+  static const Pleaseenteravalidpassword="Please enter a valid password.";
 }

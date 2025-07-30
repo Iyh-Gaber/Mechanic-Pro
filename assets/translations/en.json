@@ -147,7 +147,17 @@
   "OnlineOfferRedemption": "Online Offer Redemption",
   "OfferRedemption": "Offer Redemption",
   "UnknownUser": "Unknown User",
-  "RedeemOffer": "Redeem Offer"
+  "RedeemOffer": "Redeem Offer",
+
+
+
+
+  
+  "Authentication successful!": "Authentication successful!",
+  "Invalid username or password.": "Invalid username or password.",
+  "Please enter a valid email address.": "Please enter a valid email address.",
+  "Please enter a valid phone number.": "Please enter a valid phone number.",
+  "Please enter a valid password.": "Please enter a valid password."
   
   
     

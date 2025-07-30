@@ -173,7 +173,11 @@ abstract class LocaleKeys {
   static const OfferRedemption="Offer Redemption";
   static const UnknownUser="Unknown User";
   static const RedeemOffer="Redeem Offer";
-
+ static const Authenticationsuccessful="Authentication successful!";
+  static const Invalidusernameorpassword="Invalid username or password.";
+  static const Pleaseenteravalidemailaddress="Please enter a valid email address.";
+  static const Pleaseenteravalidphonenumber="Please enter a valid phone number.";
+  static const Pleaseenteravalidpassword="Please enter a valid password.";
   
 
 

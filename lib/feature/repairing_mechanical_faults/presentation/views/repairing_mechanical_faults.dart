@@ -3559,14 +3559,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
-import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/widgets/custom_service_card.dart'; // إعادة استخدام CustomServiceCard
+
 import 'package:mechpro/feature/repairing_mechanical_faults/presentation/cubit/mechanical_cubit.dart'; // استيراد الـ Cubit الخاص بك
 import 'package:mechpro/feature/repairing_mechanical_faults/presentation/cubit/mechanical_state.dart'; // استيراد الحالات الخاصة بك
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request.dart'; // استيراد موديل طلب الأوردر
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_service.dart'; // استيراد موديل خدمة الأوردر
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_sub_service.dart'; // استيراد موديل الخدمة الفرعية للأوردر
 import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart'; // استيراد الـ Cubit الخاص بالأوردرات
-import 'package:mechpro/feature/orders/presentation/cubit/orders_state.dart'; // استيراد حالات الـ Cubit الخاص بالأوردرات
+ // استيراد حالات الـ Cubit الخاص بالأوردرات
 import 'package:firebase_auth/firebase_auth.dart'; // استيراد Firebase Auth للحصول على معلومات المستخدم
 import 'package:mechpro/core/routing/routes.dart'; // لاستخدام الـ routes
 import 'package:easy_localization/easy_localization.dart'; // استيراد EasyLocalization
@@ -3588,12 +3588,6 @@ class RepairingMechanicalFaultsView extends StatefulWidget {
       _RepairingMechanicalFaultsViewState();
 }
 
-// يمكنك إضافة مسارات صور خاصة بإصلاح الأعطال الميكانيكية هنا إذا أردت
-final List<String> _imagePaths = [
-  'assets/images/mechanical_repair_1.png', // مثال لصورة إصلاح ميكانيكي
-  'assets/images/mechanical_repair_2.png', // مثال آخر
-  // تأكد من أن هذه المسارات صحيحة وأن الصور موجودة في مجلد الأصول
-];
 
 class _RepairingMechanicalFaultsViewState
     extends State<RepairingMechanicalFaultsView> {
@@ -3638,10 +3632,10 @@ class _RepairingMechanicalFaultsViewState
   @override
   void initState() {
     super.initState();
-    // جلب بيانات خدمات إصلاح الأعطال الميكانيكية عند تهيئة الودجت
+   
     context
         .read<MechanicalCubit>()
-        .getMechanical(); // استبدل بـ دالة جلب الخدمات الفعلية
+        .getMechanical(); 
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -3692,7 +3686,7 @@ class _RepairingMechanicalFaultsViewState
       return;
     }
 
-    // بما أن الواجهة الخلفية أصبحت تستقبل userId كـ String، نستخدم user.uid مباشرةً.
+    
     final String? firebaseUserId = user.uid;
 
     if (firebaseUserId == null) {
@@ -3707,7 +3701,7 @@ class _RepairingMechanicalFaultsViewState
       return;
     }
 
-    // بناء قائمة الخدمات الفرعية للطلب
+    
     final List<OrderRequestSubService> orderSubServices = _selectedServices
         .map(
           (service) => OrderRequestSubService(
@@ -3815,10 +3809,10 @@ class _RepairingMechanicalFaultsViewState
         onLeadingPressed: () => Navigator.of(context).pop(),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: [
-            // القسم 1: اختر خدماتك
+            17.verticalSpace,
             SectionHeader(
               leadingText: '1',
               title: LocaleKeys.Chooseyourservices.tr(),
@@ -3887,14 +3881,14 @@ class _RepairingMechanicalFaultsViewState
             ),
             17.verticalSpace,
 
-            // القسم 2: متى تحتاج الخدمة؟
+          
             SectionHeader(
               leadingText: '2',
               title: LocaleKeys.WhenDoYouNeedtheService.tr(),
             ),
             17.verticalSpace,
 
-            // جزء اختيار التاريخ
+           
             DateTimePickerPart(
               context: context,
               label: LocaleKeys.Date.tr(),
@@ -3905,7 +3899,7 @@ class _RepairingMechanicalFaultsViewState
               onTap: () => _selectDate(context),
             ),
             17.verticalSpace,
-            // جزء اختيار الوقت
+            
             if (_selectedDate != null)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

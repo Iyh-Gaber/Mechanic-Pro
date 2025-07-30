@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mechpro/core/extenstions/extentions.dart';
+
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/utils/app_color.dart';
@@ -12,12 +12,12 @@ import 'package:mechpro/feature/orders/data/models/request/order_request/order_r
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_service.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_sub_service.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
-import 'package:mechpro/core/routing/routes.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 class OfferCard extends StatelessWidget {
   final DatumOffers offer;
-  final String defaultImageUrl; // لكي نستخدم الصور الافتراضية
+  final String defaultImageUrl; 
 
   const OfferCard({
     Key? key,
@@ -27,7 +27,7 @@ class OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // بناء نص الخصم
+   
     String discountText = '';
     if (offer.discountValue != null) {
       if (offer.isPercentage == true) {
@@ -37,11 +37,11 @@ class OfferCard extends StatelessWidget {
       }
     }
 
-    // بناء نص تاريخ الصلاحية
+   
     String validityText = '';
     if (offer.startDate != null && offer.endDate != null) {
       validityText =
-          '${LocaleKeys.ValidUntil.tr()}: ${DateFormat('yyyy-MM-dd').format(offer.endDate!)}'; // "صالح حتى"
+          '${LocaleKeys.ValidUntil.tr()}: ${DateFormat('yyyy-MM-dd').format(offer.endDate!)}'; 
     }
 
     return Card(
@@ -51,11 +51,11 @@ class OfferCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // صورة العرض
+           
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
@@ -66,15 +66,15 @@ class OfferCard extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) => Container(
                   height: 150,
                   width: double.infinity,
-                  color: AppColors.grColor.withOpacity(0.2),
+                  color: AppColors.grColor,
                   child: Icon(Icons.broken_image, color: AppColors.grColor),
                 ),
               ),
             ),
-            12.verticalSpace,
-            // عنوان العرض
+            7.verticalSpace,
+            
             Text(
-              offer.title ?? LocaleKeys.UnknownOffer.tr(), // "عرض غير معروف"
+              offer.title ?? LocaleKeys.UnknownOffer.tr(), 
               style: getTitleStyle(
                 color: AppColors.primaryColor,
                 fontSize: 20,
@@ -82,40 +82,40 @@ class OfferCard extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            8.verticalSpace,
-            // وصف العرض
+            7.verticalSpace,
+           
             Text(
               offer.description ?? LocaleKeys.Nodescriptionavailable.tr(),
               style: getBodyStyle(
-                color: AppColors.blackColor.withOpacity(0.7),
+                color: AppColors.blackColor,
                 fontSize: 14,
               ),
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            8.verticalSpace,
-            // الخصم (إذا كان موجودًا)
+            7.verticalSpace,
+            
             if (discountText.isNotEmpty)
               Text(
                 discountText,
                 style: getTitleStyle(
-                  color: AppColors.primaryColor, // لون مميز للخصم
+                  color: AppColors.primaryColor, 
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            4.verticalSpace,
-            // تاريخ الصلاحية (إذا كان موجودًا)
+            7.verticalSpace,
+           
             if (validityText.isNotEmpty)
               Text(
                 validityText,
                 style: getSmallStyle(
                   color: AppColors.grColor,
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ),
-            12.verticalSpace,
-            // زر الحجز
+            7.verticalSpace,
+           
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -123,7 +123,7 @@ class OfferCard extends StatelessWidget {
                   final user = FirebaseAuth.instance.currentUser;
                   if (user == null) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(LocaleKeys.PleaseLoginToRedeemOffer.tr())), // "الرجاء تسجيل الدخول للاستفادة من العرض."
+                      SnackBar(content: Text(LocaleKeys.PleaseLoginToRedeemOffer.tr())), 
                     );
                     return;
                   }
@@ -132,17 +132,17 @@ class OfferCard extends StatelessWidget {
                   if (firebaseUserId == null) {
                     print('ERROR: Firebase User ID is null. Cannot create order.');
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(LocaleKeys.ErrorUserIdNotFound.tr())), // "خطأ: لم يتم العثور على معرف المستخدم. الرجاء تسجيل الدخول مرة أخرى."
+                      SnackBar(content: Text(LocaleKeys.ErrorUserIdNotFound.tr())), 
                     );
                     return;
                   }
 
-                  final String locationDetails = LocaleKeys.OnlineOfferRedemption.tr(); // "استفادة من العرض عبر الإنترنت"
+                  final String locationDetails = LocaleKeys.OnlineOfferRedemption.tr(); 
                   const bool isHomeService = false;
                   final DateTime orderDateTime = DateTime.now();
 
                   final orderRequestService = OrderRequestService(
-                    orderServiceName: "${LocaleKeys.OfferRedemption.tr()}: ${offer.title ?? LocaleKeys.UnknownOffer.tr()}", // "استفادة من العرض"
+                    orderServiceName: "${LocaleKeys.OfferRedemption.tr()}: ${offer.title ?? LocaleKeys.UnknownOffer.tr()}", 
                     orderSubServices: [
                       OrderRequestSubService(
                         orderSubServiceName: offer.title,
@@ -152,7 +152,7 @@ class OfferCard extends StatelessWidget {
 
                   final orderRequest = OrderRequest(
                     userId: firebaseUserId,
-                    userName: user.displayName ?? user.email ?? LocaleKeys.UnknownUser.tr(), // "مستخدم غير معروف"
+                    userName: user.displayName ?? user.email ?? LocaleKeys.UnknownUser.tr(), 
                     orderServices: [orderRequestService],
                     maintenanceCenter: locationDetails,
                     isHomeService: isHomeService,
@@ -170,8 +170,8 @@ class OfferCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                 ),
                 child: Text(
-                  LocaleKeys.RedeemOffer.tr(), // "استفد من العرض"
-                  style: getBodyStyle(color: AppColors.whColor, fontSize: 16),
+                  LocaleKeys.RedeemOffer.tr(), 
+                  style: getBodyStyle(color: AppColors.whColor, fontSize: 17),
                 ),
               ),
             ),

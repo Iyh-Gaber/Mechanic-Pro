@@ -54,6 +54,7 @@ dependencies:
   url_launcher: ^6.3.0
   json_annotation: ^4.9.0
   pretty_dio_logger: ^1.4.0
+  firebase_messaging: ^16.0.0
   
    
     

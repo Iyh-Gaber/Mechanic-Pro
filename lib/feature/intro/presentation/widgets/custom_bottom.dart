@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/text_style.dart';
@@ -41,7 +42,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: onpressed,
-        child: Text(text, style: getSmallStyle(color: fgColor ?? Colors.white)),
+        child: Text(text, style: getSmallStyle(color: fgColor ?? Colors.white , fontSize: 15.sp)),
       ),
     );
   }

@@ -59,7 +59,7 @@ class SectionHeader extends StatelessWidget {
         // عنوان القسم
         Text(
           title,
-          style: getSmallStyle(color: titleColor, fontSize: titleFontSize),
+          style: getSmallStyle(color: titleColor, fontSize: 16,),
         ),
       ],
     );

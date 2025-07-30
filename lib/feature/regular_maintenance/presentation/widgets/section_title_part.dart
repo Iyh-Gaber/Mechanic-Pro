@@ -119,7 +119,7 @@ class SectionTitlePart extends StatelessWidget {
       child: Text(
         title,
         style: getSmallStyle(
-          fontSize: 22.0,
+          fontSize: 17.0,
           fontWeight: FontWeight.bold,
           color: AppColors.blackColor,
         ),
