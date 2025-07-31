@@ -575,7 +575,7 @@ import 'package:mechpro/feature/regular_maintenance/presentation/widgets/date_ti
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/location_part.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart';
 
-import 'package:mechpro/core/routing/app_router.dart';
+
 import 'package:mechpro/core/routing/routes.dart';
 
 // استيرادات لمنطق الحجز
@@ -597,17 +597,12 @@ class OtherServicesView extends StatefulWidget {
 class _OtherServicesViewState extends State<OtherServicesView> {
   // أيقونات خاصة بخدمات أخرى
   static final Map<String, IconData> _serviceIcons = {
-    'Vehicle Inspection': Icons.car_rental,
-    'Towing Service': Icons.local_shipping,
-    'Fuel Delivery': Icons.local_gas_station,
-    'Tire Change': Icons.tire_repair,
-    'Jump Start': Icons.battery_charging_full,
-    'Lockout Service': Icons.lock_open,
-    'Pre-purchase Inspection': Icons.search,
-    'Roadside Assistance': Icons.handshake,
-    'Emergency Repair': Icons.emergency,
-    'Custom Request': Icons.request_quote,
-    'Other General Services': Icons.miscellaneous_services,
+    'Tire Installation and Balancing': Icons.car_rental,
+    'Air Conditioning Repair': Icons.local_shipping,
+    'Computer Diagnostics': Icons.local_gas_station,
+    'Spare Parts Supply': Icons.tire_repair,
+    'Core Service': Icons.battery_charging_full,
+   
   };
 
   final Set<DatumOtherServices> _selectedServices = {};
@@ -814,7 +809,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
     return Scaffold(
       appBar: CustomAppBar(
         title: LocaleKeys.RequestYourService.tr(),
-        showLeading: true,
+        showLeading: false,
         onLeadingPressed: () => Navigator.of(context).pop(),
       ),
       body: MultiBlocListener(
