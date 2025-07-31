@@ -1,64 +1,22 @@
-/*
-import 'package:flutter/material.dart';
-import 'package:mechpro/core/utils/MangeSpacing.dart';
-import 'package:mechpro/core/widgets/custom_app_bar.dart';
-import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/widgets/custom_service_card.dart';
 
-class ToolRentalView extends StatefulWidget {
-  const ToolRentalView({super.key});
-
-  @override
-  State<ToolRentalView> createState() => _ToolRentalViewState();
-}
-
-final List<String> _imagePaths = [
-  'assets/images/Jack Rental.png',
-  'assets/images/Diagnostic Scanner Renta.png',
-];
-
-class _ToolRentalViewState extends State<ToolRentalView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: "Tool Rental", showLeading: false),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return CustomServiceCard(
-            imageUrl: _imagePaths[index],
-            serviceName: '',
-            serviceDescription: '',
-            onButtonPressed: () {},
-          );
-        },
-        separatorBuilder: (context, index) => 7.verticalSpace,
-
-        itemCount: 2,
-      ),
-    );
-  }
-}
-*/
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mechpro/core/extenstions/extentions.dart'; // تأكد من المسار
-import 'package:mechpro/core/translate/locale_keys.g.dart'; // تأكد من المسار
+
+import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
-import 'package:mechpro/core/utils/app_color.dart';
-import 'package:mechpro/core/utils/text_style.dart';
+
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/widgets/custom_service_card.dart';
 
 import 'package:mechpro/feature/tool_rental/data/models/response/tool_rental_response/datum_tool_rental.dart';
 import 'package:mechpro/feature/tool_rental/presentation/cubit/tool_rental_cubit.dart';
 import 'package:mechpro/feature/tool_rental/presentation/cubit/tool_rental_state.dart';
-// استخدام نفس الـ CustomServiceCard
 
-import 'package:mechpro/core/routing/app_router.dart'; // تأكد من المسار
-import 'package:mechpro/core/routing/routes.dart'; // تأكد من المسار
+import 'package:mechpro/core/routing/routes.dart'; 
 
-// استيرادات لمنطق الحجز
+
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_service.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_sub_service.dart';
@@ -77,25 +35,25 @@ class _ToolRentalViewState extends State<ToolRentalView> {
   final List<String> _imagePaths = [
     'assets/images/Jack Rental.png',
     'assets/images/Diagnostic Scanner Renta.png',
-    // أضف المزيد من مسارات الصور إذا كان لديك المزيد من الأدوات
+   
   ];
 
   @override
   void initState() {
     super.initState();
-    context.read<ToolRentalCubit>().getToolRental(); // جلب بيانات تأجير الأدوات
+    context.read<ToolRentalCubit>().getToolRental(); 
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: LocaleKeys.ToolRental.tr(), // استخدام الترجمة للعنوان
-        showLeading: true, // للسماح بالعودة للشاشة السابقة
+        title: LocaleKeys.ToolRental.tr(), 
+        showLeading: false,
         onLeadingPressed: () => Navigator.of(context).pop(),
       ),
       body: MultiBlocListener(
-        // استخدام MultiBlocListener للاستماع لأكثر من Cubit
+      
         listeners: [
           BlocListener<ToolRentalCubit, ToolRentalStates>(
             listener: (context, state) {
@@ -109,12 +67,12 @@ class _ToolRentalViewState extends State<ToolRentalView> {
           BlocListener<OrdersCubit, OrdersState>(
             listener: (context, state) {
               if (state is CreateOrderLoading) {
-                // يمكنك عرض مؤشر تحميل هنا
+            
               } else if (state is CreateOrderSuccess) {
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(state.message)));
-                // التوجيه إلى شاشة الطلبات بعد نجاح الطلب
+               
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
                 ScaffoldMessenger.of(
@@ -145,7 +103,7 @@ class _ToolRentalViewState extends State<ToolRentalView> {
                     itemBuilder: (context, index) {
                       final DatumToolRental item = toolRentalData[index];
 
-                      // التأكد من أن لديك عدد كافٍ من الصور في _imagePaths
+                     
                       final String imageUrl =
                           _imagePaths[index % _imagePaths.length];
 
@@ -155,7 +113,7 @@ class _ToolRentalViewState extends State<ToolRentalView> {
                         serviceDescription:
                             item.description ?? 'No description available',
                         onButtonPressed: () {
-                          // منطق إنشاء الطلب مباشرة هنا
+                         
                           final user = FirebaseAuth.instance.currentUser;
                           if (user == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -183,14 +141,14 @@ class _ToolRentalViewState extends State<ToolRentalView> {
                             return;
                           }
 
-                          // استخدام قيم افتراضية للتاريخ والوقت والموقع لعملية الحجز المباشرة
+                        
                           final String locationDetails =
                               "Online Rental - Pickup at Main Branch";
                           const bool isHomeService = false;
                           final DateTime orderDateTime = DateTime.now();
 
                           final orderRequestService = OrderRequestService(
-                            orderServiceName: "Tool Rental", // اسم الخدمة
+                            orderServiceName: "Tool Rental", 
                             orderSubServices: [
                               OrderRequestSubService(
                                 orderSubServiceName: item.subServiceName,
@@ -210,7 +168,7 @@ class _ToolRentalViewState extends State<ToolRentalView> {
                             orderDate: orderDateTime,
                           );
 
-                          // استدعاء Cubit لإنشاء الطلب
+                     
                           context.read<OrdersCubit>().createNewOrder(
                             orderRequest,
                           );
@@ -229,7 +187,7 @@ class _ToolRentalViewState extends State<ToolRentalView> {
                   );
                 }
                 return const Center(
-                  child: Text(''), // لا حاجة لهذا النص بعد الآن
+                  child: Text(''), 
                 );
               },
             ),

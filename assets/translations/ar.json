@@ -146,7 +146,8 @@
   "Invalid username or password.": "اسم المستخدم او كلمة المرور غير صحيحة.",
   "Please enter a valid email address.": "من فضلك ادخل عنوان بريد صحيح.",
   "Please enter a valid phone number.": "من فضلك ادخل رقم هاتف صحيح.",
-  "Please enter a valid password.": "من فضلك ادخل كلمة مرور صحيحة."
+  "Please enter a valid password.": "من فضلك ادخل كلمة مرور صحيحة.",
+  "profile": "الملف الشخصي"
 
 
       

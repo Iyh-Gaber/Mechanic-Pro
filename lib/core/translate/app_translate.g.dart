@@ -178,6 +178,7 @@ abstract class LocaleKeys {
   static const Pleaseenteravalidemailaddress="Please enter a valid email address.";
   static const Pleaseenteravalidphonenumber="Please enter a valid phone number.";
   static const Pleaseenteravalidpassword="Please enter a valid password.";
+  static const profile="profile";
   
 
 

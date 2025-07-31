@@ -55,6 +55,7 @@ dependencies:
   json_annotation: ^4.9.0
   pretty_dio_logger: ^1.4.0
   firebase_messaging: ^16.0.0
+  image_picker: ^1.0.4
   
   
    

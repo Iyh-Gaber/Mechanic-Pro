@@ -8,7 +8,7 @@ import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/date_time_picker_part.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/location_part.dart';
-import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart'; // استيراد ServiceCard العامة
+import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart'; 
 import 'package:mechpro/feature/repairing_electrical_faults/data/models/response/electrical_response/datum_electrical.dart';
 
 
@@ -19,7 +19,7 @@ import '../../../../core/widgets/section_header.dart';
 import '../cubit/electrical_cubit.dart';
 import '../cubit/electrical_state.dart';
 
-// استيرادات لمنطق الحجز
+
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_service.dart';
 import 'package:mechpro/feature/orders/data/models/request/order_request/order_request_sub_service.dart';
@@ -36,7 +36,7 @@ class RepairingElectricalFaults extends StatefulWidget {
 }
 
 class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
-  // تعريف الأيقونات للخدمات الكهربائية المختلفة
+  
   static final Map<String, IconData> _serviceIcons = {
     'Lighting System Repair': Icons.power_input,
     'Battery and Charging Repair': Icons.battery_charging_full,
@@ -44,7 +44,7 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
    
   };
 
-  // المتغيرات لتخزين اختيار المستخدم
+  
   final Set<DatumElectrical> _selectedServices = {};
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
@@ -52,7 +52,7 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
   String? _selectedBranch;
   bool _hasContactedForLocation = false;
 
-  // قائمة الفروع المتاحة (نفسها من الشاشة الرئيسية)
+
   final List<String> _branches = [
     'Qatar Branch - Twin Towers A, Street 303',
     'Riyadh Branch - Al Nakheel District',
@@ -62,7 +62,7 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
     'Elminia Branch - Palace Square',
   ];
 
-  // قائمة الأوقات المتاحة (نفسها من الشاشة الرئيسية)
+ 
   final List<TimeOfDay> _availableTimes = [
     const TimeOfDay(hour: 9, minute: 0),
     const TimeOfDay(hour: 10, minute: 30),
@@ -72,17 +72,17 @@ class _RepairingElectricalFaultsState extends State<RepairingElectricalFaults> {
     const TimeOfDay(hour: 12, minute: 0), // 12:00 PM
   ];
 
-  // متحكم لحقل العنوان
+ 
   final TextEditingController _addressController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // جلب الخدمات الكهربائية عند تهيئة الشاشة
+   
     context.read<ElectricalCubit>().getElectricalServices();
   }
 
-  // دالة لاختيار التاريخ
+ 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
