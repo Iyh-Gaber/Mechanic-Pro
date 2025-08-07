@@ -5,11 +5,12 @@ class ServiceListItem extends StatelessWidget {
   final IconData icon;
   final String title;
   final VoidCallback? onTap;
+  final TextStyle? titleStyle;
   const ServiceListItem({
     super.key,
     required this.icon,
     required this.title,
-    this.onTap,
+    this.onTap, this.titleStyle,
   });
 
   @override
@@ -44,11 +45,7 @@ class ServiceListItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                   style: titleStyle,
                   ),
                 ),
                 const Icon(
