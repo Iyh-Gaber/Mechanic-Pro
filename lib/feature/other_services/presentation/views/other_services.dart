@@ -563,6 +563,7 @@ import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 import 'package:mechpro/core/widgets/section_header.dart';
@@ -595,7 +596,7 @@ class OtherServicesView extends StatefulWidget {
 }
 
 class _OtherServicesViewState extends State<OtherServicesView> {
-  // أيقونات خاصة بخدمات أخرى
+  
   static final Map<String, IconData> _serviceIcons = {
     'Tire Installation and Balancing': Icons.car_rental,
     'Air Conditioning Repair': Icons.local_shipping,
@@ -635,7 +636,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
   @override
   void initState() {
     super.initState();
-    context.read<OtherServicesCubit>().getOtherServices(); // جلب خدمات أخرى
+    context.read<OtherServicesCubit>().getOtherServices(); 
   }
 
   @override
@@ -683,7 +684,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
   }
 
   void _confirmService() {
-    // التحقق من تسجيل دخول المستخدم
+    
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -706,7 +707,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
       return;
     }
 
-    // بناء قائمة الخدمات الفرعية للطلب
+    
     final List<OrderRequestSubService> orderSubServices = _selectedServices
         .map(
           (service) => OrderRequestSubService(
@@ -715,13 +716,13 @@ class _OtherServicesViewState extends State<OtherServicesView> {
         )
         .toList();
 
-    // بناء خدمة الطلب الرئيسية
+   
     final orderRequestService = OrderRequestService(
       orderServiceName: "Other Services", // اسم الخدمة هنا هو "Other Services"
       orderSubServices: orderSubServices,
     );
 
-    // تحديد الموقع
+   
     String locationDetails;
     bool isHomeService = false;
     if (_selectedLocationType == LocaleKeys.mylocation.tr()) {
@@ -737,7 +738,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
       isHomeService = false;
     }
 
-    // بناء كائن الطلب الكامل
+    
     final orderRequest = OrderRequest(
       userId: firebaseUserId,
       userName: user.displayName ?? user.email ?? 'Unknown User',
@@ -826,7 +827,7 @@ class _OtherServicesViewState extends State<OtherServicesView> {
           BlocListener<OrdersCubit, OrdersState>(
             listener: (context, state) {
               if (state is CreateOrderLoading) {
-                // يمكنك عرض مؤشر تحميل هنا
+              
               } else if (state is CreateOrderSuccess) {
                 ScaffoldMessenger.of(
                   context,
@@ -841,10 +842,11 @@ class _OtherServicesViewState extends State<OtherServicesView> {
           ),
         ],
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+        
+         padding: 17.all,
           child: ListView(
             children: [
-              // القسم 1: اختر خدماتك
+             
               SectionHeader(
                 leadingText: '1',
                 title: LocaleKeys.Chooseyourservices.tr(),
@@ -911,14 +913,14 @@ class _OtherServicesViewState extends State<OtherServicesView> {
               ),
               17.verticalSpace,
 
-              // القسم 2: متى تحتاج الخدمة؟
+             
               SectionHeader(
                 leadingText: '2',
                 title: LocaleKeys.WhenDoYouNeedtheService.tr(),
               ),
               17.verticalSpace,
 
-              // جزء اختيار التاريخ
+            
               DateTimePickerPart(
                 context: context,
                 label: LocaleKeys.Date.tr(),
@@ -929,13 +931,14 @@ class _OtherServicesViewState extends State<OtherServicesView> {
                 onTap: () => _selectDate(context),
               ),
               17.verticalSpace,
-              // جزء اختيار الوقت
+             
               if (_selectedDate != null)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    
+                      padding: 8.vertical,
                       child: Text(
                         LocaleKeys.SelectTime.tr(),
                         style: getSmallStyle(

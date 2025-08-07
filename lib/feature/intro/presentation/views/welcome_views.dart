@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
 import 'package:mechpro/core/routing/routes.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/feature/intro/presentation/widgets/header_row.dart';
 import 'package:mechpro/feature/intro/presentation/widgets/rich_text_part.dart';
 import '../../../../core/routing/app_router.dart';
@@ -27,7 +28,9 @@ class WelcomeViews extends StatelessWidget {
        
        
         body: Padding(
-          padding: const EdgeInsets.all(17.0),
+        
+         padding: 17.all,
+
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

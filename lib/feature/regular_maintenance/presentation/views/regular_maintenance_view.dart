@@ -5,6 +5,7 @@ import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart'; 
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/date_time_picker_part.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/location_part.dart';
 import 'package:mechpro/feature/regular_maintenance/presentation/widgets/service_card.dart';
@@ -250,7 +251,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
 
             return Padding(
              
-              padding: const EdgeInsets.all(10.0),
+              padding: 17.all,
               child: ListView(
                
                 children: [

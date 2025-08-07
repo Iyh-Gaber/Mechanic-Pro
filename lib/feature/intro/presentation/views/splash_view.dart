@@ -1,55 +1,11 @@
 
 
-
-/*import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mechpro/core/utils/app_assets.dart';
-
-import 'package:mechpro/feature/intro/presentation/views/welcome_views.dart';
-
-class SplashView extends StatefulWidget {
-  const SplashView({super.key});
-
-  @override
-  State<SplashView> createState() => _SplashViewState();
-}
-
-class _SplashViewState extends State<SplashView> {
-  @override
-  void initState() {
-    //super.initState();
-    Future.delayed(Duration(seconds: 2), () {
-      if (context.mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return WelcomeViews();
-            },
-          ),
-          (route) => false,
-        );
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Image.asset(AppAssets.logo)));
-  }
-}
-*/
-
-// splash_view.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
 
-// تأكدي من أن هذا المسار صحيح لشاشة الترحيب الخاصة بكِ
 import 'package:mechpro/feature/intro/presentation/views/welcome_views.dart'; 
 
-// **إضافة استيراد Firebase Messaging**
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class SplashView extends StatefulWidget {
@@ -60,43 +16,32 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  // متغير لتخزين رمز الجهاز المميز (FCM Token) لغرض الـ debugging (اختياري)
+ 
   String? _fcmToken; 
   
-  // يمكنك إضافة متغير لتخزين بيانات الرسالة الأولية إذا فتح التطبيق من إشعار
-  // Map<String, dynamic>? _initialMessageData;
 
   @override
   void initState() {
-    super.initState(); // **هذا السطر مهم جداً ويجب أن يكون في البداية**
+    super.initState(); 
 
-    // **الخطوة 1: تهيئة Firebase Messaging والتعامل مع الإشعارات**
-    // هذه الدالة ستقوم بطلب الأذونات، الحصول على التوكن، وإعداد المستمعات
+   
+  
     _initializeFirebaseMessaging();
 
-    // **الخطوة 2: تأخير التنقل بعد تهيئة الإشعارات**
-    // هذا التأخير ثابت لمدة ثانيتين كما كان في كودك الأصلي.
-    // يتم استدعاء دالة التنقل بعد انتهاء هذه الثواني.
     Future.delayed(const Duration(seconds: 2), () {
       _navigateToNextScreen();
     });
   }
-
-  // **دالة لتهيئة Firebase Messaging ومستمعات الرسائل**
-  // هذه الدالة تقوم بكل العمل المتعلق بالإشعارات
   void _initializeFirebaseMessaging() async {
-    // 1. طلب الأذونات من المستخدم (ضروري لظهور الإشعارات، خاصة على iOS)
-    // هذا سيظهر للمستخدم مربع حوار يسأله إذا كان يوافق على تلقي الإشعارات.
+   
     NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
-      alert: true,   // السماح بعرض التنبيهات (مثل البانر)
-      badge: true,   // السماح بتحديث رقم الشارة على أيقونة التطبيق
-      sound: true,   // السماح بتشغيل صوت عند وصول الإشعار
+      alert: true,  
+      badge: true,   
+      sound: true,   
     );
     print('User granted permission: ${settings.authorizationStatus}'); 
-    // يمكنك طباعة حالة الإذن لمعرفة ما إذا وافق المستخدم (authorized) أو رفض (denied)
+   
 
-    // 2. الحصول على رمز الجهاز المميز (FCM Token)
-    // هذا الرمز فريد لكل جهاز وتطبيق، وستستخدمينه لإرسال الإشعارات المستهدفة.
     String? token = await FirebaseMessaging.instance.getToken();
     setState(() {
       _fcmToken = token; // نحدث المتغير لعرضه في واجهة المستخدم (للتصحيح فقط)

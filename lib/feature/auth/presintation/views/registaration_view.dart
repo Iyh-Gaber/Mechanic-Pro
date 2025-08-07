@@ -59,6 +59,7 @@ class _RegistrationViewState extends State<RegistrationView> {
         body: Center(
           child: SingleChildScrollView(
             child: Padding(
+            //  padding: MangeSpacing.,
               padding: const EdgeInsets.all(17.0),
               child: BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {

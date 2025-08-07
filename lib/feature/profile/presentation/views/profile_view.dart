@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 
@@ -301,16 +302,7 @@ class _ProfileViewState extends State<ProfileView> {
 appBar: CustomAppBar(title: LocaleKeys.profile.tr(), showLeading: false
   
 ),
-      /*
-      appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
-        backgroundColor: AppColors.primaryColor,
-        elevation: 0,
-      ),
-
-*/
-
+      
 
       body: SingleChildScrollView(
         child: Column(
@@ -340,7 +332,8 @@ appBar: CustomAppBar(title: LocaleKeys.profile.tr(), showLeading: false
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      //padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: 17.vertical,
       width: double.infinity,
       color: AppColors.whColor,
       child: Center(

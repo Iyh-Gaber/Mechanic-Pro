@@ -7,6 +7,7 @@ import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
 
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 
 import 'package:mechpro/feature/onboarding/presentation/widgets/page_view_custom.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -28,7 +29,9 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+
+       
+        padding: 20.all,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

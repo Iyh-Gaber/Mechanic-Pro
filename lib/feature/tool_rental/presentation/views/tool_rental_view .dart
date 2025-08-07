@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 import 'package:mechpro/feature/Selling_%20original_spare%20parts/presentation/widgets/custom_service_card.dart';
@@ -84,7 +85,8 @@ class _ToolRentalViewState extends State<ToolRentalView> {
         ],
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: 17.all,
+
             child: BlocBuilder<ToolRentalCubit, ToolRentalStates>(
               builder: (context, state) {
                 if (state is ToolRentalLoadingState) {

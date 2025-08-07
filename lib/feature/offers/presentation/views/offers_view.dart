@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 
@@ -89,7 +90,9 @@ class _OffersViewState extends State<OffersView> {
         ],
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(7.0),
+            
+           
+            padding: 17.all,
             child: BlocBuilder<OffersCubit, OffersState>(
               builder: (context, state) {
                 if (state is OffersLoading) {

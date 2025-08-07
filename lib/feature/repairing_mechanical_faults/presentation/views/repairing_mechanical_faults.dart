@@ -3558,6 +3558,7 @@ class _RepairingMechanicalFaultsViewState
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 
 import 'package:mechpro/feature/repairing_mechanical_faults/presentation/cubit/mechanical_cubit.dart'; // استيراد الـ Cubit الخاص بك
@@ -3809,7 +3810,8 @@ class _RepairingMechanicalFaultsViewState
         onLeadingPressed: () => Navigator.of(context).pop(),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: 17.all,
+        
         child: ListView(
           children: [
             17.verticalSpace,

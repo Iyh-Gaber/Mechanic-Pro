@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 import 'package:mechpro/feature/offers/data/models/response/offers_response/datum_offers.dart';
@@ -51,7 +52,9 @@ class OfferCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        
+       
+        padding: 10.all,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

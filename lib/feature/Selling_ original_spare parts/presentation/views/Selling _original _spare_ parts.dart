@@ -9,6 +9,7 @@ import 'package:mechpro/core/routing/routes.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/core/utils/text_style.dart';
 
 import 'package:mechpro/feature/Selling_%20original_spare%20parts/data/models/response/selling_response/datumSelling.dart';
@@ -92,7 +93,7 @@ class _SellingOriginalPartsViewState extends State<SellingOriginalPartsView> {
         ],
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: 17.all,
             child: BlocBuilder<SellingCubit, SellingStates>(
               builder: (context, state) {
                 if (state is SellingLoadingState) {
