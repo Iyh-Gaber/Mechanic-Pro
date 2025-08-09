@@ -12,6 +12,7 @@ import 'package:mechpro/core/routing/routes.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/MangeSpacing.dart';
+import 'package:mechpro/core/utils/manage_padding.dart';
 import 'package:mechpro/feature/auth/presintation/widgets/tab_buttom_custom.dart';
 
 import '../../../../core/utils/app_assets.dart';
@@ -42,11 +43,17 @@ class _RegistrationViewState extends State<RegistrationView> {
     super.dispose();
   }
 
-  // Helper method to show SnackBar messages
-  void _showSnackBar(BuildContext context, String message) {
+ 
+  void showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    ).showSnackBar(
+      
+      
+      SnackBar(
+        backgroundColor: AppColors.primaryColor,
+        
+        content: Text(message)));
   }
 
   @override
@@ -59,13 +66,14 @@ class _RegistrationViewState extends State<RegistrationView> {
         body: Center(
           child: SingleChildScrollView(
             child: Padding(
-            //  padding: MangeSpacing.,
-              padding: const EdgeInsets.all(17.0),
+           
+            padding: 17.all,
+              
               child: BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                  
                   if (state is AuthSuccess) {
-                    _showSnackBar(context, LocaleKeys.Authenticationsuccessful.tr());
+                    showSnackBar(context, LocaleKeys.Authenticationsuccessful.tr());
                   
                     context.pushAndRemoveUntil(
                       Routes.layoutView,
@@ -73,7 +81,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                       predicate: (route) => false,
                     );
                   } else if (state is AuthError) {
-                    _showSnackBar(context, state.message);
+                    showSnackBar(context, state.message);
                   }
                 },
                 builder: (context, state) {
@@ -124,7 +132,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                         ),
                        
  17.verticalSpace,
-                        _buildAuthFormContainer(
+                        AuthFormContainer(
                           context,
                           isLoginMode,
                           isLoading,
@@ -176,7 +184,7 @@ class _RegistrationViewState extends State<RegistrationView> {
 
 
   
-  Widget _buildAuthFormContainer(
+  Widget AuthFormContainer(
     BuildContext context,
     bool isLoginMode,
     bool isLoading,
