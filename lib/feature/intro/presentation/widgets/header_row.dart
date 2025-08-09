@@ -25,7 +25,7 @@ class HeaderRow extends StatelessWidget {
                 },
                 child: Image.asset(
                   AppAssets.iconEmrg,
-                  //  fit: BoxFit.cover,
+                    fit: BoxFit.cover,
                   height: 25.h,
                   width: 25.w,
                 ),

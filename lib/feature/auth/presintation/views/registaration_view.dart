@@ -95,7 +95,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-                        Image.asset(AppAssets.logoIcon, width: 70, height: 70),
+                        Image.asset(AppAssets.logoIcon, width: 55, height: 55),
                         Text(
                           isLoginMode
                               ? LocaleKeys.Welcomeback.tr()
@@ -140,6 +140,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                 text: isLoginMode
                                     ? LocaleKeys.DonThaveanaccount.tr()
                                     : LocaleKeys.lreadyhaveaccount.tr(),
+                                    style: getSmallStyle()
                               ),
                               TextSpan(
                                 text: isLoginMode
@@ -203,8 +204,8 @@ class _RegistrationViewState extends State<RegistrationView> {
               controller: _nameController,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
-                labelText: LocaleKeys.name.tr(),
-                labelStyle: TextStyle(fontSize: 14.0),
+                labelText: LocaleKeys.name.tr(),counterStyle: getSmallStyle(fontSize: 12),
+                labelStyle: getSmallStyle(fontSize: 14.0),
                 prefixIcon: Icon(Icons.person, size: 20.0),
                 border: OutlineInputBorder(),
               ),
@@ -223,7 +224,7 @@ class _RegistrationViewState extends State<RegistrationView> {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               labelText: LocaleKeys.Email.tr(),
-              labelStyle: TextStyle(fontSize: 14.0),
+              labelStyle: getSmallStyle(fontSize: 14.0),
               prefixIcon: Icon(Icons.email, size: 20.0),
               border: OutlineInputBorder(),
             ),
@@ -246,7 +247,7 @@ class _RegistrationViewState extends State<RegistrationView> {
             obscureText: true, 
             decoration: InputDecoration(
               labelText: LocaleKeys.password.tr(),
-              labelStyle: TextStyle(fontSize: 14.0),
+            labelStyle: getSmallStyle(fontSize: 14.0),
               prefixIcon: Icon(Icons.lock, size: 20.0),
               border: OutlineInputBorder(),
             ),
@@ -283,7 +284,7 @@ class _RegistrationViewState extends State<RegistrationView> {
               obscureText: true,
               decoration: InputDecoration(
                 labelText: LocaleKeys.repassword.tr(),
-                labelStyle: TextStyle(fontSize: 14.0),
+                labelStyle: getSmallStyle(fontSize: 14.0),
                 prefixIcon: Icon(Icons.lock, size: 20.0),
                 border: OutlineInputBorder(),
               ),
@@ -310,10 +311,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   },
                   child: Text(
                     LocaleKeys.forgotPassword.tr(),
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 12.0,
-                    ),
+                    style: getSmallStyle(color: AppColors.primaryColor),
+                  
                   ),
                 ),
               ],

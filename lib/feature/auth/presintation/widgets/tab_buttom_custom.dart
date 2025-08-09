@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/feature/auth/presintation/cubit/auth_cubit.dart';
 
 class TabButtomCustom extends StatelessWidget {
@@ -35,11 +36,10 @@ class TabButtomCustom extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
-            color: isActive ? AppColors.primaryColor : Colors.grey,
-            fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-            fontSize: 17.0,
-          ),
+         style: getSmallStyle(color: isActive ? AppColors.primaryColor : Colors.grey, fontWeight: isActive ? FontWeight.bold : FontWeight.normal, fontSize: 17.0,),
+
+
+       
         ),
       ),
     );
