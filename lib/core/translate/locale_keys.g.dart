@@ -69,7 +69,7 @@ abstract class LocaleKeys {
   static const EnterYourDetailedAddressOptional =
       "Enter Your Detailed Address (Optional)";
   static const ElnezlawyStBuilding10Apt5 =
-      "e.g., King Fahd St, Building 10, Apt 5";
+      "e.g., King Elnezlawy St, Building 10, Apt 5";
 
   static const MyOrders = "My Orders";
   static const NoOrdersYet = "You haven't placed any orders yet.";
