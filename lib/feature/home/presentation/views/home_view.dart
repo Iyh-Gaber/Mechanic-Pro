@@ -67,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LocationButtonWidget() ,
+              
                 const OfferBanner(),
                 const FutureWorkServices(),
                 Padding(

@@ -132,6 +132,7 @@ class _ProfileViewState extends State<ProfileView> {
   Future<void> _showUrlInputDialog() async {
     String? imageUrl = '';
     await showDialog(
+      barrierColor: AppColors.primaryColor,
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -293,7 +294,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: CircularProgressIndicator(color: AppColors.primaryColor,)));
     }
 
     if (_currentUser == null) {

@@ -77,12 +77,13 @@ class _OffersViewState extends State<OffersView> {
               
               } else if (state is CreateOrderSuccess) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
+
+                  SnackBar (content: Text(state.message)),
                 );
                 Navigator.of(context).pushNamed(Routes.ordersView);
               } else if (state is CreateOrderError) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
+                  SnackBar( content: Text(state.message)),
                 );
               }
             },
@@ -96,7 +97,7 @@ class _OffersViewState extends State<OffersView> {
             child: BlocBuilder<OffersCubit, OffersState>(
               builder: (context, state) {
                 if (state is OffersLoading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator(backgroundColor: AppColors.primaryColor,));
                 } else if (state is OffersSuccess) {
                   final List<DatumOffers> offersData = state.offerResponse.data ?? [];
                   if (offersData.isEmpty) {

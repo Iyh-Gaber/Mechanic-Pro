@@ -80,6 +80,7 @@ import 'package:mechpro/core/utils/text_style.dart';
 import 'package:mechpro/feature/home/data/repo/main_services_repo.dart';
 import 'package:mechpro/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:mechpro/feature/orders/presentation/views/orders_view.dart';
+import 'package:mechpro/feature/profile/presentation/views/profile_view.dart';
 
 import '../cars_registration/presentation/views/show_cars.dart';
 import '../connect_us/presentation/views/connect_us.dart';
@@ -99,6 +100,7 @@ class LayoutView extends StatefulWidget {
 
 class _LayoutViewState extends State<LayoutView> {
   List<Widget> views = [
+    ProfileView(),
     ShowCarsView(),
     BlocProvider(
       create: (BuildContext context) {
@@ -114,7 +116,7 @@ class _LayoutViewState extends State<LayoutView> {
     ),
     ConnectUsView(),
   ];
-  int currentPage = 1;
+  int currentPage = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,10 +133,22 @@ class _LayoutViewState extends State<LayoutView> {
           });
         },
         items: [
+           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.person_2_outlined, color: AppColors.whColor, size: 30),
+              2.verticalSpace,
+              Text(
+                'profile', // Label for Home
+                style: getSmallStyle(color: AppColors.whColor),
+              ),
+            ],
+          ),
           Column(
             mainAxisAlignment:
                 MainAxisAlignment.center, // Center items vertically
             children: [
+              
               SvgPicture.asset(
                 AppAssets.carSvg,
                 color: AppColors.whColor,
