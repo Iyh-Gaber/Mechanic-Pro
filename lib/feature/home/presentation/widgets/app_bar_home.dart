@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/text_style.dart';
+import 'package:mechpro/core/widgets/location_button_widget.dart';
 
 import '../../../../core/routing/routes.dart';
 
@@ -29,6 +30,10 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
         ),
         iconSize: 37,
       ),
+
+   // title: LocationButtonWidget() ,
+
+
       actions: [
        
         Stack(

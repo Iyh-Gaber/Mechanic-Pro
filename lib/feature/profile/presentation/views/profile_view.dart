@@ -3,7 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mechpro/core/services/location_service.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/utils/manage_padding.dart';
@@ -307,6 +309,11 @@ appBar: CustomAppBar(title: LocaleKeys.profile.tr(), showLeading: false
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+
+    
+
+
             _buildUserInfoSection(context),
             const SizedBox(height: 20),
             _buildProfileOptionsList(context),

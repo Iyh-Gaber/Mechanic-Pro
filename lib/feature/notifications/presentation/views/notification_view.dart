@@ -9,7 +9,7 @@ import 'package:mechpro/core/widgets/custom_app_bar.dart';
 
 
 import 'package:mechpro/feature/notifications/presentation/cubit/notification_cubit.dart';
-import 'package:mechpro/feature/notifications/presentation/cubit/notification_state.dart'; // استيراد الحالة
+import 'package:mechpro/feature/notifications/presentation/cubit/notification_state.dart'; 
 
 
 class NotificationView extends StatefulWidget {

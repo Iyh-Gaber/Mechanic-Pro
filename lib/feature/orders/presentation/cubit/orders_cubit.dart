@@ -74,14 +74,14 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   OrdersCubit(this._ordersRepo) : super(const OrdersInitial());
 
-  // دالة لإنشاء طلب جديد وإرساله إلى الـ API
+ 
   Future<void> createNewOrder(OrderRequest order) async {
-    emit(const CreateOrderLoading()); // إصدار حالة التحميل
+    emit(const CreateOrderLoading()); 
 
     try {
       final OrderResponse response = await _ordersRepo.createOrder(
         order,
-      ); // <--- تأكد أن نوع الاستجابة هو OrderResponse
+      );
 
       if (response.isSuccess == true) {
         // إذا كان الـ OrderResponse قد يحتوي على OrderNumberModel في الـ data،
@@ -109,7 +109,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
   }
 
-  // دالة لجلب الطلبات من الـ API
+  
   Future<void> fetchOrdersFromApi() async {
     emit(const LoadingOrders()); // إصدار حالة التحميل لجلب الطلبات
 

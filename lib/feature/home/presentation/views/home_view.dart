@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:mechpro/core/utils/app_color.dart';
+import 'package:mechpro/core/widgets/location_button_widget.dart';
 import 'package:mechpro/feature/home/presentation/widgets/app_bar_home.dart';
 import 'package:mechpro/feature/home/presentation/widgets/core_services_part.dart';
 import 'package:mechpro/feature/home/presentation/widgets/future_work_services.dart';
@@ -42,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.whColor,
-        // هنا تم تصحيح الخطأ باستخدام PreferredSize
+       
         appBar: PreferredSize(
           preferredSize: AppBarHome(unreadNotificationsCount: 0).preferredSize,
           child: BlocBuilder<NotificationCubit, NotificationState>(
@@ -66,6 +67,7 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                LocationButtonWidget() ,
                 const OfferBanner(),
                 const FutureWorkServices(),
                 Padding(
