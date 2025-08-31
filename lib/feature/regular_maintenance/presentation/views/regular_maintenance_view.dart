@@ -713,7 +713,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
 
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        print('خدمات الموقع غير مفعلة.');
+        print('the location services are disabled.');
         return null;
       }
 
@@ -721,13 +721,13 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          print('تم رفض صلاحيات الموقع.');
+          print('the location permissions are denied.');
           return null;
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
-        print('صلاحيات الموقع مرفوضة بشكل دائم.');
+        print('the location permissions are permanently denied.');
         return null;
       }
 
@@ -745,7 +745,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
 
       return null;
     } catch (e) {
-      print('حدث خطأ في الحصول على الموقع: $e');
+      print('Error getting location address: $e');
       return null;
     }
   }
@@ -763,7 +763,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("لم نتمكن من جلب موقعك. يرجى إدخال العنوان يدويًا."),
+          content: Text("Failed to get location address please give us your address manually."),
         ),
       );
     }
@@ -1086,7 +1086,7 @@ class _RegularMaintenanceViewState extends State<RegularMaintenanceView> {
                     prefixIcon: IconButton(
                       icon: const Icon(Icons.location_on, color: AppColors.primaryColor),
                       onPressed: () {
-                        _updateAddressWithCurrentLocation(); // تم تعديل هذه الدالة
+                        _updateAddressWithCurrentLocation(); 
                       },
                     ),
                     contentPadding: const EdgeInsets.symmetric(

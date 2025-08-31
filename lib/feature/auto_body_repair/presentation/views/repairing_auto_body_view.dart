@@ -3,6 +3,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mechpro/core/extenstions/extentions.dart';
 import 'package:mechpro/core/routing/routes.dart';
 import 'package:mechpro/core/translate/locale_keys.g.dart';
@@ -83,6 +85,73 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
         .read<AutoBodyCubit>()
         .getAutoBodyServices();
   }
+
+ Future<Placemark?> getLocationAddress() async {
+    try {
+      bool serviceEnabled;
+      LocationPermission permission;
+
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        print('the location services are disabled.');
+        return null;
+      }
+
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          print('the location permissions are denied.');
+          return null;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        print('the location permissions are permanently denied.');
+        return null;
+      }
+
+      Position position = await Geolocator.getCurrentPosition();
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+        localeIdentifier: 'ar_EG',
+      );
+
+      if (placemarks.isNotEmpty) {
+        return placemarks.first;
+      }
+
+      return null;
+    } catch (e) {
+      print('Error getting location address: $e');
+      return null;
+    }
+  }
+
+  // الدالة الجديدة التي تستدعي الدالة أعلاه وتحدث واجهة المستخدم
+  Future<void> _updateAddressWithCurrentLocation() async {
+    Placemark? placemark = await getLocationAddress();
+
+    if (placemark != null) {
+      setState(() {
+        _addressController.text =
+            "${placemark.street}, ${placemark.locality}, ${placemark.country}";
+        _hasContactedForLocation = false;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Failed to get location address please give us your address manually."),
+        ),
+      );
+    }
+  }
+
+
+
+
 
   @override
   void dispose() {
@@ -485,10 +554,17 @@ class _RepairingAutoBodyViewState extends State<RepairingAutoBodyView> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              prefixIcon: const Icon(
+                           /*   prefixIcon: const Icon(
                                 Icons.location_on,
                                 color: AppColors.primaryColor,
-                              ),
+                              ),*/
+                                prefixIcon: IconButton(
+                      icon: const Icon(Icons.location_on, color: AppColors.primaryColor),
+                      onPressed: () {
+                        _updateAddressWithCurrentLocation(); 
+                      },
+                    ),
+
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0,
