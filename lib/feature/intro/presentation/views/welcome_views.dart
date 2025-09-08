@@ -37,7 +37,7 @@ class WelcomeViews extends StatelessWidget {
                   HeaderRow(),
 
 
-              Gap(155),
+              Gap(175),
               Image.asset(
                 AppAssets.logoIcon,
                 fit: BoxFit.cover,

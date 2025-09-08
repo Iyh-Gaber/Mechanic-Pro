@@ -3,6 +3,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mechpro/core/utils/app_color.dart';
 import 'package:mechpro/core/widgets/custom_app_bar.dart';
 import 'package:mechpro/feature/emergency_situations/presentation/widgets/emergency_buttons_custom.dart';
@@ -19,9 +21,74 @@ class EmergencyView extends StatefulWidget {
 }
 
 class _EmergencyViewState extends State<EmergencyView> {
-  
+   final TextEditingController _addressController = TextEditingController();
+   bool _hasContactedForLocation = false;
   final String _phoneNumberToCall = "1234567890"; 
   final String _accidentReportNumber = "45678"; 
+
+ 
+  Future<Placemark?> getLocationAddress() async {
+    try {
+      bool serviceEnabled;
+      LocationPermission permission;
+
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        print('the location services are disabled.');
+        return null;
+      }
+
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          print('the location permissions are denied.');
+          return null;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        print('the location permissions are permanently denied.');
+        return null;
+      }
+
+      Position position = await Geolocator.getCurrentPosition();
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+        localeIdentifier: 'ar_EG',
+      );
+
+      if (placemarks.isNotEmpty) {
+        return placemarks.first;
+      }
+
+      return null;
+    } catch (e) {
+      print('Error getting location address: $e');
+      return null;
+    }
+  }
+
+
+  Future<void> _updateAddressWithCurrentLocation() async {
+    Placemark? placemark = await getLocationAddress();
+
+    if (placemark != null) {
+      setState(() {
+        _addressController.text =
+            "${placemark.street}, ${placemark.locality}, ${placemark.country}";
+        _hasContactedForLocation = false;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Failed to get location address please give us your address manually."),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +208,7 @@ class _EmergencyViewState extends State<EmergencyView> {
       builder: (BuildContext dialogContext) {
         return AlertDialog(
           backgroundColor: AppColors.primaryColor,
-          title: Text("Request a Transport Crane".tr(),style: getSmallStyle(color: AppColors.whColor)), // استخدام الترجمة
+          title: Text("Request a Transport Crane".tr(),style: getSmallStyle(color: AppColors.whColor)), 
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -159,9 +226,17 @@ TextField(
     hintText: "Enter your full address here".tr(), 
     hintStyle: getSmallStyle(color: AppColors.grColor), 
 
+   prefixIcon: IconButton(
+                      icon: const Icon(Icons.location_on, color: AppColors.primaryColor),
+                      onPressed: () {
+                        _updateAddressWithCurrentLocation(); 
+                      },
+                    ),
+
+
     border: const OutlineInputBorder(),
     enabledBorder: OutlineInputBorder( 
-      borderSide: BorderSide(color: AppColors.grColor, width: 1.0),
+      borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0),
       borderRadius: BorderRadius.circular(8.0),
     ),
     focusedBorder: OutlineInputBorder( 
@@ -195,7 +270,8 @@ TextField(
                 Navigator.of(dialogContext).pop();
                
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(' Your request has been confirmed successfully    '.tr(),style: getSmallStyle(color: AppColors.whColor))), // استخدام الترجمة
+
+                  SnackBar(backgroundColor: AppColors.primaryColor, content: Text(' Your request has been confirmed successfully    '.tr(),style: getSmallStyle(color: AppColors.whColor))), // استخدام الترجمة
                 );
               },
             ),
@@ -212,14 +288,14 @@ TextField(
       builder: (BuildContext dialogContext) {
         return AlertDialog(
           backgroundColor: AppColors.primaryColor,
-          title: Text(" Report Accident ".tr(),style: getSmallStyle(color: AppColors.whColor),), // استخدام الترجمة
+          title: Text(" Report Accident ".tr(),style: getSmallStyle(color: AppColors.whColor),), 
           content: Text("Please Connect to the Accident Report Number: $_accidentReportNumber".tr(),style: getSmallStyle(color: AppColors.whColor)), // استخدام الترجمة مع الرقم
           actions: <Widget>[
             TextButton(
-              child: Text("Call".tr(),style: getSmallStyle(color: AppColors.whColor)), // استخدام الترجمة
+              child: Text("Call".tr(),style: getSmallStyle(color: AppColors.whColor)), 
               onPressed: () {
                 Navigator.of(dialogContext).pop();
-                _makePhoneCall(_accidentReportNumber); // الاتصال بالرقم
+                _makePhoneCall(_accidentReportNumber); 
               },
             ),
           ],

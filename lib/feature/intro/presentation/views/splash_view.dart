@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mechpro/core/utils/app_assets.dart';
+import 'package:mechpro/core/utils/app_color.dart';
 
 import 'package:mechpro/feature/intro/presentation/views/welcome_views.dart'; 
 
@@ -44,73 +45,50 @@ class _SplashViewState extends State<SplashView> {
 
     String? token = await FirebaseMessaging.instance.getToken();
     setState(() {
-      _fcmToken = token; // نحدث المتغير لعرضه في واجهة المستخدم (للتصحيح فقط)
+      _fcmToken = token; 
     });
-    print("FCM Token: $token"); // سيظهر هذا الرمز في Logcat/Console الخاص بكِ
+    print("FCM Token: $token"); 
 
-    // **مهم جداً جداً هنا:**
-    // يجب عليكِ الآن إرسال هذا الرمز (token) إلى الخادم الخلفي (Backend) الخاص بكِ.
-    // الطريقة الشائعة هي ربط هذا الرمز بمعرف المستخدم (User ID) في قاعدة بياناتك على الخادم.
-    // هذا يسمح لكِ لاحقاً بإرسال إشعارات مخصصة لمستخدمين معينين.
-    // مثال (افترض أن لديكِ API Client):
-    // if (UserSession.isLoggedIn) { // تحقق ما إذا كان المستخدم مسجلاً للدخول
-    //   await MyApiClient.sendDeviceTokenToServer(token, UserSession.currentUserId);
-    // } else {
-    //   // إذا لم يكن المستخدم مسجلاً للدخول، يمكنك تخزين الرمز مؤقتاً
-    //   // وإرساله عندما يقوم المستخدم بتسجيل الدخول لأول مرة.
-    //   // SharedPreferences.getInstance().then((prefs) => prefs.setString('fcm_token_pending', token));
-    // }
-
-    // 3. التعامل مع الرسالة الأولية التي فتحت التطبيق (عندما يكون التطبيق مغلقاً تماماً - Terminated State)
-    // هذه الدالة يتم استدعاؤها مرة واحدة عند فتح التطبيق نتيجة النقر على إشعار وكان التطبيق مغلقاً.
+   
     FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
       if (message != null) {
         print('App opened from terminated state by notification!');
         print('Message data: ${message.data}'); 
-        // هنا يمكنك معالجة البيانات الإضافية التي جاءت مع الإشعار.
-        // مثلاً، حفظها مؤقتاً أو استخدامها لتوجيه المستخدم لشاشة معينة بعد الـ Splash.
-        // _initialMessageData = message.data; 
+       
       }
     });
 
-    // 4. التعامل مع الرسائل عندما يكون التطبيق في المقدمة (Foreground)
-    // هذا المستمع يستقبل الإشعارات بينما المستخدم يتفاعل مع تطبيقك.
-    // Firebase لا تعرض الإشعارات تلقائياً في هذه الحالة، لذا يجب عليكِ عرضها يدوياً.
+  
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
       print('Message data: ${message.data}');
 
       if (message.notification != null) {
         print('Message also contained a notification: ${message.notification?.title} - ${message.notification?.body}');
-        // هنا يمكنك عرض الإشعار يدوياً للمستخدم.
-        // سنستخدم دالة مساعدة بسيطة لعمل AlertDialog، ولكن يمكنك استخدام مكتبة 'flutter_local_notifications'
-        // لعرض إشعارات نظامية تظهر في شريط التنبيهات.
+       
         _showForegroundNotificationDialog(message.notification?.title, message.notification?.body);
       }
     });
 
-    // 5. التعامل مع النقر على الإشعار عندما يكون التطبيق في الخلفية (Background)
-    // هذا المستمع يتم استدعاؤه عندما ينقر المستخدم على إشعار وكان التطبيق في الخلفية (وليس مغلقاً تماماً).
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('Message opened app from background state!');
       print('Data: ${message.data}');
-      // يمكنك هنا أيضاً معالجة البيانات أو تخزينها لتوجيه المستخدم لاحقاً.
-      // _openedMessageData = message.data;
+      
+
     });
   }
 
-  // دالة مساعدة لعرض الإشعار عندما يكون التطبيق في المقدمة
-  // تستخدم AlertDialog بسيط بدلاً من إشعار نظامي.
+  
   void _showForegroundNotificationDialog(String? title, String? body) {
-    if (context.mounted) { // للتأكد أن الويدجت لا يزال جزءاً من شجرة الويدجت
+    if (context.mounted) { 
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(title ?? 'Notification'), // عنوان الإشعار
-          content: Text(body ?? 'No content'), // محتوى الإشعار
+          title: Text(title ?? 'Notification'), 
+          content: Text(body ?? 'No content'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context), // زر الإغلاق
+              onPressed: () => Navigator.pop(context), 
               child: const Text('حسناً'),
             ),
           ],
@@ -119,60 +97,31 @@ class _SplashViewState extends State<SplashView> {
     }
   }
 
-  // دالة التنقل إلى الشاشة التالية بعد انتهاء Splash Screen
   void _navigateToNextScreen() {
-    if (context.mounted) { // للتأكد أن الويدجت لا يزال جزءاً من شجرة الويدجت
-      // هنا يمكنك تمرير أي بيانات من الإشعارات إلى WelcomeViews
-      // إذا كان التطبيق قد فتح بسبب إشعار وتريدين معالجة البيانات فيه.
-      // مثال لتمرير البيانات:
-      // Navigator.pushAndRemoveUntil(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => WelcomeViews(
-      //       initialNotificationData: _initialMessageData ?? _openedMessageData,
-      //     ),
-      //   ),
-      //   (route) => false,
-      // );
-
-      // الكود الأصلي الخاص بكِ للتنقل:
+    if (context.mounted) { 
+   
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const WelcomeViews(); // تأكدي من استخدام 'const' إذا كانت WelcomeViews ثابتة
+            return const WelcomeViews(); 
           },
         ),
-        (route) => false, // هذا يعني إزالة جميع الشاشات السابقة من الـ stack
+        (route) => false, 
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // تصميم شاشة Splash Screen الخاصة بكِ
+    
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AppAssets.logo), // شعار التطبيق الخاص بكِ
-            SizedBox(height: 20.h), // مسافة باستخدام ScreenUtil
-            
-            // **اختياري:** لعرض الرمز المميز لغرض الـ debugging
-            // يمكنك إزالة هذا الجزء في الإصدار النهائي من تطبيقك
-            if (_fcmToken != null)
-              Padding(
-                padding: EdgeInsets.all(8.0.w),
-                child: SelectableText( // يسمح لك بنسخ الـ token بسهولة من الشاشة
-                  'FCM Token: $_fcmToken',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12.sp, color: Colors.grey),
-                ),
-              ),
-            
-            const SizedBox(height: 20), // مسافة لمؤشر التحميل
-            const CircularProgressIndicator(), // مؤشر تحميل دائري (اختياري)
+            Image.asset(AppAssets.logo), 
+        
           ],
         ),
       ),
